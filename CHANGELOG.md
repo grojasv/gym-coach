@@ -2,6 +2,26 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.2.0] — 2026-11-04
+### Added
+- **Your Código Titán content:** 22 new exercises (23 in total), each with how-to, posture cues, common mistakes and safety notes, in ES / CA / EN. They come from your V3.7 page and your chat.
+- **10 new routines.** The 4 phases of Código Titán V3.7, each as its own routine: Despertar el chasis, Motor WaterRower, Bloque de fuerza, Sello de hierro. Plus "Código Titán completo", built from those 4, and:
+  - Despegue Titán, your script with its per-second cues (really about 12 min)
+  - Torre: negativas (Mon/Fri)
+  - Comodín de descarga
+  - Micro-dosis entre tareas
+  - El Apretón de Titán
+- **Routines can include other routines** (`{ "routine": "<id>" }`). The full routine card lists its phases.
+- **"To technical failure" sets:** no number, just stop when your form breaks and tap Done.
+- **Short counted steps** (such as a 5 s negative) can turn off the 3-2-1 beeps.
+- `scripts/validate.mjs` checks all the data: 3 languages everywhere, exercise ids, cue timing, cue length and include cycles.
+- The exercise library is grouped by equipment into folding sections.
+
+### Fixed
+- A timed cue now interrupts any speech still running, so the voice stays on the clock.
+- Opening another routine, or an exercise page, while the player is open no longer jumps back to the hub.
+- "1 set" instead of "1 sets".
+
 ## [0.1.0] — 2026-11-04
 ### Added
 - Skeleton, built on menu-mellis: plain HTML/CSS/JS with no build step, GitHub Pages, installable PWA (network-first service worker), CA / ES / EN with the choice remembered, and the version in the footer.

@@ -15,6 +15,7 @@ Phone-first hub of workout routines, played as a timed script by El Titán (a ca
 - Cues and lines are spoken by text-to-speech, so keep each one short (under about 12 words), with no emoji and no symbols.
 - Posture first: cues are written and reviewed by hand, never generated at run time. No medical claims.
 - Routine durations are **computed from the steps**. Never type a total.
+- `node scripts/validate.mjs` must pass before every commit that touches `data/`.
 - A timed step's cue `at` values stay below `seconds - 3`, because the last 3 s are the beep countdown.
 
 ## Player rules (see SPEC § Player)

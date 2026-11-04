@@ -161,6 +161,8 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .secs { position: absolute; inset: 0; display: grid; place-items: center; font: clamp(48px, 12vh, 76px)/1 var(--display); }
 .reps-target { font: 22px/1 var(--display); }
 .reps-target b { font-size: 64px; font-weight: 400; color: var(--red); }
+.reps-target.fail { color: var(--red); font-size: 24px; line-height: 1.1; }
+.reps-target small { display: block; margin-top: 6px; font: 600 15px/1.2 var(--body); color: var(--muted); }
 .weight { display: flex; align-items: center; gap: 8px; font-weight: 600; }
 .weight input { width: 80px; padding: 8px; border: 2.5px solid var(--edge); border-radius: 10px; font: 700 18px var(--body); background: var(--card); color: var(--ink); }
 .p-stage .btn.big { max-width: 420px; }
@@ -186,3 +188,16 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* exercise library groups */
+.group { margin: 0 0 10px; }
+.group summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; list-style: none;
+  padding: 12px 14px; border: 3px solid var(--edge); border-radius: 14px; background: var(--card); font-weight: 700;
+  box-shadow: 3px 3px 0 var(--edge);
+}
+.group summary::-webkit-details-marker { display: none; }
+.group summary::after { content: "▾"; margin-left: auto; transition: rotate .2s; }
+.group[open] summary::after { rotate: 180deg; }
+.group[open] summary { margin-bottom: 10px; }
+.routine .phases { margin-top: 6px; font-size: 13px; }

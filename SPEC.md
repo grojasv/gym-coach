@@ -67,6 +67,8 @@ the extracted plan.
       "reps": 10,                       // mode reps (shown as the target)
       "estSeconds": 40,                 // mode reps: estimate for the computed duration (default reps × 4)
       "weight": false,                  // true: ask for and log the dumbbell weight
+      "toFailure": false,               // mode reps: no number, "to technical failure" (estimate 45 s)
+      "beeps": true,                    // mode time: false drops the 3-2-1 beeps (short counted steps, e.g. a 5 s negative)
       "restAfter": 45,                  // seconds; always timed
       "cues": [                         // spoken and shown at that second since the step started
         { "at": 0, "text": { "es": "…", "ca": "…", "en": "…" } }
@@ -75,6 +77,14 @@ the extracted plan.
   }]
 }]
 ```
+**Includes:** a block can be `{ "routine": "<id>" }` instead. It is replaced by that routine's blocks, so a full
+session is built from its phases (`codigo-titan` = its 4 phase routines). The `prepare` used is the outer routine's.
+Between included routines, the last step's `restAfter` is the transition rest.
+
+**Cue rules** (checked by `node scripts/validate.mjs`): `at` values increase and stay below `seconds - 3`, or below
+`seconds` when `beeps` is false. Each cue is at most 12 words; leave about 1 s of gap per 3 words before the next cue.
+Steps with cues get no generic `go`/`halfway`/`last3` lines. Reps steps have no timed cues.
+
 **How the player builds the timeline:** first `prepare`, then for each block, round and step, the **work** step followed
 by its **rest**. The rest is `restAfter`, except after a round's last step, where it is `restBetweenRounds`. The very
 last rest of the routine is dropped, and the timeline ends with **done**. The duration is the sum of all of it.

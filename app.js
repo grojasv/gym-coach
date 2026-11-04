@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.1.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.2.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
 
@@ -12,6 +12,7 @@
     noHistory: { es: 'Aún no hay entrenos. ¡El ring te espera!', ca: 'Encara no hi ha entrenaments. El ring t’espera!', en: 'No workouts yet. The ring is waiting!' },
     play: { es: 'Entrenar', ca: 'Entrena', en: 'Train' },
     sets: { es: 'series', ca: 'sèries', en: 'sets' },
+    set: { es: 'serie', ca: 'sèrie', en: 'set' },
     last: { es: 'Última vez', ca: 'Última vegada', en: 'Last time' },
     how: { es: 'Cómo se hace', ca: 'Com es fa', en: 'How to do it' },
     cues: { es: 'Claves de postura', ca: 'Claus de postura', en: 'Posture cues' },
@@ -50,7 +51,19 @@
   const $ = (id) => document.getElementById(id);
   const view = $('view'), playerEl = $('player'), foot = $('foot');
 
-  let data = null; // { exercises, routines, lines }
+  let data = null; // { exercises, routines, lines }; routines have their includes resolved
+
+  // A block may be { "routine": "<id>" }: it is replaced by that routine's blocks (SPEC § routines).
+  function resolveRoutines(list) {
+    const byId = Object.fromEntries(list.map((r) => [r.id, r]));
+    const expand = (r, seen) => r.blocks.flatMap((b) => {
+      if (!b.routine) return [b];
+      const sub = byId[b.routine];
+      if (!sub || seen.includes(sub.id)) throw new Error(`Bad include ${b.routine} in ${r.id}`);
+      return expand(sub, [...seen, sub.id]);
+    });
+    return list.map((r) => ({ ...r, includes: r.blocks.filter((b) => b.routine).map((b) => b.routine), blocks: expand(r, [r.id]) }));
+  }
   let player = null;
 
   // ---------- history ----------
@@ -72,7 +85,8 @@
     return `<a class="card routine" href="#/play/${encodeURIComponent(r.id)}">
       <div class="r-head"><h3>${esc(t(r.name))}</h3><span class="pill">${Player.fmtLen(Player.duration(items))}</span></div>
       <p>${esc(t(r.summary))}</p>
-      <div class="r-foot"><span>${sets} ${esc(t(TEXT.sets))}${last ? ` · ${esc(t(TEXT.last))}: ${esc(dateFmt(last.at))}` : ''}</span>
+      ${r.includes?.length ? `<p class="phases">${r.includes.map((id) => esc(t(data.routines.find((x) => x.id === id)?.name))).join(' → ')}</p>` : ''}
+      <div class="r-foot"><span>${sets} ${esc(t(sets === 1 ? TEXT.set : TEXT.sets))}${last ? ` · ${esc(t(TEXT.last))}: ${esc(dateFmt(last.at))}` : ''}</span>
         <span class="btn small go">▶ ${esc(t(TEXT.play))}</span></div></a>`;
   }
   function renderHub() {
@@ -87,9 +101,14 @@
       <h2 class="sec">${esc(t(TEXT.routines))}</h2>
       <div class="list">${data.routines.map(routineCard).join('')}</div>
       <h2 class="sec">${esc(t(TEXT.library))}</h2>
-      <div class="list grid">${Object.entries(data.exercises).map(([id, ex]) => `
-        <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${esc(t(ex.name))}</h3>
-          <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div>
+      ${Object.keys(EQUIP).map((eq) => {
+        const group = Object.entries(data.exercises).filter(([, ex]) => ex.equipment[0] === eq);
+        if (!group.length) return '';
+        return `<details class="group"><summary>${esc(t(EQUIP[eq]))} <span class="pill">${group.length}</span></summary>
+          <div class="list grid">${group.map(([id, ex]) => `
+            <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${esc(t(ex.name))}</h3>
+              <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div></details>`;
+      }).join('')}
       <h2 class="sec">${esc(t(TEXT.history))}</h2>
       ${log.length ? `<ul class="card history">${log.map((e) => {
         const r = data.routines.find((x) => x.id === e.routine);
@@ -124,9 +143,10 @@
       onFinish: (r) => addLog({ at: new Date().toISOString(), routine: id, ...r }),
       onExit: () => { player = null; location.hash = '#/'; },
     });
+    player.id = id;
   }
   function closePlayer() {
-    if (player) { const p = player; player = null; p.close(); }
+    if (player) { const p = player; player = null; p.close(true); }
     playerEl.hidden = true; playerEl.innerHTML = '';
     document.body.classList.remove('playing');
   }
@@ -134,7 +154,11 @@
   function route() {
     if (!data) return;
     const [, kind, id] = location.hash.match(/^#\/(\w+)\/(.+)$/) || [];
-    if (kind === 'play') { if (!player) openPlayer(decodeURIComponent(id)); return; }
+    if (kind === 'play') {
+      const rid = decodeURIComponent(id);
+      if (player?.id !== rid) { closePlayer(); openPlayer(rid); }
+      return;
+    }
     closePlayer();
     if (kind === 'ex') renderExercise(decodeURIComponent(id)); else renderHub();
     window.scrollTo(0, 0);
@@ -174,6 +198,6 @@
 
   const get = (f) => fetch(`data/${f}`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
   Promise.all([get('exercises.json'), get('routines.json'), get('lines.json').catch(() => ({}))])
-    .then(([exercises, routines, lines]) => { data = { exercises, routines, lines }; setLang(lang); })
+    .then(([exercises, routines, lines]) => { data = { exercises, routines: resolveRoutines(routines), lines }; setLang(lang); })
     .catch(() => { view.innerHTML = `<p class="empty">⚠️ ${esc(t(TEXT.loadError))}</p>`; renderFoot(); });
 })();

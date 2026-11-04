@@ -12,6 +12,8 @@
     next: { es: 'Siguiente', ca: 'Següent', en: 'Next' },
     round: { es: 'Ronda', ca: 'Ronda', en: 'Round' },
     reps: { es: 'reps', ca: 'reps', en: 'reps' },
+    toFailure: { es: 'Al fallo técnico', ca: 'Fins a la fallada tècnica', en: 'To technical failure' },
+    toFailureHint: { es: 'Para cuando la postura se rompa', ca: 'Atura’t quan la postura es trenqui', en: 'Stop when your form breaks' },
     kg: { es: 'kg', ca: 'kg', en: 'kg' },
     weight: { es: 'Peso por mancuerna', ca: 'Pes per manuella', en: 'Weight per dumbbell' },
     exit: { es: 'Salir', ca: 'Surt', en: 'Exit' },
@@ -31,6 +33,7 @@
   };
   const VOICE_LANG = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const REPS_EST = 4; // seconds per rep when a reps step has no estSeconds
+  const FAILURE_EST = 45; // a to-failure set with no estSeconds
 
   // ---------- timeline ----------
   function buildTimeline(routine, exercises) {
@@ -42,9 +45,10 @@
         block.steps.forEach((step, s) => {
           const ex = exercises[step.exercise];
           if (!ex) throw new Error(`Unknown exercise ${step.exercise}`);
-          const est = step.mode === 'time' ? step.seconds : (step.estSeconds || (step.reps || 10) * REPS_EST);
+          const est = step.mode === 'time' ? step.seconds
+            : (step.estSeconds || (step.toFailure ? FAILURE_EST : (step.reps || 10) * REPS_EST));
           items.push({ kind: 'work', mode: step.mode, seconds: step.mode === 'time' ? step.seconds : null, est,
-            reps: step.reps, weight: !!step.weight, exId: step.exercise, ex, cues: step.cues || [], block, round: r + 1, rounds });
+            reps: step.reps, toFailure: !!step.toFailure, beeps: step.beeps !== false, weight: !!step.weight, exId: step.exercise, ex, cues: step.cues || [], block, round: r + 1, rounds });
           const lastStep = s === block.steps.length - 1;
           const rest = lastStep && r < rounds - 1 && block.restBetweenRounds != null ? block.restBetweenRounds : step.restAfter;
           if (rest > 0) items.push({ kind: 'rest', seconds: rest });
@@ -174,7 +178,8 @@
       } else if (it.kind === 'work' && it.mode === 'reps') {
         center = `<div class="p-phase">${esc(t(TEXT.work))}</div>
           <h2 class="p-title">${esc(t(it.ex.name))}</h2>
-          <div class="reps-target"><b>${it.reps}</b> ${esc(t(TEXT.reps))}</div>
+          ${it.toFailure ? `<div class="reps-target fail">${esc(t(TEXT.toFailure))}<small>${esc(t(TEXT.toFailureHint))}</small></div>`
+            : `<div class="reps-target"><b>${it.reps}</b> ${esc(t(TEXT.reps))}</div>`}
           ${it.weight ? `<label class="weight">${esc(t(TEXT.weight))}
             <input type="number" inputmode="decimal" min="0" step="0.5" data-weight value="${weights[it.exId] ?? ''}"> ${esc(t(TEXT.kg))}</label>` : ''}
           <button class="btn big go" data-act="done">✔ ${esc(t(TEXT.finished))}</button>`;
@@ -214,7 +219,7 @@
         if (it.kind === 'prep') { if (it.seconds >= 15) sayKey('start'); sayKey('prep', { name: it.next ? t(it.next.ex.name) : '' }); }
         else if (it.kind === 'work') {
           beep(1320, 380);
-          if (it.mode === 'reps') sayKey('repsGo', { reps: it.reps });
+          if (it.mode === 'reps') { if (it.toFailure) say(t(TEXT.toFailureHint)); else sayKey('repsGo', { reps: it.reps }); }
           else if (!it.cues.length) sayKey('go'); // authored cues replace the generic lines
         } else if (it.kind === 'rest') {
           beep(660, 380);
@@ -247,11 +252,12 @@
       if (fg) fg.setAttribute('stroke-dashoffset', String(2 * Math.PI * 54 * (1 - left / it.seconds)));
       const once = (k, fn) => { if (!fired.has(k)) { fired.add(k); fn(); } };
       if (it.kind === 'work') {
-        it.cues.forEach((c, n) => { if (elapsed >= c.at) once(`c${n}`, () => sayL(c.text)); });
+        // A timed cue cuts off whatever is still being said, so the voice stays on the clock.
+        it.cues.forEach((c, n) => { if (elapsed >= c.at) once(`c${n}`, () => { if (!muted) synth?.cancel(); sayL(c.text); }); });
         if (!it.cues.length && it.seconds >= 20 && elapsed >= it.seconds / 2) once('half', () => sayKey('halfway'));
         if (!it.cues.length && it.seconds >= 12 && secs === 6) once('last', () => sayKey('last3'));
       }
-      if (secs <= 3 && secs >= 1) once(`b${secs}`, () => beep(880, 120));
+      if (secs <= 3 && secs >= 1 && (it.kind !== 'work' || it.beeps)) once(`b${secs}`, () => beep(880, 120));
       talkAnim();
     }
     function talkAnim() {
@@ -265,11 +271,12 @@
       logged = true;
     }
     let logged = false;
-    function close() {
+    // quiet: closed by the app (route change), so don't call onExit, which would navigate.
+    function close(quiet = false) {
       clearInterval(timer); timer = null; synth?.cancel(); releaseAwake();
       document.removeEventListener('visibilitychange', onVis);
       if (!logged && doneSet.size > 0) opts.onFinish?.({ done: false, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights });
-      onExit?.();
+      if (!quiet) onExit?.();
     }
     function onVis() {
       if (document.visibilityState === 'visible' && idx >= 0 && items[idx].kind !== 'done') { keepAwake(); tick(); }

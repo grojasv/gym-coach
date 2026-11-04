@@ -1,11 +1,32 @@
 {
   "cuelgue-activo": {
-    "name": { "es": "Cuelgue activo", "ca": "Penjada activa", "en": "Active hang" },
-    "equipment": ["pullup-bar"],
+    "name": {
+      "es": "Cuelgue activo",
+      "ca": "Penjada activa",
+      "en": "Active hang"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
     "targets": {
-      "es": ["dorsales", "trapecio inferior", "agarre (antebrazos)", "core"],
-      "ca": ["dorsals", "trapezi inferior", "agafada (avantbraços)", "core"],
-      "en": ["lats", "lower traps", "grip (forearms)", "core"]
+      "es": [
+        "dorsales",
+        "trapecio inferior",
+        "agarre (antebrazos)",
+        "core"
+      ],
+      "ca": [
+        "dorsals",
+        "trapezi inferior",
+        "agafada (avantbraços)",
+        "core"
+      ],
+      "en": [
+        "lats",
+        "lower traps",
+        "grip (forearms)",
+        "core"
+      ]
     },
     "how": {
       "es": "Cuélgate de la barra de la torre con agarre a la anchura de los hombros, palmas al frente y pulgar alrededor de la barra. Tira de los hombros hacia abajo y hacia atrás, saca pecho y aguanta quieto; si estás empezando, apoya las puntas de los pies en los escalones de la torre para llegar a 15 s.",
@@ -59,6 +80,1692 @@
       "es": "Para si notas un dolor agudo en el hombro. Usa los escalones para descargar peso y nunca te sueltes de la barra: baja apoyando los pies.",
       "ca": "Para si notes un dolor agut a l'espatlla. Fes servir els esglaons per descarregar pes i no et deixis anar mai de la barra: baixa recolzant els peus.",
       "en": "Stop if you feel sharp pain in your shoulder. Use the foot steps to take weight off, and never drop from the bar: step down instead."
+    }
+  },
+  "gato-camello": {
+    "name": {
+      "es": "Gato-Camello",
+      "ca": "Gat-Camell",
+      "en": "Cat-camel"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "movilidad de la columna",
+        "zona lumbar",
+        "core"
+      ],
+      "ca": [
+        "mobilitat de la columna",
+        "zona lumbar",
+        "core"
+      ],
+      "en": [
+        "spine mobility",
+        "lower back",
+        "core"
+      ]
+    },
+    "how": {
+      "es": "A cuatro patas, manos bajo los hombros y rodillas bajo la cadera. Coge aire mientras arqueas la espalda y miras al frente, y suéltalo mientras la redondeas hacia el techo, vértebra a vértebra y muy lento.",
+      "ca": "A quatre grapes, mans sota les espatlles i genolls sota el maluc. Agafa aire mentre arqueges l'esquena i mires endavant, i deixa'l anar mentre l'arrodoneixes cap al sostre, vèrtebra a vèrtebra i molt a poc a poc.",
+      "en": "On all fours, hands under your shoulders and knees under your hips. Breathe in as you arch your back and look ahead, then breathe out as you round it toward the ceiling, one vertebra at a time and very slowly."
+    },
+    "cues": {
+      "es": [
+        "Manos bajo los hombros, rodillas bajo la cadera.",
+        "Coge aire y arquea la espalda, mirada al frente.",
+        "Suelta el aire y redondea la espalda hacia el techo.",
+        "Lento, vértebra a vértebra, sin prisa."
+      ],
+      "ca": [
+        "Mans sota les espatlles, genolls sota el maluc.",
+        "Agafa aire i arqueja l'esquena, mirada endavant.",
+        "Deixa anar l'aire i arrodoneix l'esquena cap al sostre.",
+        "A poc a poc, vèrtebra a vèrtebra, sense pressa."
+      ],
+      "en": [
+        "Hands under your shoulders, knees under your hips.",
+        "Breathe in and arch your back, eyes forward.",
+        "Breathe out and round your back toward the ceiling.",
+        "Slowly, one vertebra at a time, no rush."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Hacerlo rápido, como un rebote.",
+        "Mover solo el cuello y dejar quieta la espalda.",
+        "Aguantar la respiración."
+      ],
+      "ca": [
+        "Fer-ho ràpid, com un rebot.",
+        "Moure només el coll i deixar quieta l'esquena.",
+        "Aguantar la respiració."
+      ],
+      "en": [
+        "Rushing it, like a bounce.",
+        "Moving only your neck while your back stays still.",
+        "Holding your breath."
+      ]
+    }
+  },
+  "zancada-rotacion": {
+    "name": {
+      "es": "Zancada de caballero con rotación",
+      "ca": "Gambada de cavaller amb rotació",
+      "en": "Half-kneeling lunge with rotation"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "psoas ilíaco",
+        "flexores de la cadera",
+        "extensión torácica"
+      ],
+      "ca": [
+        "psoes ilíac",
+        "flexors del maluc",
+        "extensió toràcica"
+      ],
+      "en": [
+        "iliopsoas",
+        "hip flexors",
+        "thoracic extension"
+      ]
+    },
+    "how": {
+      "es": "Rodilla de atrás en el suelo y pie de delante plantado, como un caballero. Lleva la cadera hacia delante, sube el brazo del lado de la rodilla apoyada y gira el pecho hacia la pierna de delante; haz 5 por lado.",
+      "ca": "Genoll de darrere a terra i peu de davant ben plantat, com un cavaller. Porta el maluc endavant, aixeca el braç del costat del genoll recolzat i gira el pit cap a la cama de davant; fes-ne 5 per costat.",
+      "en": "Back knee on the floor and front foot planted, like a knight. Push your hips forward, raise the arm on the kneeling side and turn your chest toward the front leg; do 5 per side."
+    },
+    "cues": {
+      "es": [
+        "Rodilla de atrás en el suelo, pie de delante firme.",
+        "Aprieta el glúteo de atrás y lleva la cadera adelante.",
+        "Sube el brazo y gira el pecho hacia la pierna.",
+        "Pecho alto, espalda larga, respira en cada giro."
+      ],
+      "ca": [
+        "Genoll de darrere a terra, peu de davant ferm.",
+        "Estreny el gluti de darrere i porta el maluc endavant.",
+        "Aixeca el braç i gira el pit cap a la cama.",
+        "Pit amunt, esquena llarga, respira a cada gir."
+      ],
+      "en": [
+        "Back knee on the floor, front foot firm.",
+        "Squeeze the back glute and push your hips forward.",
+        "Raise your arm and turn your chest toward the leg.",
+        "Chest up, long spine, breathe on every turn."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Arquear la zona lumbar en vez de empujar la cadera.",
+        "Girar solo el brazo sin mover el pecho.",
+        "Dejar que la rodilla de delante se vaya hacia dentro."
+      ],
+      "ca": [
+        "Arquejar la zona lumbar en lloc d'empènyer el maluc.",
+        "Girar només el braç sense moure el pit.",
+        "Deixar que el genoll de davant se'n vagi cap endins."
+      ],
+      "en": [
+        "Arching your lower back instead of pushing your hips.",
+        "Turning only your arm without moving your chest.",
+        "Letting your front knee cave inward."
+      ]
+    },
+    "safety": {
+      "es": "Pon una toalla doblada bajo la rodilla apoyada si te molesta el suelo.",
+      "ca": "Posa una tovallola doblegada sota el genoll recolzat si et molesta el terra.",
+      "en": "Put a folded towel under the kneeling knee if the floor bothers it."
+    }
+  },
+  "puente-gluteo": {
+    "name": {
+      "es": "Puente de glúteo",
+      "ca": "Pont de gluti",
+      "en": "Glute bridge"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "glúteo mayor",
+        "isquiotibiales",
+        "cadena posterior"
+      ],
+      "ca": [
+        "gluti major",
+        "isquiotibials",
+        "cadena posterior"
+      ],
+      "en": [
+        "gluteus maximus",
+        "hamstrings",
+        "posterior chain"
+      ]
+    },
+    "how": {
+      "es": "Tumbado boca arriba con las rodillas dobladas y los pies apoyados a la anchura de la cadera. Empuja con los talones, sube la cadera hasta alinear rodillas, cadera y hombros, aprieta los glúteos 2 segundos arriba y baja despacio.",
+      "ca": "Estirat de panxa enlaire amb els genolls doblegats i els peus recolzats a l'amplada del maluc. Empeny amb els talons, puja el maluc fins alinear genolls, maluc i espatlles, estreny els glutis 2 segons a dalt i baixa a poc a poc.",
+      "en": "Lie on your back with knees bent and feet flat, hip-width apart. Drive through your heels, lift your hips until knees, hips and shoulders line up, squeeze your glutes for 2 seconds at the top and lower slowly."
+    },
+    "cues": {
+      "es": [
+        "Pies a la anchura de la cadera, empuja con los talones.",
+        "Sube hasta alinear rodillas, cadera y hombros.",
+        "Arriba, aprieta los glúteos dos segundos.",
+        "Baja despacio, vértebra a vértebra."
+      ],
+      "ca": [
+        "Peus a l'amplada del maluc, empeny amb els talons.",
+        "Puja fins alinear genolls, maluc i espatlles.",
+        "A dalt, estreny els glutis dos segons.",
+        "Baixa a poc a poc, vèrtebra a vèrtebra."
+      ],
+      "en": [
+        "Feet hip-width apart, drive through your heels.",
+        "Lift until knees, hips and shoulders line up.",
+        "At the top, squeeze your glutes for two seconds.",
+        "Lower slowly, one vertebra at a time."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Subir arqueando la zona lumbar en vez de apretar glúteo.",
+        "Saltarse la pausa de dos segundos arriba.",
+        "Abrir las rodillas hacia fuera al subir."
+      ],
+      "ca": [
+        "Pujar arquejant la zona lumbar en lloc d'estrènyer el gluti.",
+        "Saltar-se la pausa de dos segons a dalt.",
+        "Obrir els genolls cap enfora en pujar."
+      ],
+      "en": [
+        "Arching your lower back instead of squeezing your glutes.",
+        "Skipping the two-second pause at the top.",
+        "Letting your knees fall outward as you lift."
+      ]
+    }
+  },
+  "rotacion-munecas": {
+    "name": {
+      "es": "Rotación de muñecas",
+      "ca": "Rotació de canells",
+      "en": "Wrist rotations"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "muñecas",
+        "antebrazos"
+      ],
+      "ca": [
+        "canells",
+        "avantbraços"
+      ],
+      "en": [
+        "wrists",
+        "forearms"
+      ]
+    },
+    "how": {
+      "es": "De pie, entrelaza los dedos de las manos y haz giros amplios en círculo hacia un lado durante 30 segundos, luego cambia el sentido otros 30. Al acabar, suelta y sacude los dedos.",
+      "ca": "Dret, entrellaça els dits de les mans i fes girs amplis en cercle cap a un costat durant 30 segons, després canvia el sentit 30 més. En acabar, deixa anar i sacseja els dits.",
+      "en": "Standing, interlace your fingers and make wide circles to one side for 30 seconds, then switch direction for another 30. When you finish, let go and shake out your fingers."
+    },
+    "cues": {
+      "es": [
+        "Entrelaza los dedos de las manos.",
+        "Giros amplios en círculo, sin prisa.",
+        "Cambia el sentido del giro.",
+        "Suelta y sacude los dedos."
+      ],
+      "ca": [
+        "Entrellaça els dits de les mans.",
+        "Girs amplis en cercle, sense pressa.",
+        "Canvia el sentit del gir.",
+        "Deixa anar i sacseja els dits."
+      ],
+      "en": [
+        "Interlace your fingers.",
+        "Wide circles, no rush.",
+        "Switch the direction of the circles.",
+        "Let go and shake out your fingers."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Hacer círculos pequeños y rápidos.",
+        "Subir los hombros hacia las orejas."
+      ],
+      "ca": [
+        "Fer cercles petits i ràpids.",
+        "Pujar les espatlles cap a les orelles."
+      ],
+      "en": [
+        "Making small, fast circles.",
+        "Hunching your shoulders up toward your ears."
+      ]
+    }
+  },
+  "circulos-brazos": {
+    "name": {
+      "es": "Círculos de brazos",
+      "ca": "Cercles de braços",
+      "en": "Arm circles"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "hombros",
+        "escápulas",
+        "apertura de pecho"
+      ],
+      "ca": [
+        "espatlles",
+        "omòplats",
+        "obertura de pit"
+      ],
+      "en": [
+        "shoulders",
+        "shoulder blades",
+        "chest opening"
+      ]
+    },
+    "how": {
+      "es": "De pie, abre los brazos en cruz y dibuja círculos amplios hacia delante durante 30 segundos, luego invierte el giro hacia atrás otros 30. En cada vuelta, aprieta las escápulas y abre bien la caja torácica.",
+      "ca": "Dret, obre els braços en creu i dibuixa cercles amplis cap endavant durant 30 segons, després inverteix el gir cap enrere 30 més. A cada volta, estreny els omòplats i obre bé la caixa toràcica.",
+      "en": "Standing, spread your arms out to the sides and draw wide circles forward for 30 seconds, then reverse backward for another 30. On every turn, squeeze your shoulder blades and open your chest."
+    },
+    "cues": {
+      "es": [
+        "Brazos en cruz, círculos amplios hacia delante.",
+        "Ahora invierte el giro hacia atrás.",
+        "Aprieta las escápulas en cada vuelta.",
+        "Abre bien la caja torácica."
+      ],
+      "ca": [
+        "Braços en creu, cercles amplis cap endavant.",
+        "Ara inverteix el gir cap enrere.",
+        "Estreny els omòplats a cada volta.",
+        "Obre bé la caixa toràcica."
+      ],
+      "en": [
+        "Arms out wide, big circles forward.",
+        "Now reverse the circles backward.",
+        "Squeeze your shoulder blades on every turn.",
+        "Open your chest wide."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Hacer círculos pequeños sin mover las escápulas.",
+        "Bajar los brazos por debajo de los hombros.",
+        "Subir los hombros hacia las orejas."
+      ],
+      "ca": [
+        "Fer cercles petits sense moure els omòplats.",
+        "Baixar els braços per sota de les espatlles.",
+        "Pujar les espatlles cap a les orelles."
+      ],
+      "en": [
+        "Making small circles without moving your shoulder blades.",
+        "Letting your arms drop below shoulder height.",
+        "Hunching your shoulders up toward your ears."
+      ]
+    }
+  },
+  "retraccion-escapular": {
+    "name": {
+      "es": "Retracción escapular de pie",
+      "ca": "Retracció escapular dret",
+      "en": "Standing scapular retraction"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "romboides",
+        "trapecio medio",
+        "postura"
+      ],
+      "ca": [
+        "romboides",
+        "trapezi mitjà",
+        "postura"
+      ],
+      "en": [
+        "rhomboids",
+        "middle traps",
+        "posture"
+      ]
+    },
+    "how": {
+      "es": "Estira los brazos al frente a la altura del pecho, palmas enfrentadas. Sin doblar los codos, echa los hombros hacia atrás juntando las paletas, aguanta un segundo sacando pecho con orgullo y vuelve a empujar hacia delante.",
+      "ca": "Estira els braços endavant a l'alçada del pit, palmells encarats. Sense doblegar els colzes, porta les espatlles enrere ajuntant els omòplats, aguanta un segon traient pit amb orgull i torna a empènyer endavant.",
+      "en": "Reach your arms forward at chest height, palms facing each other. Without bending your elbows, pull your shoulders back and squeeze your shoulder blades, hold a second with your chest proud, then push forward again."
+    },
+    "cues": {
+      "es": [
+        "Brazos al frente, palmas enfrentadas, codos estirados.",
+        "Junta las paletas de la espalda.",
+        "Aguanta un segundo, sacando pecho con orgullo.",
+        "Vuelve a empujar hacia delante, fluido y controlado."
+      ],
+      "ca": [
+        "Braços endavant, palmells encarats, colzes estirats.",
+        "Ajunta els omòplats de l'esquena.",
+        "Aguanta un segon, traient pit amb orgull.",
+        "Torna a empènyer endavant, fluid i controlat."
+      ],
+      "en": [
+        "Arms forward, palms facing, elbows straight.",
+        "Squeeze your shoulder blades together.",
+        "Hold one second, chest out with pride.",
+        "Push forward again, smooth and controlled."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Doblar los codos y tirar con los brazos.",
+        "Subir los hombros hacia las orejas.",
+        "Arquear la zona lumbar para sacar pecho."
+      ],
+      "ca": [
+        "Doblegar els colzes i estirar amb els braços.",
+        "Pujar les espatlles cap a les orelles.",
+        "Arquejar la zona lumbar per treure pit."
+      ],
+      "en": [
+        "Bending your elbows and pulling with your arms.",
+        "Hunching your shoulders up toward your ears.",
+        "Arching your lower back to push your chest out."
+      ]
+    }
+  },
+  "estiramiento-pectoral": {
+    "name": {
+      "es": "Estiramiento de pectoral",
+      "ca": "Estirament de pectoral",
+      "en": "Chest stretch"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "pectoral mayor",
+        "hombro (parte frontal)"
+      ],
+      "ca": [
+        "pectoral major",
+        "espatlla (part frontal)"
+      ],
+      "en": [
+        "pectoralis major",
+        "front of the shoulder"
+      ]
+    },
+    "how": {
+      "es": "De pie junto a un poste vertical de la torre, apoya el antebrazo en el poste a la altura del hombro. Gira suavemente el tronco hacia el lado contrario hasta notar cómo se abre el pectoral y aguanta 15 segundos por lado respirando hondo.",
+      "ca": "Dret al costat d'un pal vertical de la torre, recolza l'avantbraç al pal a l'alçada de l'espatlla. Gira suaument el tronc cap al costat contrari fins notar com s'obre el pectoral i aguanta 15 segons per costat respirant fondo.",
+      "en": "Stand next to one of the tower's upright posts and rest your forearm on it at shoulder height. Gently turn your torso away until you feel your chest open, and hold 15 seconds per side, breathing deeply."
+    },
+    "cues": {
+      "es": [
+        "Antebrazo en el poste, a la altura del hombro.",
+        "Gira el tronco suave hacia el otro lado.",
+        "Nota cómo se abre el pectoral.",
+        "Respira hondo y cambia de brazo."
+      ],
+      "ca": [
+        "Avantbraç al pal, a l'alçada de l'espatlla.",
+        "Gira el tronc suaument cap a l'altre costat.",
+        "Nota com s'obre el pectoral.",
+        "Respira fondo i canvia de braç."
+      ],
+      "en": [
+        "Forearm on the post, at shoulder height.",
+        "Gently turn your torso the other way.",
+        "Feel your chest opening up.",
+        "Breathe deeply, then switch arms."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Girar de golpe o dar rebotes.",
+        "Apoyar el brazo por encima de la altura del hombro.",
+        "Subir el hombro hacia la oreja."
+      ],
+      "ca": [
+        "Girar de cop o fer rebots.",
+        "Recolzar el braç per sobre de l'alçada de l'espatlla.",
+        "Pujar l'espatlla cap a l'orella."
+      ],
+      "en": [
+        "Turning sharply or bouncing.",
+        "Resting your arm above shoulder height.",
+        "Hunching your shoulder up toward your ear."
+      ]
+    },
+    "safety": {
+      "es": "Estira hasta notar tensión suave, nunca dolor en el hombro.",
+      "ca": "Estira fins a notar una tensió suau, mai dolor a l'espatlla.",
+      "en": "Stretch to a gentle pull, never to pain in your shoulder."
+    }
+  },
+  "estiramiento-dorsal": {
+    "name": {
+      "es": "Estiramiento de dorsal",
+      "ca": "Estirament de dorsal",
+      "en": "Lat stretch"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "dorsal ancho",
+        "espalda",
+        "hombros"
+      ],
+      "ca": [
+        "dorsal ample",
+        "esquena",
+        "espatlles"
+      ],
+      "en": [
+        "lats",
+        "back",
+        "shoulders"
+      ]
+    },
+    "how": {
+      "es": "De frente a la torre, sujeta los postes verticales con ambas manos a la altura de la cintura. Echa los glúteos hacia atrás doblando un poco las rodillas e inclina el torso hasta quedar paralelo al suelo, con la cabeza entre los brazos, y aguanta 30 segundos.",
+      "ca": "De cara a la torre, agafa els pals verticals amb les dues mans a l'alçada de la cintura. Porta els glutis enrere doblegant una mica els genolls i inclina el tors fins quedar paral·lel a terra, amb el cap entre els braços, i aguanta 30 segons.",
+      "en": "Face the tower and hold the upright posts with both hands at waist height. Push your hips back with a slight knee bend and tip your torso until it is parallel to the floor, head between your arms, and hold 30 seconds."
+    },
+    "cues": {
+      "es": [
+        "Manos en los postes, a la altura de la cintura.",
+        "Glúteos atrás, rodillas un poco dobladas.",
+        "Torso paralelo al suelo, cabeza entre los brazos.",
+        "Siente el estiramiento a lo largo de toda la espalda."
+      ],
+      "ca": [
+        "Mans als pals, a l'alçada de la cintura.",
+        "Glutis enrere, genolls una mica doblegats.",
+        "Tors paral·lel a terra, cap entre els braços.",
+        "Sent l'estirament al llarg de tota l'esquena."
+      ],
+      "en": [
+        "Hands on the posts, at waist height.",
+        "Hips back, knees slightly bent.",
+        "Torso parallel to the floor, head between your arms.",
+        "Feel the stretch along your whole back."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Redondear la espalda en vez de alargarla.",
+        "Bloquear las rodillas del todo.",
+        "Levantar la cabeza por encima de los brazos."
+      ],
+      "ca": [
+        "Arrodonir l'esquena en lloc d'allargar-la.",
+        "Bloquejar els genolls del tot.",
+        "Aixecar el cap per sobre dels braços."
+      ],
+      "en": [
+        "Rounding your back instead of lengthening it.",
+        "Locking your knees straight.",
+        "Lifting your head above your arms."
+      ]
+    }
+  },
+  "cuelgue-pasivo": {
+    "name": {
+      "es": "Cuelgue pasivo con pies apoyados",
+      "ca": "Penjada passiva amb peus recolzats",
+      "en": "Assisted passive hang"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "espalda",
+        "dorsales",
+        "agarre",
+        "vuelta a la calma"
+      ],
+      "ca": [
+        "esquena",
+        "dorsals",
+        "agafada",
+        "tornada a la calma"
+      ],
+      "en": [
+        "back",
+        "lats",
+        "grip",
+        "cool-down"
+      ]
+    },
+    "how": {
+      "es": "Sube a los escalones de la torre y agarra la barra a la anchura de los hombros, dejando las puntas de los pies apoyadas para no colgar todo tu peso. Relaja hombros, espalda y cadera, coge aire hondo y suéltalo despacio por la boca durante 30 a 45 segundos.",
+      "ca": "Puja als esglaons de la torre i agafa la barra a l'amplada de les espatlles, deixant les puntes dels peus recolzades per no penjar tot el pes. Relaxa espatlles, esquena i maluc, agafa aire fondo i deixa'l anar a poc a poc per la boca durant 30 a 45 segons.",
+      "en": "Step onto the tower's foot steps and grip the bar shoulder-width apart, keeping your toes on the steps so you don't hang your full weight. Relax your shoulders, back and hips, breathe in deeply and breathe out slowly through your mouth for 30 to 45 seconds."
+    },
+    "cues": {
+      "es": [
+        "Puntas de los pies apoyadas, no cuelgues todo el peso.",
+        "Relaja los hombros, la espalda y la cadera.",
+        "Coge aire hondo inflando el pecho.",
+        "Suéltalo despacio: cada vértebra se estira."
+      ],
+      "ca": [
+        "Puntes dels peus recolzades, no pengis tot el pes.",
+        "Relaxa les espatlles, l'esquena i el maluc.",
+        "Agafa aire fondo inflant el pit.",
+        "Deixa'l anar a poc a poc: cada vèrtebra s'estira."
+      ],
+      "en": [
+        "Toes on the steps, don't hang your full weight.",
+        "Relax your shoulders, back and hips.",
+        "Breathe in deeply, filling your chest.",
+        "Breathe out slowly: feel each vertebra stretch."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Levantar los pies y colgar todo el peso de golpe.",
+        "Balancearte en vez de quedarte quieto.",
+        "Soltarte de la barra en vez de pisar el suelo."
+      ],
+      "ca": [
+        "Aixecar els peus i penjar tot el pes de cop.",
+        "Balancejar-te en lloc de quedar-te quiet.",
+        "Deixar-te anar de la barra en lloc de trepitjar a terra."
+      ],
+      "en": [
+        "Lifting your feet and dropping your full weight at once.",
+        "Swinging instead of staying still.",
+        "Letting go of the bar instead of stepping down."
+      ]
+    },
+    "safety": {
+      "es": "Para si notas un dolor agudo en el hombro. Para bajar, apoya los pies firmes y pisa el suelo con suavidad.",
+      "ca": "Para si notes un dolor agut a l'espatlla. Per baixar, recolza bé els peus i trepitja a terra amb suavitat.",
+      "en": "Stop if you feel sharp pain in your shoulder. To finish, plant your feet and step down gently."
+    }
+  },
+  "remo-waterrower": {
+    "name": {
+      "es": "Remo WaterRower",
+      "ca": "Rem WaterRower",
+      "en": "WaterRower row"
+    },
+    "equipment": [
+      "rower"
+    ],
+    "targets": {
+      "es": [
+        "dorsal ancho",
+        "trapecios y romboides",
+        "cuádriceps y glúteos",
+        "bíceps",
+        "core profundo"
+      ],
+      "ca": [
+        "dorsal ample",
+        "trapezis i romboides",
+        "quàdriceps i glutis",
+        "bíceps",
+        "core profund"
+      ],
+      "en": [
+        "lats",
+        "traps and rhomboids",
+        "quads and glutes",
+        "biceps",
+        "deep core"
+      ]
+    },
+    "how": {
+      "es": "Rema en 4 fases: atrapada, impulso (piernas → torso → brazos), final y recuperación en orden inverso. La fuerza sale de las piernas y la espalda, no de apretar el manillar con rabia.",
+      "ca": "Rema en 4 fases: agafada, impuls (cames → tors → braços), final i recuperació en ordre invers. La força surt de les cames i l'esquena, no d'estrènyer el manillar amb ràbia.",
+      "en": "Row in 4 phases: catch, drive (legs → trunk → arms), finish, and recovery in reverse order. The power comes from your legs and back, not from squeezing the handle hard."
+    },
+    "cues": {
+      "es": [
+        "Atrapada: espinillas verticales y muñecas totalmente planas.",
+        "Impulso: piernas, torso y brazos; el orden lo es todo.",
+        "60% piernas, 30% tronco, 10% brazos.",
+        "Final: codos pegados a las costillas, pecho bien abierto.",
+        "Recupera al revés, con las manos como ganchos, sin estrangular."
+      ],
+      "ca": [
+        "Agafada: canyelles verticals i canells totalment plans.",
+        "Impuls: cames, tors i braços; l'ordre ho és tot.",
+        "60% cames, 30% tronc, 10% braços.",
+        "Final: colzes enganxats a les costelles, pit ben obert.",
+        "Recupera al revés, amb les mans com ganxos, sense escanyar."
+      ],
+      "en": [
+        "Catch: shins vertical and wrists completely flat.",
+        "Drive: legs, trunk, then arms; the order is everything.",
+        "60% legs, 30% trunk, 10% arms.",
+        "Finish: elbows close to your ribs, chest wide open.",
+        "Recover in reverse, hands like hooks, don't strangle the handle."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Tirar con los brazos antes de estirar las piernas.",
+        "Doblar las rodillas antes de que el manillar las pase.",
+        "Estrangular el manillar o doblar las muñecas.",
+        "Encorvar la espalda o subir los hombros a las orejas."
+      ],
+      "ca": [
+        "Estirar amb els braços abans d'estendre les cames.",
+        "Doblegar els genolls abans que el manillar els passi.",
+        "Escanyar el manillar o doblegar els canells.",
+        "Encorbar l'esquena o pujar les espatlles a les orelles."
+      ],
+      "en": [
+        "Pulling with your arms before your legs straighten.",
+        "Bending your knees before the handle passes them.",
+        "Strangling the handle or bending your wrists.",
+        "Rounding your back or shrugging your shoulders up."
+      ]
+    },
+    "safety": {
+      "es": "Inclínate desde la cadera con la espalda recta. Si la lumbar se redondea, baja el ritmo.",
+      "ca": "Inclina't des del maluc amb l'esquena recta. Si la zona lumbar s'arrodoneix, abaixa el ritme.",
+      "en": "Hinge from the hips with a straight back. If your lower back rounds, slow the pace."
+    }
+  },
+  "sentadilla-goblet": {
+    "name": {
+      "es": "Sentadilla Goblet",
+      "ca": "Esquat Goblet",
+      "en": "Goblet squat"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "cuádriceps",
+        "glúteo mayor",
+        "core (abdomen y lumbar)",
+        "erectores espinales"
+      ],
+      "ca": [
+        "quàdriceps",
+        "gluti major",
+        "core (abdomen i lumbar)",
+        "erectors espinals"
+      ],
+      "en": [
+        "quads",
+        "glutes",
+        "core (abs and lower back)",
+        "spinal erectors"
+      ]
+    },
+    "how": {
+      "es": "Sujeta una mancuerna en vertical pegada al pecho, pies a la anchura de los hombros. Baja con el pecho fuera y la espalda recta, aguanta abajo y sube empujando el suelo.",
+      "ca": "Subjecta una manuella en vertical enganxada al pit, peus a l'amplada de les espatlles. Baixa amb el pit fora i l'esquena recta, aguanta a baix i puja empenyent el terra.",
+      "en": "Hold a dumbbell upright against your chest, feet shoulder-width apart. Squat down with your chest up and back straight, pause at the bottom, and drive up through the floor."
+    },
+    "cues": {
+      "es": [
+        "Baja en 3 s, aguanta 1 s abajo, sube en 1 s.",
+        "Mancuerna pegada al pecho, codos hacia abajo.",
+        "Pecho fuera y espalda recta todo el recorrido.",
+        "Rodillas en la línea de los pies.",
+        "Empuja el suelo con todo el pie."
+      ],
+      "ca": [
+        "Baixa en 3 s, aguanta 1 s, puja en 1 s.",
+        "Manuella enganxada al pit, colzes cap avall.",
+        "Pit fora i esquena recta tot el recorregut.",
+        "Genolls en la línia dels peus.",
+        "Empeny el terra amb tot el peu."
+      ],
+      "en": [
+        "Down in 3 s, hold 1 s, up in 1 s.",
+        "Dumbbell against your chest, elbows pointing down.",
+        "Chest up and back straight the whole way.",
+        "Knees in line with your toes.",
+        "Push the floor away with your whole foot."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Redondear la espalda al bajar.",
+        "Levantar los talones del suelo.",
+        "Dejar que las rodillas se vayan hacia dentro.",
+        "Rebotar abajo en vez de aguantar el segundo."
+      ],
+      "ca": [
+        "Arrodonir l'esquena en baixar.",
+        "Aixecar els talons de terra.",
+        "Deixar que els genolls se'n vagin cap endins.",
+        "Rebotar a baix en lloc d'aguantar el segon."
+      ],
+      "en": [
+        "Rounding your back on the way down.",
+        "Lifting your heels off the floor.",
+        "Letting your knees cave inward.",
+        "Bouncing at the bottom instead of holding."
+      ]
+    },
+    "safety": {
+      "es": "Si la postura se degrada, se frena la serie. Para si notas dolor en la lumbar o en las rodillas.",
+      "ca": "Si la postura es degrada, s'atura la sèrie. Para si notes dolor a la zona lumbar o als genolls.",
+      "en": "If your form breaks down, stop the set. Stop if you feel pain in your lower back or knees."
+    }
+  },
+  "flexiones-flecha": {
+    "name": {
+      "es": "Flexiones Flecha",
+      "ca": "Flexions Fletxa",
+      "en": "Arrow push-ups"
+    },
+    "equipment": [
+      "floor"
+    ],
+    "targets": {
+      "es": [
+        "pectoral mayor",
+        "tríceps",
+        "deltoides anterior",
+        "recto abdominal"
+      ],
+      "ca": [
+        "pectoral major",
+        "tríceps",
+        "deltoide anterior",
+        "recte abdominal"
+      ],
+      "en": [
+        "chest",
+        "triceps",
+        "front delts",
+        "abs"
+      ]
+    },
+    "how": {
+      "es": "En plancha con las manos algo más abiertas que los hombros, baja con los codos a 45° para que el cuerpo dibuje una flecha. Sube explosivo y repite hasta el fallo técnico.",
+      "ca": "En planxa amb les mans una mica més obertes que les espatlles, baixa amb els colzes a 45° perquè el cos dibuixi una fletxa. Puja explosiu i repeteix fins a la fallada tècnica.",
+      "en": "In a plank with hands slightly wider than your shoulders, lower with your elbows at 45° so your body draws an arrow. Push up explosively and repeat to technical failure."
+    },
+    "cues": {
+      "es": [
+        "Baja reteniendo 3 s, sube explosivo en 1 s.",
+        "Codos a 45°: el cuerpo forma una flecha.",
+        "Cuerpo recto de la cabeza a los talones.",
+        "Abdomen y glúteos apretados todo el rato.",
+        "Al fallo técnico: si la postura se degrada, para."
+      ],
+      "ca": [
+        "Baixa retenint 3 s, puja explosiu en 1 s.",
+        "Colzes a 45°: el cos forma una fletxa.",
+        "Cos recte del cap als talons.",
+        "Abdomen i glutis estrets tota l'estona.",
+        "Fins a la fallada tècnica: si la postura es degrada, para."
+      ],
+      "en": [
+        "Lower slowly for 3 s, push up explosively in 1 s.",
+        "Elbows at 45°: your body forms an arrow.",
+        "Body straight from head to heels.",
+        "Squeeze your abs and glutes the whole time.",
+        "To technical failure: if your form breaks, stop."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Abrir los codos en cruz, a 90°.",
+        "Hundir la cadera o subir el culo.",
+        "Dejarte caer en vez de bajar en 3 s.",
+        "Seguir con repeticiones feas cuando la postura se degrada."
+      ],
+      "ca": [
+        "Obrir els colzes en creu, a 90°.",
+        "Enfonsar el maluc o aixecar el cul.",
+        "Deixar-te caure en lloc de baixar en 3 s.",
+        "Continuar amb repeticions lletges quan la postura es degrada."
+      ],
+      "en": [
+        "Flaring your elbows out to 90°.",
+        "Sagging your hips or piking your butt up.",
+        "Dropping down instead of lowering in 3 s.",
+        "Grinding out ugly reps once your form breaks."
+      ]
+    },
+    "safety": {
+      "es": "Para si notas un dolor agudo en el hombro. Mantén la cadera alineada para no cargar la lumbar.",
+      "ca": "Para si notes un dolor agut a l'espatlla. Mantén el maluc alineat per no carregar la zona lumbar.",
+      "en": "Stop if you feel sharp pain in your shoulder. Keep your hips in line so your lower back isn't loaded."
+    }
+  },
+  "press-militar": {
+    "name": {
+      "es": "Press militar sentado con mancuernas",
+      "ca": "Press militar assegut amb manuelles",
+      "en": "Seated dumbbell shoulder press"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "deltoides (anterior y lateral)",
+        "trapecio",
+        "tríceps",
+        "serrato anterior"
+      ],
+      "ca": [
+        "deltoides (anterior i lateral)",
+        "trapezi",
+        "tríceps",
+        "serrat anterior"
+      ],
+      "en": [
+        "delts (front and side)",
+        "traps",
+        "triceps",
+        "serratus anterior"
+      ]
+    },
+    "how": {
+      "es": "Sentado y erguido, con una mancuerna en cada mano a la altura de las orejas, empuja hacia arriba sin bloquear los codos. Baja reteniendo hasta volver a la altura de las orejas.",
+      "ca": "Assegut i dret, amb una manuella a cada mà a l'altura de les orelles, empeny cap amunt sense bloquejar els colzes. Baixa retenint fins a tornar a l'altura de les orelles.",
+      "en": "Sit tall with a dumbbell in each hand at ear level and press up without locking your elbows. Lower under control back to ear level."
+    },
+    "cues": {
+      "es": [
+        "Sube en 1 s, baja reteniendo 3 s.",
+        "Baja solo hasta la altura de las orejas.",
+        "Siéntate erguido, abdomen firme, sin arquear la lumbar.",
+        "Muñecas rectas, justo encima de los codos.",
+        "Hombros lejos de las orejas al empujar."
+      ],
+      "ca": [
+        "Puja en 1 s, baixa retenint 3 s.",
+        "Baixa només fins a l'altura de les orelles.",
+        "Seu dret, abdomen ferm, sense arquejar la zona lumbar.",
+        "Canells rectes, just damunt dels colzes.",
+        "Espatlles lluny de les orelles en empènyer."
+      ],
+      "en": [
+        "Up in 1 s, lower slowly for 3 s.",
+        "Lower only to ear level.",
+        "Sit tall, abs braced, don't arch your lower back.",
+        "Wrists straight, right above your elbows.",
+        "Keep your shoulders away from your ears as you press."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Arquear la lumbar para empujar el peso.",
+        "Dejar caer las mancuernas en vez de bajar en 3 s.",
+        "Encoger los hombros hacia las orejas.",
+        "Bloquear los codos de golpe arriba."
+      ],
+      "ca": [
+        "Arquejar la zona lumbar per empènyer el pes.",
+        "Deixar caure les manuelles en lloc de baixar en 3 s.",
+        "Arronsar les espatlles cap a les orelles.",
+        "Bloquejar els colzes de cop a dalt."
+      ],
+      "en": [
+        "Arching your lower back to push the weight.",
+        "Dropping the dumbbells instead of lowering in 3 s.",
+        "Shrugging your shoulders up to your ears.",
+        "Snapping your elbows locked at the top."
+      ]
+    },
+    "safety": {
+      "es": "Para si notas un pinchazo en el hombro. Si la lumbar se arquea, baja el peso.",
+      "ca": "Para si notes una punxada a l'espatlla. Si la zona lumbar s'arqueja, abaixa el pes.",
+      "en": "Stop if you feel a sharp twinge in your shoulder. If your lower back arches, go lighter."
+    }
+  },
+  "extension-triceps": {
+    "name": {
+      "es": "Extensión de tríceps sobre la cabeza a dos manos",
+      "ca": "Extensió de tríceps per sobre del cap a dues mans",
+      "en": "Two-hand overhead triceps extension"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "tríceps (cabeza larga)",
+        "estabilizadores del hombro",
+        "core"
+      ],
+      "ca": [
+        "tríceps (cap llarg)",
+        "estabilitzadors de l'espatlla",
+        "core"
+      ],
+      "en": [
+        "triceps (long head)",
+        "shoulder stabilizers",
+        "core"
+      ]
+    },
+    "how": {
+      "es": "Sujeta una mancuerna con las dos manos por encima de la cabeza. Baja detrás de la nuca doblando solo los codos y vuelve a estirar los brazos.",
+      "ca": "Subjecta una manuella amb les dues mans per sobre del cap. Baixa darrere del clatell doblegant només els colzes i torna a estirar els braços.",
+      "en": "Hold one dumbbell with both hands above your head. Lower it behind your neck by bending only your elbows, then straighten your arms again."
+    },
+    "cues": {
+      "es": [
+        "Baja en 3 s detrás de la nuca, sube en 1 s.",
+        "Siente el estiramiento en la nuca al bajar.",
+        "Codos cerca de la cabeza, apuntando al frente.",
+        "Solo se mueven los antebrazos; los brazos, quietos.",
+        "Costillas abajo y abdomen firme, sin arquear la lumbar."
+      ],
+      "ca": [
+        "Baixa en 3 s darrere del clatell, puja en 1 s.",
+        "Sent l'estirament al clatell en baixar.",
+        "Colzes a prop del cap, apuntant endavant.",
+        "Només es mouen els avantbraços; els braços, quiets.",
+        "Costelles avall i abdomen ferm, sense arquejar la zona lumbar."
+      ],
+      "en": [
+        "Lower behind your neck in 3 s, up in 1 s.",
+        "Feel the stretch behind your neck on the way down.",
+        "Elbows close to your head, pointing forward.",
+        "Only your forearms move; your upper arms stay still.",
+        "Ribs down and abs braced, don't arch your lower back."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Abrir los codos hacia los lados.",
+        "Arquear la espalda para subir el peso.",
+        "Bajar rápido y rebotar abajo.",
+        "Mover los hombros en vez de solo los codos."
+      ],
+      "ca": [
+        "Obrir els colzes cap als costats.",
+        "Arquejar l'esquena per pujar el pes.",
+        "Baixar ràpid i rebotar a baix.",
+        "Moure les espatlles en lloc de només els colzes."
+      ],
+      "en": [
+        "Flaring your elbows out to the sides.",
+        "Arching your back to lift the weight.",
+        "Dropping fast and bouncing at the bottom.",
+        "Moving your shoulders instead of just your elbows."
+      ]
+    },
+    "safety": {
+      "es": "Sujeta la mancuerna con firmeza con las dos manos: pasa por encima de tu cabeza. Para si notas dolor en el hombro o el codo.",
+      "ca": "Subjecta la manuella amb fermesa amb les dues mans: passa per sobre del teu cap. Para si notes dolor a l'espatlla o al colze.",
+      "en": "Grip the dumbbell firmly with both hands: it travels over your head. Stop if you feel pain in your shoulder or elbow."
+    }
+  },
+  "curl-biceps": {
+    "name": {
+      "es": "Curl de bíceps con mancuerna",
+      "ca": "Curl de bíceps amb manuella",
+      "en": "Dumbbell biceps curl"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "bíceps braquial",
+        "braquial anterior",
+        "antebrazos"
+      ],
+      "ca": [
+        "bíceps braquial",
+        "braquial anterior",
+        "avantbraços"
+      ],
+      "en": [
+        "biceps",
+        "brachialis",
+        "forearms"
+      ]
+    },
+    "how": {
+      "es": "De pie con una mancuerna en cada mano y los codos pegados al cuerpo, sube doblando solo el codo. Aprieta arriba y baja muy despacio hasta estirar el brazo.",
+      "ca": "Dret amb una manuella a cada mà i els colzes enganxats al cos, puja doblegant només el colze. Estreny a dalt i baixa molt a poc a poc fins a estirar el braç.",
+      "en": "Stand with a dumbbell in each hand and your elbows tucked in, then curl up by bending only at the elbow. Squeeze at the top and lower very slowly until your arm is straight."
+    },
+    "cues": {
+      "es": [
+        "Sube en 1 s, aprieta 2 s, baja en 4 s.",
+        "Codos pegados al cuerpo, no se mueven.",
+        "Sin balancear el tronco: espalda recta, abdomen firme.",
+        "Muñecas rectas, palmas hacia arriba.",
+        "Baja hasta estirar el brazo del todo."
+      ],
+      "ca": [
+        "Puja en 1 s, estreny 2 s, baixa en 4 s.",
+        "Colzes enganxats al cos, no es mouen.",
+        "Sense balancejar el tronc: esquena recta, abdomen ferm.",
+        "Canells rectes, palmells cap amunt.",
+        "Baixa fins a estirar el braç del tot."
+      ],
+      "en": [
+        "Up in 1 s, squeeze 2 s, down in 4 s.",
+        "Elbows tucked in, they don't move.",
+        "No swinging: back straight, abs braced.",
+        "Wrists straight, palms facing up.",
+        "Lower until your arm is fully straight."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Balancear el cuerpo para subir el peso.",
+        "Despegar los codos o adelantarlos.",
+        "Dejar caer la mancuerna en vez de bajar en 4 s.",
+        "Subir los hombros al apretar."
+      ],
+      "ca": [
+        "Balancejar el cos per pujar el pes.",
+        "Desenganxar els colzes o avançar-los.",
+        "Deixar caure la manuella en lloc de baixar en 4 s.",
+        "Pujar les espatlles en estrènyer."
+      ],
+      "en": [
+        "Swinging your body to lift the weight.",
+        "Letting your elbows drift away or forward.",
+        "Dropping the dumbbell instead of lowering in 4 s.",
+        "Shrugging your shoulders as you squeeze."
+      ]
+    }
+  },
+  "rueda-abdominal": {
+    "name": {
+      "es": "Rueda abdominal (modo doble)",
+      "ca": "Roda abdominal (mode doble)",
+      "en": "Ab wheel rollout (double mode)"
+    },
+    "equipment": [
+      "ab-wheel"
+    ],
+    "targets": {
+      "es": [
+        "recto abdominal",
+        "transverso del abdomen",
+        "dorsal ancho",
+        "pectoral y flexores de cadera"
+      ],
+      "ca": [
+        "recte abdominal",
+        "transvers de l'abdomen",
+        "dorsal ample",
+        "pectoral i flexors del maluc"
+      ],
+      "en": [
+        "abs",
+        "transverse abdominis",
+        "lats",
+        "chest and hip flexors"
+      ]
+    },
+    "how": {
+      "es": "De rodillas, con una rueda en cada mano y la espalda en «caparazón de tortuga», rueda al frente hasta justo antes de arquear la lumbar y regresa compactando el abdomen. Repite sin parar durante los 30 s.",
+      "ca": "De genolls, amb una roda a cada mà i l'esquena en «closca de tortuga», roda endavant fins just abans d'arquejar la zona lumbar i torna compactant l'abdomen. Repeteix sense parar durant els 30 s.",
+      "en": "Kneel with a wheel in each hand and your back rounded like a turtle shell, roll forward until just before your lower back arches, then come back by crunching your abs. Keep repeating for the 30 s."
+    },
+    "cues": {
+      "es": [
+        "De rodillas, en caparazón de tortuga.",
+        "Rueda al frente controlando en 3 s.",
+        "Frena antes de que se arquee la lumbar.",
+        "Regresa de golpe compactando el abdomen.",
+        "Ruedas a la anchura de los hombros, paralelas."
+      ],
+      "ca": [
+        "De genolls, en closca de tortuga.",
+        "Roda endavant controlant en 3 s.",
+        "Frena abans que s'arquegi la zona lumbar.",
+        "Torna de cop compactant l'abdomen.",
+        "Rodes a l'amplada de les espatlles, paral·leles."
+      ],
+      "en": [
+        "On your knees, back rounded like a turtle shell.",
+        "Roll forward under control for 3 s.",
+        "Stop before your lower back arches.",
+        "Snap back by crunching your abs.",
+        "Wheels shoulder-width apart and parallel."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Arquear la lumbar al estirarte.",
+        "Ir más lejos de lo que controlas.",
+        "Volver tirando con la cadera, no con el abdomen.",
+        "Dejar que las ruedas se abran hacia los lados."
+      ],
+      "ca": [
+        "Arquejar la zona lumbar en estirar-te.",
+        "Anar més lluny del que controles.",
+        "Tornar estirant amb el maluc, no amb l'abdomen.",
+        "Deixar que les rodes s'obrin cap als costats."
+      ],
+      "en": [
+        "Arching your lower back as you reach out.",
+        "Rolling further than you can control.",
+        "Pulling back with your hips instead of your abs.",
+        "Letting the wheels drift apart to the sides."
+      ]
+    },
+    "safety": {
+      "es": "Para si notas dolor en la lumbar. Acorta el recorrido antes que arquear la espalda.",
+      "ca": "Para si notes dolor a la zona lumbar. Escurça el recorregut abans que arquejar l'esquena.",
+      "en": "Stop if you feel pain in your lower back. Shorten the range rather than arch your back."
+    }
+  },
+  "dominada-negativa": {
+    "name": {
+      "es": "Dominada negativa",
+      "ca": "Dominada negativa",
+      "en": "Negative pull-up"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "dorsales",
+        "bíceps",
+        "trapecio inferior",
+        "agarre (antebrazos)"
+      ],
+      "ca": [
+        "dorsals",
+        "bíceps",
+        "trapezi inferior",
+        "agafada (avantbraços)"
+      ],
+      "en": [
+        "lats",
+        "biceps",
+        "lower traps",
+        "grip (forearms)"
+      ]
+    },
+    "how": {
+      "es": "Sube por los escalones de la torre hasta tener la barbilla por encima de la barra y aguanta 1 s arriba con el pecho abierto. Baja frenando en 4 s lentos hasta estirar los brazos y apoya los pies suavemente en los escalones.",
+      "ca": "Puja pels esglaons de la torre fins a tenir la barbeta per sobre de la barra i aguanta 1 s a dalt amb el pit obert. Baixa frenant en 4 s lents fins a estirar els braços i recolza els peus suaument als esglaons.",
+      "en": "Climb the tower's steps until your chin is over the bar and hold for 1 s at the top, chest open. Lower yourself over a slow 4 s until your arms are straight, then set your feet gently on the steps."
+    },
+    "cues": {
+      "es": [
+        "Barbilla por encima de la barra, pecho fuera.",
+        "Aguanta un segundo arriba con todo apretado.",
+        "Baja contando cuatro segundos, frenando con la espalda.",
+        "No te dejes caer en seco al final.",
+        "Estira del todo y apoya los pies suavemente."
+      ],
+      "ca": [
+        "Barbeta per sobre de la barra, pit fora.",
+        "Aguanta un segon a dalt amb tot ben estret.",
+        "Baixa comptant quatre segons, frenant amb l'esquena.",
+        "No et deixis caure de cop al final.",
+        "Estira del tot i recolza els peus suaument."
+      ],
+      "en": [
+        "Chin over the bar, chest out.",
+        "Hold one second at the top, everything tight.",
+        "Lower over four seconds, braking with your back.",
+        "Don't drop at the bottom.",
+        "Straighten fully and set your feet down gently."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Dejarte caer en seco en lugar de frenar la bajada.",
+        "Hacerla en frío, sin haber calentado antes.",
+        "Encadenar varias seguidas hasta que se abren las manos.",
+        "Dar tirones con el cuello o balancear las piernas."
+      ],
+      "ca": [
+        "Deixar-te caure de cop en lloc de frenar la baixada.",
+        "Fer-la en fred, sense haver escalfat abans.",
+        "Encadenar-ne diverses seguides fins que s'obren les mans.",
+        "Estirar amb el coll o balancejar les cames."
+      ],
+      "en": [
+        "Dropping instead of braking on the way down.",
+        "Doing it cold, without warming up first.",
+        "Chaining several in a row until your grip opens.",
+        "Jerking with your neck or swinging your legs."
+      ]
+    },
+    "safety": {
+      "es": "Hazla solo después de calentar, nunca en frío. Una bajada cada vez con los pies cerca de los escalones; para si notas un dolor agudo en el hombro o el codo.",
+      "ca": "Fes-la només després d'escalfar, mai en fred. Una baixada cada vegada amb els peus a prop dels esglaons; para si notes un dolor agut a l'espatlla o al colze.",
+      "en": "Only do it after a warm-up, never cold. One descent at a time with your feet near the steps; stop if you feel sharp pain in your shoulder or elbow."
+    }
+  },
+  "fondos-negativos": {
+    "name": {
+      "es": "Fondos negativos en paralelas",
+      "ca": "Fons negatius a les paral·leles",
+      "en": "Negative dips"
+    },
+    "equipment": [
+      "dip-bars"
+    ],
+    "targets": {
+      "es": [
+        "pecho",
+        "tríceps",
+        "hombro (deltoide anterior)"
+      ],
+      "ca": [
+        "pit",
+        "tríceps",
+        "espatlla (deltoide anterior)"
+      ],
+      "en": [
+        "chest",
+        "triceps",
+        "front shoulder (anterior delt)"
+      ]
+    },
+    "how": {
+      "es": "Sube a las paralelas con ayuda de los pies hasta tener los brazos rectos, sin bloquear el codo de golpe. Baja en 3 s hasta que los codos queden a 90°, apoya los pies en el estribo y vuelve a subir.",
+      "ca": "Puja a les paral·leles amb l'ajuda dels peus fins a tenir els braços rectes, sense bloquejar el colze de cop. Baixa en 3 s fins que els colzes quedin a 90°, recolza els peus a l'estrep i torna a pujar.",
+      "en": "Get on top of the dip bars with your feet's help until your arms are straight, without snapping your elbows locked. Lower over 3 s until your elbows reach 90°, put your feet on the step and climb back up."
+    },
+    "cues": {
+      "es": [
+        "Brazos rectos, sin bloquear el codo de golpe.",
+        "Hombros lejos de las orejas, pecho abierto.",
+        "Baja en tres segundos hasta codos a noventa grados.",
+        "Torso un poco adelante para pecho; vertical para tríceps.",
+        "Abajo, apoya los pies y vuelve a subir."
+      ],
+      "ca": [
+        "Braços rectes, sense bloquejar el colze de cop.",
+        "Espatlles lluny de les orelles, pit obert.",
+        "Baixa en tres segons fins a colzes a noranta graus.",
+        "Tors una mica endavant per al pit; vertical per al tríceps.",
+        "A baix, recolza els peus i torna a pujar."
+      ],
+      "en": [
+        "Arms straight, don't snap your elbows locked.",
+        "Shoulders away from your ears, chest open.",
+        "Lower for three seconds to ninety-degree elbows.",
+        "Lean slightly forward for chest; stay upright for triceps.",
+        "At the bottom, use your feet and climb back up."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Bajar más allá de los noventa grados.",
+        "Dejarte caer rápido en vez de controlar los tres segundos.",
+        "Encoger los hombros hacia las orejas.",
+        "Bloquear el codo de golpe al llegar arriba."
+      ],
+      "ca": [
+        "Baixar més enllà dels noranta graus.",
+        "Deixar-te caure ràpid en lloc de controlar els tres segons.",
+        "Arronsar les espatlles cap a les orelles.",
+        "Bloquejar el colze de cop en arribar a dalt."
+      ],
+      "en": [
+        "Going deeper than ninety degrees.",
+        "Dropping fast instead of controlling the three seconds.",
+        "Shrugging your shoulders up to your ears.",
+        "Snapping your elbows locked at the top."
+      ]
+    },
+    "safety": {
+      "es": "Hazlos solo después de calentar, nunca en frío. No bajes de 90° y para si notas un dolor agudo en el hombro o el codo.",
+      "ca": "Fes-los només després d'escalfar, mai en fred. No baixis de 90° i para si notes un dolor agut a l'espatlla o al colze.",
+      "en": "Only do them after a warm-up, never cold. Don't go below 90°, and stop if you feel sharp pain in your shoulder or elbow."
+    }
+  },
+  "soporte-paralelas": {
+    "name": {
+      "es": "Soporte en paralelas",
+      "ca": "Suport a les paral·leles",
+      "en": "Dip bar support hold"
+    },
+    "equipment": [
+      "dip-bars"
+    ],
+    "targets": {
+      "es": [
+        "tríceps",
+        "hombros (estabilidad)",
+        "pecho",
+        "core"
+      ],
+      "ca": [
+        "tríceps",
+        "espatlles (estabilitat)",
+        "pit",
+        "core"
+      ],
+      "en": [
+        "triceps",
+        "shoulder stability",
+        "chest",
+        "core"
+      ]
+    },
+    "how": {
+      "es": "Sube a las paralelas y deja los brazos rectos, con las puntas de los pies en el estribo si necesitas quitar peso. Empuja las barras hacia el suelo y aguanta 15 s con el pecho fuera y los hombros bajos.",
+      "ca": "Puja a les paral·leles i deixa els braços rectes, amb les puntes dels peus a l'estrep si necessites treure pes. Empeny les barres cap a terra i aguanta 15 s amb el pit fora i les espatlles baixes.",
+      "en": "Get on top of the dip bars with straight arms, toes on the step if you need to take weight off. Push the bars toward the floor and hold for 15 s, chest out and shoulders low."
+    },
+    "cues": {
+      "es": [
+        "Empuja fuerte las barras hacia el suelo.",
+        "Pecho fuera, mirada al frente.",
+        "Aleja los hombros de las orejas.",
+        "Que el cuello no se hunda entre los hombros.",
+        "Abdomen duro, respira fluido."
+      ],
+      "ca": [
+        "Empeny fort les barres cap a terra.",
+        "Pit fora, mirada al davant.",
+        "Allunya les espatlles de les orelles.",
+        "Que el coll no s'enfonsi entre les espatlles.",
+        "Abdomen ferm, respira amb fluïdesa."
+      ],
+      "en": [
+        "Push the bars hard toward the floor.",
+        "Chest out, eyes forward.",
+        "Move your shoulders away from your ears.",
+        "Don't let your neck sink between your shoulders.",
+        "Abs tight, keep breathing smoothly."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Dejar que el cuello se hunda entre los hombros.",
+        "Bloquear el codo con un golpe seco.",
+        "Aguantar la respiración todo el tiempo.",
+        "Soltarte de las barras en vez de bajar con los pies."
+      ],
+      "ca": [
+        "Deixar que el coll s'enfonsi entre les espatlles.",
+        "Bloquejar el colze amb un cop sec.",
+        "Aguantar la respiració tota l'estona.",
+        "Deixar anar les barres en lloc de baixar amb els peus."
+      ],
+      "en": [
+        "Letting your neck sink between your shoulders.",
+        "Snapping your elbows locked.",
+        "Holding your breath the whole time.",
+        "Letting go of the bars instead of stepping down."
+      ]
+    },
+    "safety": {
+      "es": "Usa los pies en el estribo para quitar peso si te cuesta. Para si notas un dolor agudo en el hombro.",
+      "ca": "Fes servir els peus a l'estrep per treure pes si et costa. Para si notes un dolor agut a l'espatlla.",
+      "en": "Use your feet on the step to take weight off if it's hard. Stop if you feel sharp pain in your shoulder."
+    }
+  },
+  "elevacion-rodillas": {
+    "name": {
+      "es": "Elevaciones de rodillas",
+      "ca": "Elevacions de genolls",
+      "en": "Knee raises"
+    },
+    "equipment": [
+      "knee-raise"
+    ],
+    "targets": {
+      "es": [
+        "abdomen",
+        "core",
+        "flexores de cadera"
+      ],
+      "ca": [
+        "abdomen",
+        "core",
+        "flexors del maluc"
+      ],
+      "en": [
+        "abs",
+        "core",
+        "hip flexors"
+      ]
+    },
+    "how": {
+      "es": "Apoya los antebrazos en las almohadillas y la espalda en el respaldo de la silla romana, y sube las rodillas al pecho redondeando ligeramente la pelvis. Aguanta medio segundo arriba y baja despacio, sin dejar caer las piernas.",
+      "ca": "Recolza els avantbraços als coixinets i l'esquena al respatller de la cadira romana, i puja els genolls al pit arrodonint lleugerament la pelvis. Aguanta mig segon a dalt i baixa a poc a poc, sense deixar caure les cames.",
+      "en": "Rest your forearms on the pads and your back against the knee-raise station's backrest, then bring your knees to your chest, tucking your pelvis slightly. Hold half a second at the top and lower slowly, without dropping your legs."
+    },
+    "cues": {
+      "es": [
+        "Antebrazos en las almohadillas, espalda en el respaldo.",
+        "Redondea ligeramente la pelvis al subir las rodillas.",
+        "Coge aire abajo, suéltalo al subir.",
+        "Hombros hacia abajo, que el cuello no se hunda.",
+        "Baja despacio, no dejes caer las piernas."
+      ],
+      "ca": [
+        "Avantbraços als coixinets, esquena al respatller.",
+        "Arrodoneix lleugerament la pelvis en pujar els genolls.",
+        "Agafa aire a baix, deixa'l anar en pujar.",
+        "Espatlles avall, que el coll no s'enfonsi.",
+        "Baixa a poc a poc, no deixis caure les cames."
+      ],
+      "en": [
+        "Forearms on the pads, back against the backrest.",
+        "Tuck your pelvis slightly as your knees come up.",
+        "Breathe in at the bottom, out as you lift.",
+        "Shoulders down, don't let your neck sink.",
+        "Lower slowly, don't let your legs drop."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Balancear las piernas o subir a tirones.",
+        "Dejar que los flexores de cadera hagan el trabajo.",
+        "Dejar caer las piernas de golpe al bajar.",
+        "Encoger los hombros hacia las orejas."
+      ],
+      "ca": [
+        "Balancejar les cames o pujar a estirades.",
+        "Deixar que els flexors del maluc facin la feina.",
+        "Deixar caure les cames de cop en baixar.",
+        "Arronsar les espatlles cap a les orelles."
+      ],
+      "en": [
+        "Swinging your legs or jerking them up.",
+        "Letting your hip flexors do the work.",
+        "Dropping your legs on the way down.",
+        "Shrugging your shoulders up to your ears."
+      ]
+    },
+    "safety": {
+      "es": "Mantén la espalda apoyada en el respaldo todo el rato. Para si notas un dolor agudo en la zona lumbar o en los hombros.",
+      "ca": "Mantén l'esquena recolzada al respatller tota l'estona. Para si notes un dolor agut a la zona lumbar o a les espatlles.",
+      "en": "Keep your back against the backrest the whole time. Stop if you feel sharp pain in your lower back or shoulders."
+    }
+  },
+  "cuelgue-alternado": {
+    "name": {
+      "es": "Cuelgue alternado pasivo/activo",
+      "ca": "Penjada alternada passiva/activa",
+      "en": "Passive/active alternating hang"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "dorsales",
+        "trapecio inferior (escápulas)",
+        "agarre (antebrazos)",
+        "core"
+      ],
+      "ca": [
+        "dorsals",
+        "trapezi inferior (omòplats)",
+        "agafada (avantbraços)",
+        "core"
+      ],
+      "en": [
+        "lats",
+        "lower traps (shoulder blades)",
+        "grip (forearms)",
+        "core"
+      ]
+    },
+    "how": {
+      "es": "Cuélgate de la barra 12 s: del segundo 1 al 4 en pasivo, dejando que el peso estire la espalda; del 5 al 8 en activo, con los hombros abajo y atrás; y del 9 al 12 en activo máximo, con el abdomen apretado.",
+      "ca": "Penja't de la barra 12 s: del segon 1 al 4 en passiu, deixant que el pes estiri l'esquena; del 5 al 8 en actiu, amb les espatlles avall i enrere; i del 9 al 12 en actiu màxim, amb l'abdomen estret.",
+      "en": "Hang from the bar for 12 s: seconds 1 to 4 passive, letting your weight stretch your back; 5 to 8 active, shoulders down and back; and 9 to 12 maximum active, abs tight."
+    },
+    "cues": {
+      "es": [
+        "Pasivo: suelta el aire, dedos como ganchos de acero.",
+        "Activo: tira de los hombros hacia abajo y atrás.",
+        "Aleja los hombros de las orejas, saca pecho.",
+        "Activo máximo: aprieta el abdomen, sin balancearte.",
+        "Al terminar, apoya los pies y baja suave."
+      ],
+      "ca": [
+        "Passiu: deixa anar l'aire, dits com ganxos d'acer.",
+        "Actiu: tira les espatlles cap avall i enrere.",
+        "Allunya les espatlles de les orelles, treu pit.",
+        "Actiu màxim: estreny l'abdomen, sense balancejar-te.",
+        "En acabar, recolza els peus i baixa suau."
+      ],
+      "en": [
+        "Passive: breathe out, fingers like steel hooks.",
+        "Active: pull your shoulders down and back.",
+        "Shoulders away from your ears, chest out.",
+        "Maximum active: squeeze your abs, no swinging.",
+        "When done, use your feet and step down gently."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Aflojar los dedos durante la fase pasiva.",
+        "Balancearte al pasar de pasivo a activo.",
+        "Quedarte en pasivo sin activar los hombros.",
+        "Soltarte de golpe en vez de bajar por los escalones."
+      ],
+      "ca": [
+        "Afluixar els dits durant la fase passiva.",
+        "Balancejar-te en passar de passiu a actiu.",
+        "Quedar-te en passiu sense activar les espatlles.",
+        "Deixar-te anar de cop en lloc de baixar pels esglaons."
+      ],
+      "en": [
+        "Loosening your fingers during the passive phase.",
+        "Swinging as you switch from passive to active.",
+        "Staying passive without engaging your shoulders.",
+        "Dropping off the bar instead of stepping down."
+      ]
+    },
+    "safety": {
+      "es": "No te cuelgues antes del pádel. Para si notas un dolor agudo en el hombro y baja siempre apoyando los pies.",
+      "ca": "No et pengis abans del pàdel. Para si notes un dolor agut a l'espatlla i baixa sempre recolzant els peus.",
+      "en": "Don't hang before pádel. Stop if you feel sharp pain in your shoulder, and always step down with your feet."
+    }
+  },
+  "apreton-titan": {
+    "name": {
+      "es": "El Apretón de Titán",
+      "ca": "L'Estreta de Tità",
+      "en": "The Titan Squeeze"
+    },
+    "equipment": [
+      "handgrip"
+    ],
+    "targets": {
+      "es": [
+        "agarre (antebrazos)",
+        "flexores de los dedos"
+      ],
+      "ca": [
+        "agafada (avantbraços)",
+        "flexors dels dits"
+      ],
+      "en": [
+        "grip (forearms)",
+        "finger flexors"
+      ]
+    },
+    "how": {
+      "es": "Cierra el hand grip con fuerza y aguanta de 5 a 8 s con el puño totalmente cerrado. Luego abre la mano muy despacio durante 3 s.",
+      "ca": "Tanca el hand grip amb força i aguanta de 5 a 8 s amb el puny ben tancat. Després obre la mà molt a poc a poc durant 3 s.",
+      "en": "Close the hand grip hard and hold it fully shut for 5 to 8 s. Then open your hand very slowly over 3 s."
+    },
+    "cues": {
+      "es": [
+        "Cierra con fuerza y aguanta el puño cerrado.",
+        "Abre la mano muy despacio, en tres segundos.",
+        "Muñeca recta, nunca doblada hacia dentro.",
+        "Hombro bajo, lejos de la oreja, pecho abierto."
+      ],
+      "ca": [
+        "Tanca amb força i aguanta el puny tancat.",
+        "Obre la mà molt a poc a poc, en tres segons.",
+        "Canell recte, mai doblegat cap a dins.",
+        "Espatlla baixa, lluny de l'orella, pit obert."
+      ],
+      "en": [
+        "Squeeze hard and keep your fist shut.",
+        "Open your hand very slowly, over three seconds.",
+        "Wrist straight, never bent inward.",
+        "Shoulder low, away from your ear, chest open."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Bombear rápido 200 veces: el camino al codo de tenista.",
+        "Abrir la mano de golpe en lugar de en tres segundos.",
+        "Doblar la muñeca hacia dentro al apretar.",
+        "Usarlo antes del pádel o durante horas seguidas."
+      ],
+      "ca": [
+        "Bombar ràpid 200 vegades: el camí al colze de tennista.",
+        "Obrir la mà de cop en lloc de fer-ho en tres segons.",
+        "Doblegar el canell cap a dins en estrènyer.",
+        "Fer-lo servir abans del pàdel o durant hores seguides."
+      ],
+      "en": [
+        "Pumping it fast 200 times: the road to tennis elbow.",
+        "Snapping your hand open instead of taking three seconds.",
+        "Bending your wrist inward as you squeeze.",
+        "Using it before pádel or for hours on end."
+      ]
+    },
+    "safety": {
+      "es": "No lo uses antes del pádel. Si notas el más mínimo pinchazo en el codo o la muñeca, para y baja la resistencia al mínimo.",
+      "ca": "No el facis servir abans del pàdel. Si notes la més mínima punxada al colze o al canell, para i baixa la resistència al mínim.",
+      "en": "Don't use it before pádel. If you feel the slightest twinge in your elbow or wrist, stop and set the resistance to minimum."
     }
   }
 }
