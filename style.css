@@ -11,6 +11,9 @@
   --red: #e63946;
   --navy: #1b2340;
   --green: #2a9d8f;
+  --teal: #1f9fb4;
+  --leaf: #6a994e;
+  --orange: #f4842d;
   --edge: #1b2340;
   --pop: 4px 4px 0 var(--edge);
   --bar: rgb(255 246 224 / 92%);
@@ -79,6 +82,12 @@ a.card:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--edge
 .card h3 { margin: 0; font: 700 18px/1.2 var(--body); }
 .card p { margin: 6px 0 0; color: var(--muted); }
 .routine { border-left: 10px solid var(--red); }
+.routine.c-gold { border-left-color: var(--gold); }
+.routine.c-teal { border-left-color: var(--teal); }
+.routine.c-green { border-left-color: var(--leaf); }
+.routine .sub { margin: 2px 0 0; font-size: 13px; font-style: italic; }
+.chip { display: inline-block; padding: 2px 8px; border: 1.5px solid var(--muted); border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.routine .chips { margin-top: 8px; }
 .r-head { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
 .r-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; font-size: 14px; color: var(--muted); }
 .ex { border-top: 8px solid var(--gold); }
@@ -197,7 +206,18 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
   box-shadow: 3px 3px 0 var(--edge);
 }
 .group summary::-webkit-details-marker { display: none; }
-.group summary::after { content: "▾"; margin-left: auto; transition: rotate .2s; }
+.group summary::after { content: "▾"; transition: rotate .2s; }
 .group[open] summary::after { rotate: 180deg; }
 .group[open] summary { margin-bottom: 10px; }
 .routine .phases { margin-top: 6px; font-size: 13px; }
+
+/* routine groups: emoji, name and the lengths inside, coloured edge per group */
+.g-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.g-title small { font-weight: 500; font-size: 12px; color: var(--muted); }
+.group.g-red summary, .group.g-gold summary, .group.g-teal summary, .group.g-green summary { border-left-width: 10px; }
+.group.g-red summary { border-left-color: var(--red); }
+.group.g-gold summary { border-left-color: var(--gold); }
+.group.g-teal summary { border-left-color: var(--teal); }
+.group.g-green summary { border-left-color: var(--leaf); }
+.group summary .g-title { flex: 1; }
+.g-emoji { font-size: 26px; line-height: 1; }

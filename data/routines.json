@@ -1,10 +1,16 @@
 [
   {
     "id": "codigo-titan",
+    "group": "codigo-titan",
     "name": {
-      "es": "Código Titán completo",
-      "ca": "Codi Tità complet",
-      "en": "Full Titan Code"
+      "es": "Entreno completo",
+      "ca": "Entrenament complet",
+      "en": "Full workout"
+    },
+    "subtitle": {
+      "es": "Código Titán · las 4 fases",
+      "ca": "Codi Titan · les 4 fases",
+      "en": "Código Titán · all 4 phases"
     },
     "summary": {
       "es": "La sesión entera: despertar, remo, fuerza y core para una postura blindada.",
@@ -29,7 +35,13 @@
   },
   {
     "id": "ct-despertar",
+    "group": "codigo-titan",
     "name": {
+      "es": "Movilidad de arranque",
+      "ca": "Mobilitat d’arrencada",
+      "en": "Wake-up mobility"
+    },
+    "subtitle": {
       "es": "Fase 0 · Despertar el chasis",
       "ca": "Fase 0 · Despertar el xassís",
       "en": "Phase 0 · Wake up the chassis"
@@ -177,7 +189,13 @@
   },
   {
     "id": "ct-remo",
+    "group": "codigo-titan",
     "name": {
+      "es": "Remo técnico",
+      "ca": "Rem tècnic",
+      "en": "Technique row"
+    },
+    "subtitle": {
       "es": "Fase 1 · El motor WaterRower",
       "ca": "Fase 1 · El motor WaterRower",
       "en": "Phase 1 · The WaterRower engine"
@@ -284,7 +302,13 @@
   },
   {
     "id": "ct-fuerza",
+    "group": "codigo-titan",
     "name": {
+      "es": "Fuerza con mancuernas",
+      "ca": "Força amb manuelles",
+      "en": "Dumbbell strength"
+    },
+    "subtitle": {
       "es": "Fase 2 · Bloque de fuerza",
       "ca": "Fase 2 · Bloc de força",
       "en": "Phase 2 · Strength block"
@@ -351,7 +375,13 @@
   },
   {
     "id": "ct-sello",
+    "group": "codigo-titan",
     "name": {
+      "es": "Core con rueda",
+      "ca": "Core amb roda",
+      "en": "Ab wheel core"
+    },
+    "subtitle": {
       "es": "Fase 3 · El sello de hierro",
       "ca": "Fase 3 · El segell de ferro",
       "en": "Phase 3 · The iron seal"
@@ -419,7 +449,13 @@
   },
   {
     "id": "despegue-titan",
+    "group": "torre",
     "name": {
+      "es": "Circuito de torre",
+      "ca": "Circuit de torre",
+      "en": "Tower circuit"
+    },
+    "subtitle": {
       "es": "Despegue Titán",
       "ca": "Enlairament Tità",
       "en": "Titan Liftoff"
@@ -994,10 +1030,16 @@
   },
   {
     "id": "torre-negativas",
+    "group": "torre",
     "name": {
-      "es": "Torre: negativas (lun/vie)",
-      "ca": "Torre: negatives (dl/dv)",
-      "en": "Tower: negatives (Mon/Fri)"
+      "es": "Negativas: dominada y fondos",
+      "ca": "Negatives: dominades i fons",
+      "en": "Negatives: pull-ups and dips"
+    },
+    "subtitle": {
+      "es": "Torre · lun/vie",
+      "ca": "Torre · dl/dv",
+      "en": "Tower · Mon/Fri"
     },
     "summary": {
       "es": "Negativas de dominada y de fondos para fuerza; solo después de calentar, nunca en frío.",
@@ -1140,7 +1182,13 @@
   },
   {
     "id": "comodin-descarga",
+    "group": "descarga",
     "name": {
+      "es": "Remo suave + movilidad",
+      "ca": "Rem suau + mobilitat",
+      "en": "Easy row + mobility"
+    },
+    "subtitle": {
       "es": "Comodín de descarga",
       "ca": "Comodí de descàrrega",
       "en": "Recovery wildcard"
@@ -1486,7 +1534,13 @@
   },
   {
     "id": "micro-dosis",
+    "group": "rapidas",
     "name": {
+      "es": "Cuelgue + agarre exprés",
+      "ca": "Penjada + agafada exprés",
+      "en": "Quick hang + grip"
+    },
+    "subtitle": {
       "es": "Micro-dosis entre tareas",
       "ca": "Microdosi entre tasques",
       "en": "Micro-dose between tasks"
@@ -1646,7 +1700,13 @@
   },
   {
     "id": "apreton-titan",
+    "group": "rapidas",
     "name": {
+      "es": "Agarre con hand grip",
+      "ca": "Agafada amb hand grip",
+      "en": "Hand grip strength"
+    },
+    "subtitle": {
       "es": "El Apretón de Titán",
       "ca": "L'Estrenyuda de Tità",
       "en": "The Titan Squeeze"
@@ -1753,74 +1813,6 @@
                   "es": "Abre lento.",
                   "ca": "Obre a poc a poc.",
                   "en": "Open slowly."
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "mini-cuelgue",
-    "name": {
-      "es": "Mini: cuelgue activo",
-      "ca": "Mini: penjada activa",
-      "en": "Mini: active hang"
-    },
-    "summary": {
-      "es": "Tres cuelgues activos de 15 s en la torre, con 45 s de descanso.",
-      "ca": "Tres penjades actives de 15 s a la torre, amb 45 s de descans.",
-      "en": "Three 15 s active hangs on the tower, with 45 s of rest."
-    },
-    "prepare": 10,
-    "blocks": [
-      {
-        "name": {
-          "es": "Torre",
-          "ca": "Torre",
-          "en": "Tower"
-        },
-        "rounds": 3,
-        "restBetweenRounds": 45,
-        "steps": [
-          {
-            "exercise": "cuelgue-activo",
-            "mode": "time",
-            "seconds": 15,
-            "weight": false,
-            "restAfter": 45,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡Agarra fuerte, pulgar alrededor de la barra!",
-                  "ca": "Agafa fort, polze al voltant de la barra!",
-                  "en": "Grip hard, thumb around the bar!"
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Dedos como ganchos de acero.",
-                  "ca": "Dits com ganxos d'acer.",
-                  "en": "Fingers like steel hooks."
-                }
-              },
-              {
-                "at": 8,
-                "text": {
-                  "es": "¡Tira de los hombros hacia abajo y hacia atrás!",
-                  "ca": "Tira les espatlles cap avall i enrere!",
-                  "en": "Pull your shoulders down and back!"
-                }
-              },
-              {
-                "at": 11,
-                "text": {
-                  "es": "Aprieta abdomen, ¡resiste sin balancearte!",
-                  "ca": "Estreny l'abdomen, aguanta sense balancejar-te!",
-                  "en": "Brace your abs, hold on without swinging!"
                 }
               }
             ]

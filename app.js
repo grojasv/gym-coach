@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.2.2'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.3.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
 
@@ -51,6 +51,13 @@
   const $ = (id) => document.getElementById(id);
   const view = $('view'), playerEl = $('player'), foot = $('foot');
 
+  const openSet = new Set((() => { try { return JSON.parse(store.get('gym-coach.open') || '[]'); } catch { return []; } })());
+  view.addEventListener('toggle', (e) => {
+    const k = e.target.dataset?.key; if (!k) return;
+    if (e.target.open) openSet.add(k); else openSet.delete(k);
+    store.set('gym-coach.open', JSON.stringify([...openSet]));
+  }, true);
+
   let data = null; // { exercises, routines, lines }; routines have their includes resolved
 
   // A block may be { "routine": "<id>" }: it is replaced by that routine's blocks (SPEC § routines).
@@ -78,17 +85,26 @@
 
   // ---------- views ----------
   const mascot = (pose) => (window.Titan ? window.Titan.svg(pose) : '<div class="mascot-fallback">🦾</div>');
-  function routineCard(r) {
+  // Equipment a routine needs, in EQUIP order; floor-only routines show "Floor".
+  function routineEquipment(r) {
+    const used = new Set(r.blocks.flatMap((b) => b.steps.flatMap((s) => data.exercises[s.exercise]?.equipment || [])));
+    const list = Object.keys(EQUIP).filter((e) => used.has(e) && e !== 'floor');
+    return list.length ? list : ['floor'];
+  }
+  function routineCard(r, group) {
     const items = Player.buildTimeline(r, data.exercises);
     const sets = items.filter((i) => i.kind === 'work').length;
     const last = readLog().find((e) => e.routine === r.id);
-    return `<a class="card routine" href="#/play/${encodeURIComponent(r.id)}">
-      <div class="r-head"><h3>${esc(t(r.name))}</h3><span class="pill">${Player.fmtLen(Player.duration(items))}</span></div>
-      <p>${esc(t(r.summary))}</p>
-      ${r.includes?.length ? `<p class="phases">${r.includes.map((id) => esc(t(data.routines.find((x) => x.id === id)?.name))).join(' → ')}</p>` : ''}
+    return `<a class="card routine c-${group?.color || 'red'}" href="#/play/${encodeURIComponent(r.id)}">
+      <div class="r-head"><div><h3>${esc(t(r.name))}</h3>${r.subtitle ? `<p class="sub">${esc(t(r.subtitle))}</p>` : ''}</div>
+        <span class="pill">${Player.fmtLen(Player.duration(items))}</span></div>
+      <p class="chips">${routineEquipment(r).map((e) => `<span class="chip">${esc(t(EQUIP[e]))}</span>`).join('')}</p>
       <div class="r-foot"><span>${sets} ${esc(t(sets === 1 ? TEXT.set : TEXT.sets))}${last ? ` · ${esc(t(TEXT.last))}: ${esc(dateFmt(last.at))}` : ''}</span>
         <span class="btn small go">▶ ${esc(t(TEXT.play))}</span></div></a>`;
   }
+  // Folding sections: routines by data/groups.json, exercises by main equipment. Open ones are remembered.
+  const section = (key, title, count, body, cls = '') => `<details class="group ${cls}" data-key="${key}"${openSet.has(key) ? ' open' : ''}>
+    <summary>${title} <span class="pill">${count}</span></summary>${body}</details>`;
   function renderHub() {
     const log = readLog().slice(0, 5);
     const helloPool = data.lines?.hello?.[lang];
@@ -99,15 +115,21 @@
         <div class="bubble">${esc(hello)}</div>
       </section>
       <h2 class="sec">${esc(t(TEXT.routines))}</h2>
-      <div class="list">${data.routines.map(routineCard).join('')}</div>
+      ${data.groups.map((g) => {
+        const list = data.routines.filter((r) => r.group === g.id);
+        if (!list.length) return '';
+        const lens = list.map((r) => Player.fmtLen(Player.duration(Player.buildTimeline(r, data.exercises)))).join(' · ');
+        return section(`r:${g.id}`, `<span class="g-emoji" aria-hidden="true">${g.emoji}</span><span class="g-title">${esc(t(g.name))}<small>${esc(lens)}</small></span>`,
+          list.length, `<div class="list">${list.map((r) => routineCard(r, g)).join('')}</div>`, `g-${g.color}`);
+      }).join('')}
       <h2 class="sec">${esc(t(TEXT.library))}</h2>
       ${Object.keys(EQUIP).map((eq) => {
         const group = Object.entries(data.exercises).filter(([, ex]) => ex.equipment[0] === eq);
         if (!group.length) return '';
-        return `<details class="group" data-eq="${eq}"${hubState.open.has(eq) ? ' open' : ''}><summary>${esc(t(EQUIP[eq]))} <span class="pill">${group.length}</span></summary>
-          <div class="list grid">${group.map(([id, ex]) => `
+        return section(`e:${eq}`, `<span class="g-title">${esc(t(EQUIP[eq]))}</span>`, group.length,
+          `<div class="list grid">${group.map(([id, ex]) => `
             <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${esc(t(ex.name))}</h3>
-              <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div></details>`;
+              <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div>`);
       }).join('')}
       <h2 class="sec">${esc(t(TEXT.history))}</h2>
       ${log.length ? `<ul class="card history">${log.map((e) => {
@@ -152,12 +174,11 @@
   }
 
   // The hub keeps its scroll position and open library groups when you visit an exercise or a routine and come back.
-  const hubState = { y: 0, open: new Set() };
+  const hubState = { y: 0 };
   let onHub = false;
   function saveHub() {
     if (!onHub) return;
     hubState.y = window.scrollY;
-    hubState.open = new Set([...view.querySelectorAll('details.group[open]')].map((d) => d.dataset.eq));
     onHub = false;
   }
 
@@ -210,7 +231,7 @@
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { /* offline cache is optional */ });
 
   const get = (f) => fetch(`data/${f}`, { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
-  Promise.all([get('exercises.json'), get('routines.json'), get('lines.json').catch(() => ({}))])
-    .then(([exercises, routines, lines]) => { data = { exercises, routines: resolveRoutines(routines), lines }; setLang(lang); })
+  Promise.all([get('exercises.json'), get('routines.json'), get('groups.json'), get('lines.json').catch(() => ({}))])
+    .then(([exercises, routines, groups, lines]) => { data = { exercises, routines: resolveRoutines(routines), groups, lines }; setLang(lang); })
     .catch(() => { view.innerHTML = `<p class="empty">⚠️ ${esc(t(TEXT.loadError))}</p>`; renderFoot(); });
 })();

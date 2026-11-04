@@ -1,0 +1,42 @@
+[
+  {
+    "id": "codigo-titan",
+    "emoji": "🧩",
+    "color": "red",
+    "name": {
+      "es": "Código Titán",
+      "ca": "Codi Titan",
+      "en": "Código Titán"
+    }
+  },
+  {
+    "id": "torre",
+    "emoji": "🧗",
+    "color": "gold",
+    "name": {
+      "es": "Torre y dominadas",
+      "ca": "Torre i dominades",
+      "en": "Tower and pull-ups"
+    }
+  },
+  {
+    "id": "rapidas",
+    "emoji": "⚡",
+    "color": "teal",
+    "name": {
+      "es": "Rápidas",
+      "ca": "Ràpides",
+      "en": "Quick ones"
+    }
+  },
+  {
+    "id": "descarga",
+    "emoji": "🌿",
+    "color": "green",
+    "name": {
+      "es": "Descarga",
+      "ca": "Descàrrega",
+      "en": "Recovery"
+    }
+  }
+]

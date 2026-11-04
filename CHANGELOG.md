@@ -2,6 +2,20 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.3.0] — 2026-11-04
+### Changed
+- **Routines now sit in 4 folding groups** (`data/groups.json`), each with an emoji, a colour and the lengths of its routines:
+  - 🧩 Código Titán: the full session first, then its 4 phases.
+  - 🧗 Torre y dominadas.
+  - ⚡ Rápidas.
+  - 🌿 Descarga.
+- **Plain names that say what each routine is**, for example "Fuerza con mancuernas", with your Titán name underneath ("Fase 2 · Bloque de fuerza"). The player's start screen shows both.
+- **Equipment chips** on each routine card (Remo, Mancuernas, Barra…), computed from its exercises. The card's side stripe uses its group colour.
+- Groups start closed, and the ones you open (routines and library) stay open, even after you close the app.
+
+### Removed
+- The 0.1.0 demo routine "Mini: cuelgue activo". Micro-dosis covers hangs.
+
 ## [0.2.2] — 2026-11-04
 ### Fixed
 - Coming back to the hub from an exercise or a routine keeps your scroll position and the library sections you had open, instead of jumping to the top.

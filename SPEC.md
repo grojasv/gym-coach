@@ -24,12 +24,12 @@ the extracted plan.
 | Mascot | **El Titán**: a cartoon luchador in a yellow mask, drawn as SVG with poses (idle, work, rest, cheer). |
 | Voice tone | A gym bro from Spain with a luchador flavour: "¡Qué pasa, fiera!", "¡Al ring!". The motto is "¡La constancia en los básicos construye titanes!" |
 | Voice | On by default, with a mute button in the player. Beeps still play when muted. Web Speech API (no key, offline). If there is no Catalan voice, it falls back to Spanish. |
-| Hub | Routines (with the duration computed from their steps) plus an exercise library (how to do it, posture cues, common mistakes) and a recent-history list. |
+| Hub | Routines in folding groups (plain name, Titán subtitle, equipment chips, colour per group; duration computed from their steps) plus an exercise library (how to do it, posture cues, common mistakes) and a recent-history list. |
 | Sets | **Hybrid.** `time` steps count down. `reps` steps wait for a **Done** tap. Rests are always timed and start on their own. |
 | Durations | Configurable per routine. The total is **computed from the steps, never typed in**. Target lengths later: 15 / 30 / 60 min. |
 | History | Basic log on the phone (`localStorage`): date, routine, done or partial, and the dumbbell weight per exercise, which is suggested next time. |
 | Style | One Lucha Libre look: wrestling-poster type, yellow mask gold, deep navy and hot red, with light and dark modes. |
-| v1 content | **One example exercise** (`cuelgue-activo`) in a mini routine. More content comes later. |
+| Content | 23 exercises and 10 routines from Guille's Código Titán material (0.2.0), grouped on the hub (0.3.0). |
 | Later | Gamification (boss HP bars, XP, FINAL BOSS round), the weekly calendar with a "today" card, progressions or levels, porting "Despegue Titán" (15 min). |
 
 ## Data
@@ -52,8 +52,10 @@ the extracted plan.
 ### `data/routines.json`: an array
 ```jsonc
 [{
-  "id": "mini-cuelgue",
-  "name":    { "es": "…", "ca": "…", "en": "…" },
+  "id": "ct-fuerza",
+  "group":   "codigo-titan",            // id in data/groups.json (folding section on the hub)
+  "name":    { "es": "Fuerza con mancuernas", "ca": "…", "en": "…" },   // plain: says what it is
+  "subtitle": { "es": "Fase 2 · Bloque de fuerza", "ca": "…", "en": "…" }, // optional: the Titán name
   "summary": { "es": "…", "ca": "…", "en": "…" },
   "prepare": 10,                        // seconds of get-ready countdown before the first step
   "blocks": [{
@@ -88,6 +90,11 @@ Steps with cues get no generic `go`/`halfway`/`last3` lines. Reps steps have no 
 **How the player builds the timeline:** first `prepare`, then for each block, round and step, the **work** step followed
 by its **rest**. The rest is `restAfter`, except after a round's last step, where it is `restBetweenRounds`. The very
 last rest of the routine is dropped, and the timeline ends with **done**. The duration is the sum of all of it.
+
+### `data/groups.json`: the hub's routine sections, in order
+`[{ "id": "codigo-titan", "emoji": "🧩", "color": "red|gold|teal|green", "name": { "es": "…", "ca": "…", "en": "…" } }]`.
+Within a group, routines keep their order in `routines.json`. The equipment chips on each card are computed from its
+exercises. Open sections (routines and library) are remembered in `localStorage` `gym-coach.open`.
 
 ### `data/lines.json`: the mascot's line pools, keyed by moment
 Each key holds `{ "es": [...], "ca": [...], "en": [...] }`. A line is picked at random and is not repeated twice in a

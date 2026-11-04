@@ -40,6 +40,10 @@ for (const [id, ex] of Object.entries(exercises)) {
   else ex.equipment.forEach((e) => { if (!EQUIPMENT.includes(e)) err(w, `unknown equipment ${e}`); });
 }
 
+const groups = read('groups.json');
+const COLORS = ['red', 'gold', 'teal', 'green'];
+groups.forEach((g) => { localized(`group ${g.id}.name`, g.name); if (!g.emoji) err(`group ${g.id}`, 'no emoji'); if (!COLORS.includes(g.color)) err(`group ${g.id}`, `color must be one of ${COLORS}`); });
+
 const routines = read('routines.json');
 const ids = new Set();
 for (const r of routines) {
@@ -47,6 +51,8 @@ for (const r of routines) {
   if (ids.has(r.id)) err(w, 'duplicate id'); ids.add(r.id);
   localized(`${w}.name`, r.name);
   localized(`${w}.summary`, r.summary);
+  if (r.subtitle) localized(`${w}.subtitle`, r.subtitle);
+  if (!groups.some((g) => g.id === r.group)) err(w, `group ${r.group} not in groups.json`);
   (r.blocks || []).forEach((b, bi) => {
     if (b.routine) { if (!routines.some((x) => x.id === b.routine)) err(`${w}.blocks[${bi}]`, `includes unknown routine ${b.routine}`); return; }
     localized(`${w}.blocks[${bi}].name`, b.name);

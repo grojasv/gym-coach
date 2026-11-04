@@ -158,6 +158,7 @@
           <div class="mascot pose-idle">${mascot('idle')}</div>
           <div class="bubble">${esc(t(routine.summary))}</div>
           <h2 class="p-title">${esc(t(routine.name))}</h2>
+          ${routine.subtitle ? `<p class="p-meta sub">${esc(t(routine.subtitle))}</p>` : ''}
           <p class="p-meta">${esc(t(TEXT.total))}: <b>${fmtLen(total)}</b> · ${esc(t(TEXT.steps))}: <b>${sets}</b></p>
           <ul class="p-list">${exIds.map((id) => `<li>${esc(t(exercises[id].name))}</li>`).join('')}</ul>
           <p class="p-hint">🔊 ${esc(t(TEXT.voiceHint))}${noCa ? `<br>${esc(TEXT.noCaVoice.ca)}` : ''}</p>
