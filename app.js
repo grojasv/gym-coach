@@ -1,0 +1,179 @@
+// Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
+// No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
+(() => {
+  const VERSION = '0.1.0'; // keep in sync with CHANGELOG.md
+  const LANGS = ['es', 'ca', 'en'];
+  const LOG_KEY = 'gym-coach.log';
+
+  const TEXT = {
+    routines: { es: 'Rutinas', ca: 'Rutines', en: 'Routines' },
+    library: { es: 'Ejercicios', ca: 'Exercicis', en: 'Exercises' },
+    history: { es: 'Historial', ca: 'Historial', en: 'History' },
+    noHistory: { es: 'Aún no hay entrenos. ¡El ring te espera!', ca: 'Encara no hi ha entrenaments. El ring t’espera!', en: 'No workouts yet. The ring is waiting!' },
+    play: { es: 'Entrenar', ca: 'Entrena', en: 'Train' },
+    sets: { es: 'series', ca: 'sèries', en: 'sets' },
+    last: { es: 'Última vez', ca: 'Última vegada', en: 'Last time' },
+    how: { es: 'Cómo se hace', ca: 'Com es fa', en: 'How to do it' },
+    cues: { es: 'Claves de postura', ca: 'Claus de postura', en: 'Posture cues' },
+    mistakes: { es: 'Errores comunes', ca: 'Errors comuns', en: 'Common mistakes' },
+    safety: { es: 'Seguridad', ca: 'Seguretat', en: 'Safety' },
+    targets: { es: 'Trabaja', ca: 'Treballa', en: 'Works' },
+    back: { es: '‹ Volver', ca: '‹ Torna', en: '‹ Back' },
+    done: { es: 'completo', ca: 'complet', en: 'complete' },
+    partial: { es: 'parcial', ca: 'parcial', en: 'partial' },
+    notFound: { es: 'No encontrado.', ca: 'No trobat.', en: 'Not found.' },
+    loadError: { es: 'No se han podido cargar los datos.', ca: 'No s’han pogut carregar les dades.', en: 'Couldn’t load the data.' },
+    disclaimer: { es: 'No es consejo médico. Si algo duele, para.', ca: 'No és consell mèdic. Si alguna cosa fa mal, atura’t.', en: 'Not medical advice. If something hurts, stop.' },
+    install: { es: 'Instala la app', ca: 'Instal·la l’app', en: 'Install the app' },
+    installOther: { es: 'Abre el menú del navegador (⋮) y elige «Instalar aplicación».', ca: 'Obre el menú del navegador (⋮) i tria «Instal·la l’aplicació».', en: 'Open the browser menu (⋮) and choose “Install app”.' },
+    hello: { es: '¡Qué pasa, fiera! ¡A darle con todo!', ca: 'Què passa, fiera? A donar-ho tot!', en: 'What’s up, beast? Let’s give it everything!' },
+  };
+  const EQUIP = {
+    'pullup-bar': { es: 'Barra de dominadas', ca: 'Barra de dominades', en: 'Pull-up bar' },
+    'dip-bars': { es: 'Paralelas', ca: 'Paral·leles', en: 'Dip bars' },
+    'knee-raise': { es: 'Silla romana', ca: 'Cadira romana', en: 'Roman chair' },
+    rower: { es: 'Remo', ca: 'Rem', en: 'Rower' },
+    dumbbells: { es: 'Mancuernas', ca: 'Manuelles', en: 'Dumbbells' },
+    handgrip: { es: 'Hand grip', ca: 'Hand grip', en: 'Hand grip' },
+    'ab-wheel': { es: 'Rueda abdominal', ca: 'Roda abdominal', en: 'Ab wheel' },
+    floor: { es: 'Suelo', ca: 'Terra', en: 'Floor' },
+  };
+
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch { /* private mode */ } },
+  };
+  const guess = (navigator.language || '').slice(0, 2);
+  let lang = LANGS.includes(store.get('gym-coach.lang')) ? store.get('gym-coach.lang') : LANGS.includes(guess) ? guess : 'es';
+  const t = (o) => (o && (o[lang] ?? o.es)) || '';
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const $ = (id) => document.getElementById(id);
+  const view = $('view'), playerEl = $('player'), foot = $('foot');
+
+  let data = null; // { exercises, routines, lines }
+  let player = null;
+
+  // ---------- history ----------
+  const readLog = () => { try { return JSON.parse(store.get(LOG_KEY) || '[]'); } catch { return []; } };
+  function addLog(entry) { store.set(LOG_KEY, JSON.stringify([entry, ...readLog()].slice(0, 200))); }
+  function lastWeights() {
+    const w = {};
+    readLog().slice().reverse().forEach((e) => Object.assign(w, e.weights || {}));
+    return w;
+  }
+  const dateFmt = (iso) => new Intl.DateTimeFormat({ es: 'es-ES', ca: 'ca-ES', en: 'en-GB' }[lang], { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+
+  // ---------- views ----------
+  const mascot = (pose) => (window.Titan ? window.Titan.svg(pose) : '<div class="mascot-fallback">🦾</div>');
+  function routineCard(r) {
+    const items = Player.buildTimeline(r, data.exercises);
+    const sets = items.filter((i) => i.kind === 'work').length;
+    const last = readLog().find((e) => e.routine === r.id);
+    return `<a class="card routine" href="#/play/${encodeURIComponent(r.id)}">
+      <div class="r-head"><h3>${esc(t(r.name))}</h3><span class="pill">${Player.fmtLen(Player.duration(items))}</span></div>
+      <p>${esc(t(r.summary))}</p>
+      <div class="r-foot"><span>${sets} ${esc(t(TEXT.sets))}${last ? ` · ${esc(t(TEXT.last))}: ${esc(dateFmt(last.at))}` : ''}</span>
+        <span class="btn small go">▶ ${esc(t(TEXT.play))}</span></div></a>`;
+  }
+  function renderHub() {
+    const log = readLog().slice(0, 5);
+    const helloPool = data.lines?.hello?.[lang];
+    const hello = helloPool?.length ? helloPool[Math.floor(Math.random() * helloPool.length)] : t(TEXT.hello);
+    view.innerHTML = `
+      <section class="hero">
+        <div class="mascot pose-idle" id="heroMascot">${mascot('idle')}</div>
+        <div class="bubble">${esc(hello)}</div>
+      </section>
+      <h2 class="sec">${esc(t(TEXT.routines))}</h2>
+      <div class="list">${data.routines.map(routineCard).join('')}</div>
+      <h2 class="sec">${esc(t(TEXT.library))}</h2>
+      <div class="list grid">${Object.entries(data.exercises).map(([id, ex]) => `
+        <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${esc(t(ex.name))}</h3>
+          <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div>
+      <h2 class="sec">${esc(t(TEXT.history))}</h2>
+      ${log.length ? `<ul class="card history">${log.map((e) => {
+        const r = data.routines.find((x) => x.id === e.routine);
+        return `<li><span>${esc(dateFmt(e.at))}</span><b>${esc(r ? t(r.name) : e.routine)}</b>
+          <span class="tag ${e.done ? 'ok' : ''}">${e.steps}/${e.total} ${esc(t(e.done ? TEXT.done : TEXT.partial))}</span></li>`;
+      }).join('')}</ul>` : `<p class="empty">${esc(t(TEXT.noHistory))}</p>`}`;
+    $('heroMascot').addEventListener('click', (e) => { const m = e.currentTarget; m.classList.remove('wiggle'); void m.offsetWidth; m.classList.add('wiggle'); });
+  }
+  function renderExercise(id) {
+    const ex = data.exercises[id];
+    if (!ex) { view.innerHTML = `<p class="empty">${esc(t(TEXT.notFound))}</p>`; return; }
+    const list = (o) => `<ul>${(o?.[lang] || o?.es || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
+    view.innerHTML = `
+      <a class="back" href="#/">${esc(t(TEXT.back))}</a>
+      <article class="card detail">
+        <h2>${esc(t(ex.name))}</h2>
+        <p class="chips">${ex.equipment.map((e) => `<span class="pill">${esc(t(EQUIP[e]) || e)}</span>`).join('')}</p>
+        ${ex.targets ? `<p class="muted"><b>${esc(t(TEXT.targets))}:</b> ${esc((ex.targets[lang] || ex.targets.es).join(', '))}</p>` : ''}
+        <h3>${esc(t(TEXT.how))}</h3><p>${esc(t(ex.how))}</p>
+        <h3>✅ ${esc(t(TEXT.cues))}</h3>${list(ex.cues)}
+        <h3>❌ ${esc(t(TEXT.mistakes))}</h3>${list(ex.mistakes)}
+        ${ex.safety ? `<div class="safety"><b>⚠️ ${esc(t(TEXT.safety))}:</b> ${esc(t(ex.safety))}</div>` : ''}
+      </article>`;
+  }
+  function openPlayer(id) {
+    const routine = data.routines.find((r) => r.id === id);
+    if (!routine) { location.hash = '#/'; return; }
+    document.body.classList.add('playing');
+    playerEl.hidden = false;
+    player = Player.open(playerEl, {
+      routine, exercises: data.exercises, lines: data.lines, getLang: () => lang, store, lastWeights: lastWeights(),
+      onFinish: (r) => addLog({ at: new Date().toISOString(), routine: id, ...r }),
+      onExit: () => { player = null; location.hash = '#/'; },
+    });
+  }
+  function closePlayer() {
+    if (player) { const p = player; player = null; p.close(); }
+    playerEl.hidden = true; playerEl.innerHTML = '';
+    document.body.classList.remove('playing');
+  }
+
+  function route() {
+    if (!data) return;
+    const [, kind, id] = location.hash.match(/^#\/(\w+)\/(.+)$/) || [];
+    if (kind === 'play') { if (!player) openPlayer(decodeURIComponent(id)); return; }
+    closePlayer();
+    if (kind === 'ex') renderExercise(decodeURIComponent(id)); else renderHub();
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- shell ----------
+  let installEvent = null;
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  function renderFoot() {
+    foot.innerHTML = `<p>${esc(t(TEXT.disclaimer))}</p>
+      ${standalone ? '' : `<button class="btn small" id="installBtn" type="button">📲 ${esc(t(TEXT.install))}</button>
+      <p class="install-help" id="installHelp" hidden>${esc(t(TEXT.installOther))}</p>`}
+      <p class="ver">Gym Coach v${VERSION}</p>`;
+    $('installBtn')?.addEventListener('click', async () => {
+      if (!installEvent) { $('installHelp').hidden = !$('installHelp').hidden; return; }
+      installEvent.prompt();
+      await installEvent.userChoice;
+      installEvent = null;
+    });
+  }
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); installEvent = e; });
+
+  function setLang(next) {
+    lang = next;
+    store.set('gym-coach.lang', next);
+    document.documentElement.lang = next;
+    document.querySelectorAll('.langs button').forEach((b) => b.classList.toggle('active', b.dataset.lang === next));
+    renderFoot();
+    if (player) player.rerender(); else route();
+  }
+  document.querySelector('.langs').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-lang]');
+    if (b) setLang(b.dataset.lang);
+  });
+  window.addEventListener('hashchange', route);
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { /* offline cache is optional */ });
+
+  const get = (f) => fetch(`data/${f}`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
+  Promise.all([get('exercises.json'), get('routines.json'), get('lines.json').catch(() => ({}))])
+    .then(([exercises, routines, lines]) => { data = { exercises, routines, lines }; setLang(lang); })
+    .catch(() => { view.innerHTML = `<p class="empty">⚠️ ${esc(t(TEXT.loadError))}</p>`; renderFoot(); });
+})();

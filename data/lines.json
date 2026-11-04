@@ -1,0 +1,354 @@
+{
+  "hello": {
+    "es": [
+      "¡Qué pasa, fiera! ¡A darle con todo!",
+      "¡Bienvenido al ring, titán! Hoy toca construir ese chasis.",
+      "¡Aquí está mi fiera! ¿Listo para blindar esa espalda?",
+      "¡Nadie empieza por el tejado, titán! Vamos con los básicos.",
+      "¡Hola, campeón! Hoy entrenamos con técnica de cirujano.",
+      "¡Ya estás aquí, fiera! Eso ya es media victoria."
+    ],
+    "ca": [
+      "Què passa, fiera! A donar-ho tot!",
+      "Benvingut al ring, Titan! Avui toca construir aquest xassís.",
+      "Aquí tenim la meva fiera! A punt per blindar l'esquena?",
+      "Ningú comença per la teulada, Titan! Anem pels bàsics.",
+      "Hola, campió! Avui entrenem amb tècnica de cirurgià.",
+      "Ja ets aquí, fiera! Això ja és mitja victòria."
+    ],
+    "en": [
+      "What's up, beast! Let's give it everything!",
+      "Welcome to the ring, Titan! Today we build that chassis.",
+      "There's my beast! Ready to armour up that back?",
+      "Nobody starts with the roof, Titan! Basics first.",
+      "Hey, champ! Today we train with surgeon-level technique.",
+      "You showed up, beast! That's half the win already."
+    ]
+  },
+  "start": {
+    "es": [
+      "¡Qué pasa, fiera! ¡A darle con todo!",
+      "¡Al ring, titán! Suena la campana.",
+      "¡Empieza el combate! Técnica de cirujano sobre el ego.",
+      "¡Vamos allá, fiera! Hombros lejos de las orejas.",
+      "¡Paso a paso nos comemos el mundo! Arrancamos.",
+      "¡Primera caída! A por ella con buena postura."
+    ],
+    "ca": [
+      "Què passa, fiera! A donar-ho tot!",
+      "Al ring, Titan! Sona la campana.",
+      "Comença el combat! Tècnica de cirurgià per sobre de l'ego.",
+      "Som-hi, fiera! Espatlles lluny de les orelles.",
+      "Pas a pas ens mengem el món! Comencem.",
+      "Primera caiguda! A per ella amb bona postura."
+    ],
+    "en": [
+      "What's up, beast! Let's give it everything!",
+      "Into the ring, Titan! There goes the bell.",
+      "The match begins! Surgeon technique over ego.",
+      "Let's go, beast! Shoulders away from your ears.",
+      "Step by step, we eat the world! Here we go.",
+      "First fall! Go get it with good posture."
+    ]
+  },
+  "prep": {
+    "es": [
+      "Prepárate, fiera. Ahora toca {name}.",
+      "Colócate para {name}. Postura primero.",
+      "Coloca el chasis para {name}.",
+      "Pecho fuera, hombros lejos de las orejas.",
+      "Respira hondo y prepara {name}, titán.",
+      "Ajusta el agarre y el cuerpo. Ya casi."
+    ],
+    "ca": [
+      "Prepara't, fiera. Ara toca {name}.",
+      "Col·loca't per a {name}. Primer la postura.",
+      "Col·loca el xassís per a {name}.",
+      "Pit enfora, espatlles lluny de les orelles.",
+      "Respira fondo i prepara {name}, Titan.",
+      "Ajusta l'agafada i el cos. Ja quasi hi som."
+    ],
+    "en": [
+      "Get ready, beast. Time for {name}.",
+      "Set up for {name}. Posture first.",
+      "Set your chassis for {name}.",
+      "Chest proud, shoulders away from your ears.",
+      "Breathe deep and get set for {name}, Titan.",
+      "Adjust your grip and your body. Almost there."
+    ]
+  },
+  "go": {
+    "es": [
+      "¡Al ring!",
+      "¡Ya, fiera! ¡A darle!",
+      "¡Vamos, titán! Controla cada movimiento.",
+      "¡Suena la campana! ¡Dale!",
+      "¡Ahora! Técnica de cirujano sobre el ego.",
+      "¡A por ello, fiera! Respira y controla.",
+      "¡Llave maestra! ¡Vamos!"
+    ],
+    "ca": [
+      "Al ring!",
+      "Ara, fiera! Som-hi!",
+      "Vinga, Titan! Controla cada moviment.",
+      "Sona la campana! Dona-li!",
+      "Ara! Tècnica de cirurgià per sobre de l'ego.",
+      "A per totes, fiera! Respira i controla.",
+      "Clau mestra! Som-hi!"
+    ],
+    "en": [
+      "Into the ring!",
+      "Now, beast! Let's go!",
+      "Go, Titan! Control every rep.",
+      "There's the bell! Go!",
+      "Now! Surgeon technique over ego.",
+      "Go get it, beast! Breathe and control.",
+      "Master hold! Let's go!"
+    ]
+  },
+  "halfway": {
+    "es": [
+      "¡Mitad del combate, fiera! Sigue así.",
+      "¡Ya vas por la mitad, titán!",
+      "Si la postura se degrada, se frena la serie.",
+      "¡Media pelea ganada! Hombros lejos de las orejas.",
+      "¡Brutal, fiera! Mantén la técnica.",
+      "Mitad hecha. Respira y sigue blindando ese chasis."
+    ],
+    "ca": [
+      "Meitat del combat, fiera! Continua així.",
+      "Ja vas per la meitat, Titan!",
+      "Si la postura es degrada, s'atura la sèrie.",
+      "Mitja baralla guanyada! Espatlles lluny de les orelles.",
+      "Brutal, fiera! Mantén la tècnica.",
+      "Meitat feta. Respira i segueix blindant aquest xassís."
+    ],
+    "en": [
+      "Halfway through the match, beast! Keep it up.",
+      "You're halfway there, Titan!",
+      "If your posture breaks down, the set stops.",
+      "Half the fight won! Shoulders away from your ears.",
+      "Brutal, beast! Hold that technique.",
+      "Half done. Breathe and keep armouring that chassis."
+    ]
+  },
+  "last3": {
+    "es": [
+      "¡Tres segundos, fiera!",
+      "¡Últimos tres, titán!",
+      "¡Tercera caída! ¡Aguanta!",
+      "¡Ya lo tienes, fiera!",
+      "¡Casi, casi! ¡Brutal!",
+      "¡Remata con buena técnica!"
+    ],
+    "ca": [
+      "Tres segons, fiera!",
+      "Els últims tres, Titan!",
+      "Tercera caiguda! Aguanta!",
+      "Ja ho tens, fiera!",
+      "Quasi, quasi! Brutal!",
+      "Remata amb bona tècnica!"
+    ],
+    "en": [
+      "Three seconds, beast!",
+      "Last three, Titan!",
+      "Third fall! Hold on!",
+      "You've got it, beast!",
+      "Almost, almost! Brutal!",
+      "Finish with clean technique!"
+    ]
+  },
+  "repsGo": {
+    "es": [
+      "{reps} repeticiones, fiera. Al terminar, dale a Hecho.",
+      "A por {reps} limpias. Luego dale a Hecho.",
+      "{reps} repes con técnica de cirujano y luego dale a Hecho.",
+      "Toca hacer {reps}, titán. Cuando acabes, dale a Hecho.",
+      "{reps} repeticiones sin prisa. Termina y dale a Hecho.",
+      "¡Al ring! {reps} repes y dale a Hecho."
+    ],
+    "ca": [
+      "{reps} repeticions, fiera. Quan acabis, toca Fet.",
+      "A per {reps} de netes. Després toca Fet.",
+      "{reps} repeticions amb tècnica de cirurgià i després toca Fet.",
+      "Ara en fem {reps}, Titan. Quan acabis, toca Fet.",
+      "{reps} repeticions sense pressa. Acaba i toca Fet.",
+      "Al ring! {reps} repeticions i toca Fet."
+    ],
+    "en": [
+      "{reps} reps, beast. When you finish, tap Done.",
+      "Go for {reps} clean reps. Then tap Done.",
+      "{reps} reps with surgeon technique, then tap Done.",
+      "Time for {reps}, Titan. When you're through, tap Done.",
+      "{reps} reps, no rush. Finish and tap Done.",
+      "Into the ring! {reps} reps, then tap Done."
+    ]
+  },
+  "repsDone": {
+    "es": [
+      "¡Brutal, fiera! Serie conquistada.",
+      "Las dominadas no se regalan, se conquistan repetición a repetición.",
+      "¡Cinturón de campeón para esa serie!",
+      "¡Eso es, titán! Así se blinda el chasis.",
+      "¡Llave maestra! Serie hecha con técnica.",
+      "¡Muy bien, fiera! Sacando pecho con orgullo."
+    ],
+    "ca": [
+      "Brutal, fiera! Sèrie conquistada.",
+      "Les dominades no es regalen, es conquereixen repetició a repetició.",
+      "Cinturó de campió per a aquesta sèrie!",
+      "Això és, Titan! Així es blinda el xassís.",
+      "Clau mestra! Sèrie feta amb tècnica.",
+      "Molt bé, fiera! Traient pit amb orgull."
+    ],
+    "en": [
+      "Brutal, beast! Set conquered.",
+      "Pull-ups aren't given, they're conquered rep by rep.",
+      "Champion's belt for that set!",
+      "That's it, Titan! That's how you armour the chassis.",
+      "Master hold! Set done with clean technique.",
+      "Nice one, beast! Chest out, full of pride."
+    ]
+  },
+  "rest": {
+    "es": [
+      "Camina un poco y sacude las manos.",
+      "Respira hondo abriendo el pecho.",
+      "Descanso, fiera. Te lo has ganado.",
+      "Bebe un poco de agua, titán.",
+      "Suelta los hombros, lejos de las orejas.",
+      "Recupera el aliento. El ring te espera.",
+      "Descansar también es entrenar, fiera."
+    ],
+    "ca": [
+      "Camina una mica i sacseja les mans.",
+      "Respira fondo obrint el pit.",
+      "Descans, fiera. T'ho has guanyat.",
+      "Beu una mica d'aigua, Titan.",
+      "Deixa anar les espatlles, lluny de les orelles.",
+      "Recupera l'alè. El ring t'espera.",
+      "Descansar també és entrenar, fiera."
+    ],
+    "en": [
+      "Walk around a bit and shake out your hands.",
+      "Breathe deep, opening your chest.",
+      "Rest, beast. You've earned it.",
+      "Grab a sip of water, Titan.",
+      "Relax your shoulders, away from your ears.",
+      "Catch your breath. The ring is waiting.",
+      "Resting is training too, beast."
+    ]
+  },
+  "nextUp": {
+    "es": [
+      "Lo siguiente: {name}.",
+      "Próximo combate: {name}, fiera.",
+      "Ahora viene {name}. Prepárate, titán.",
+      "Siguiente llave: {name}.",
+      "En la esquina te espera {name}.",
+      "Atento, fiera: viene {name}."
+    ],
+    "ca": [
+      "El següent: {name}.",
+      "Proper combat: {name}, fiera.",
+      "Ara ve {name}. Prepara't, Titan.",
+      "Següent clau: {name}.",
+      "A la cantonada t'espera {name}.",
+      "Atent, fiera: ve {name}."
+    ],
+    "en": [
+      "Next up: {name}.",
+      "Next match: {name}, beast.",
+      "Here comes {name}. Get ready, Titan.",
+      "Next hold: {name}.",
+      "Waiting in the corner: {name}.",
+      "Heads up, beast: {name} is coming."
+    ]
+  },
+  "roundDone": {
+    "es": [
+      "¡Ronda completada, fiera!",
+      "¡Caída ganada! Vamos a por la siguiente.",
+      "¡Paso a paso nos comemos el mundo!",
+      "¡Brutal, titán! Otra ronda al bolsillo.",
+      "¡Así se construyen titanes, ronda a ronda!",
+      "¡Ronda hecha, sacando pecho con orgullo!"
+    ],
+    "ca": [
+      "Ronda completada, fiera!",
+      "Caiguda guanyada! Anem a per la següent.",
+      "Pas a pas ens mengem el món!",
+      "Brutal, Titan! Una altra ronda a la butxaca.",
+      "Així es construeixen titans, ronda a ronda!",
+      "Ronda feta, traient pit amb orgull!"
+    ],
+    "en": [
+      "Round complete, beast!",
+      "Fall won! On to the next one.",
+      "Step by step, we eat the world!",
+      "Brutal, Titan! Another round in the bag.",
+      "That's how titans are built, round by round!",
+      "Round done, chest out with pride!"
+    ]
+  },
+  "finish": {
+    "es": [
+      "¡Cinturón de campeón, fiera! Entrenamiento completado.",
+      "¡El dolor es temporal, pero esa espalda en V es para siempre!",
+      "¡Tercera caída y victoria! Buen trabajo, titán.",
+      "¡Brutal! Hoy has blindado el chasis con técnica de cirujano.",
+      "¡Combate ganado! Estira un poco y bebe agua.",
+      "¡Lo has dado todo, fiera! Orgulloso de ti."
+    ],
+    "ca": [
+      "Cinturó de campió, fiera! Entrenament completat.",
+      "El dolor és temporal, però aquesta esquena en V és per sempre!",
+      "Tercera caiguda i victòria! Bona feina, Titan.",
+      "Brutal! Avui has blindat el xassís amb tècnica de cirurgià.",
+      "Combat guanyat! Estira una mica i beu aigua.",
+      "Ho has donat tot, fiera! Orgullós de tu."
+    ],
+    "en": [
+      "Champion's belt, beast! Workout complete.",
+      "Pain is temporary, but that V-shaped back is forever!",
+      "Third fall and victory! Great work, Titan.",
+      "Brutal! Today you armoured the chassis with surgeon technique.",
+      "Match won! Stretch a little and drink some water.",
+      "You gave it everything, beast! Proud of you."
+    ]
+  },
+  "motto": {
+    "es": [
+      "¡La constancia en los básicos construye titanes!",
+      "Técnica de cirujano sobre el ego."
+    ],
+    "ca": [
+      "La constància en els bàsics construeix titans!",
+      "Tècnica de cirurgià per sobre de l'ego."
+    ],
+    "en": [
+      "Consistency in the basics builds titans!",
+      "Surgeon technique over ego."
+    ]
+  },
+  "paused": {
+    "es": [
+      "Pausa, fiera. Aquí te espero.",
+      "Tiempo muerto. Vuelve cuando quieras, titán.",
+      "El ring te espera. Sin prisa.",
+      "Pausa. Respira hondo y volvemos."
+    ],
+    "ca": [
+      "Pausa, fiera. T'espero aquí.",
+      "Temps mort. Torna quan vulguis, Titan.",
+      "El ring t'espera. Sense pressa.",
+      "Pausa. Respira fondo i tornem."
+    ],
+    "en": [
+      "Paused, beast. I'll wait right here.",
+      "Time out. Come back when you're ready, Titan.",
+      "The ring is waiting. No rush.",
+      "Paused. Breathe deep and we'll be back."
+    ]
+  }
+}

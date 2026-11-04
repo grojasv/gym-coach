@@ -1,0 +1,62 @@
+[
+  {
+    "id": "mini-cuelgue",
+    "name": { "es": "Mini: cuelgue activo", "ca": "Mini: penjada activa", "en": "Mini: active hang" },
+    "summary": {
+      "es": "Tres cuelgues activos de 15 s en la torre, con 45 s de descanso.",
+      "ca": "Tres penjades actives de 15 s a la torre, amb 45 s de descans.",
+      "en": "Three 15 s active hangs on the tower, with 45 s of rest."
+    },
+    "prepare": 10,
+    "blocks": [
+      {
+        "name": { "es": "Torre", "ca": "Torre", "en": "Tower" },
+        "rounds": 3,
+        "restBetweenRounds": 45,
+        "steps": [
+          {
+            "exercise": "cuelgue-activo",
+            "mode": "time",
+            "seconds": 15,
+            "weight": false,
+            "restAfter": 45,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "¡Agarra fuerte, pulgar alrededor de la barra!",
+                  "ca": "Agafa fort, polze al voltant de la barra!",
+                  "en": "Grip hard, thumb around the bar!"
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Dedos como ganchos de acero.",
+                  "ca": "Dits com ganxos d'acer.",
+                  "en": "Fingers like steel hooks."
+                }
+              },
+              {
+                "at": 8,
+                "text": {
+                  "es": "¡Tira de los hombros hacia abajo y hacia atrás!",
+                  "ca": "Tira les espatlles cap avall i enrere!",
+                  "en": "Pull your shoulders down and back!"
+                }
+              },
+              {
+                "at": 11,
+                "text": {
+                  "es": "Aprieta abdomen, ¡resiste sin balancearte!",
+                  "ca": "Estreny l'abdomen, aguanta sense balancejar-te!",
+                  "en": "Brace your abs, hold on without swinging!"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

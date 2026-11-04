@@ -1,0 +1,5 @@
+.DS_Store
+.claude/settings.local.json
+.claude/launch.json
+# Private source material (Gemini chat, personal plan pages): not published unless Guille says so
+raw/

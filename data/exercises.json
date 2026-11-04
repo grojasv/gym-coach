@@ -1,0 +1,64 @@
+{
+  "cuelgue-activo": {
+    "name": { "es": "Cuelgue activo", "ca": "Penjada activa", "en": "Active hang" },
+    "equipment": ["pullup-bar"],
+    "targets": {
+      "es": ["dorsales", "trapecio inferior", "agarre (antebrazos)", "core"],
+      "ca": ["dorsals", "trapezi inferior", "agafada (avantbraços)", "core"],
+      "en": ["lats", "lower traps", "grip (forearms)", "core"]
+    },
+    "how": {
+      "es": "Cuélgate de la barra de la torre con agarre a la anchura de los hombros, palmas al frente y pulgar alrededor de la barra. Tira de los hombros hacia abajo y hacia atrás, saca pecho y aguanta quieto; si estás empezando, apoya las puntas de los pies en los escalones de la torre para llegar a 15 s.",
+      "ca": "Penja't de la barra de la torre amb una agafada a l'amplada de les espatlles, palmells endavant i el polze al voltant de la barra. Tira les espatlles cap avall i enrere, treu pit i aguanta quiet; si estàs començant, recolza les puntes dels peus als esglaons de la torre per arribar als 15 s.",
+      "en": "Hang from the tower's pull-up bar with a shoulder-width grip, palms forward and your thumb wrapped around the bar. Pull your shoulders down and back, chest out, and hold still; as a beginner, rest your toes on the tower's steps to reach 15 s."
+    },
+    "cues": {
+      "es": [
+        "Agarre a la anchura de los hombros, palmas al frente.",
+        "Tira de los hombros hacia abajo y hacia atrás.",
+        "Pecho fuera, no te cuelgues como un saco de patatas.",
+        "Pulgar alrededor de la barra: aprieta como si dejaras huellas.",
+        "Abdomen firme, cuerpo quieto, sin balancearte."
+      ],
+      "ca": [
+        "Agafada a l'amplada de les espatlles, palmells endavant.",
+        "Tira les espatlles cap avall i enrere.",
+        "Pit fora, no pengis com un sac de patates.",
+        "Polze al voltant de la barra: estreny fins deixar-hi empremta.",
+        "Abdomen ferm, cos quiet, sense balancejar-te."
+      ],
+      "en": [
+        "Shoulder-width grip, palms facing forward.",
+        "Pull your shoulders down and back.",
+        "Chest out, don't hang like a sack of potatoes.",
+        "Thumb around the bar: squeeze to leave your fingerprints.",
+        "Brace your abs, stay still, no swinging."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Colgarte pasivo con los hombros pegados a las orejas.",
+        "Balancearte o dar impulso con las piernas.",
+        "Agarrar la barra sin rodearla con el pulgar.",
+        "Soltarte de golpe en vez de bajar por los escalones."
+      ],
+      "ca": [
+        "Penjar passiu amb les espatlles enganxades a les orelles.",
+        "Balancejar-te o agafar impuls amb les cames.",
+        "Agafar la barra sense envoltar-la amb el polze.",
+        "Deixar-te anar de cop en lloc de baixar pels esglaons."
+      ],
+      "en": [
+        "Hanging passively with your shoulders up by your ears.",
+        "Swinging or kicking with your legs.",
+        "Gripping the bar without wrapping your thumb around it.",
+        "Dropping off the bar instead of stepping down."
+      ]
+    },
+    "safety": {
+      "es": "Para si notas un dolor agudo en el hombro. Usa los escalones para descargar peso y nunca te sueltes de la barra: baja apoyando los pies.",
+      "ca": "Para si notes un dolor agut a l'espatlla. Fes servir els esglaons per descarregar pes i no et deixis anar mai de la barra: baixa recolzant els peus.",
+      "en": "Stop if you feel sharp pain in your shoulder. Use the foot steps to take weight off, and never drop from the bar: step down instead."
+    }
+  }
+}

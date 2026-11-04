@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fff6e0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121830" media="(prefers-color-scheme: dark)">
+  <title>Gym Coach</title>
+  <meta name="description" content="El Titán: tu coach luchador. Rutinas con cronómetro, voz y técnica.">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@400..800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#/"><span>Gym <b>Coach</b></span></a>
+    <div class="langs" role="group" aria-label="Language">
+      <button data-lang="ca">CA</button><button data-lang="es">ES</button><button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main id="view" aria-live="polite"></main>
+
+  <section id="player" class="player" hidden aria-live="polite"></section>
+
+  <footer class="foot" id="foot"></footer>
+
+  <script src="mascot.js"></script>
+  <script src="player.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
