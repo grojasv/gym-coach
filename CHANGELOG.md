@@ -2,6 +2,10 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.2.2] — 2026-11-04
+### Fixed
+- Coming back to the hub from an exercise or a routine keeps your scroll position and the library sections you had open, instead of jumping to the top.
+
 ## [0.2.1] — 2026-11-04
 ### Fixed
 - A new release now shows the next time you open the app. Before, the browser could keep old files for up to 10 minutes, because GitHub Pages caches for 10 min and the service worker fetched through that cache. It now checks with the server on every request (`cache: 'no-cache'`), and `CACHE` is v2.

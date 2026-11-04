@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.2.1'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.2.2'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
 
@@ -104,7 +104,7 @@
       ${Object.keys(EQUIP).map((eq) => {
         const group = Object.entries(data.exercises).filter(([, ex]) => ex.equipment[0] === eq);
         if (!group.length) return '';
-        return `<details class="group"><summary>${esc(t(EQUIP[eq]))} <span class="pill">${group.length}</span></summary>
+        return `<details class="group" data-eq="${eq}"${hubState.open.has(eq) ? ' open' : ''}><summary>${esc(t(EQUIP[eq]))} <span class="pill">${group.length}</span></summary>
           <div class="list grid">${group.map(([id, ex]) => `
             <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${esc(t(ex.name))}</h3>
               <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div></details>`;
@@ -151,8 +151,19 @@
     document.body.classList.remove('playing');
   }
 
+  // The hub keeps its scroll position and open library groups when you visit an exercise or a routine and come back.
+  const hubState = { y: 0, open: new Set() };
+  let onHub = false;
+  function saveHub() {
+    if (!onHub) return;
+    hubState.y = window.scrollY;
+    hubState.open = new Set([...view.querySelectorAll('details.group[open]')].map((d) => d.dataset.eq));
+    onHub = false;
+  }
+
   function route() {
     if (!data) return;
+    saveHub();
     const [, kind, id] = location.hash.match(/^#\/(\w+)\/(.+)$/) || [];
     if (kind === 'play') {
       const rid = decodeURIComponent(id);
@@ -160,8 +171,10 @@
       return;
     }
     closePlayer();
-    if (kind === 'ex') renderExercise(decodeURIComponent(id)); else renderHub();
-    window.scrollTo(0, 0);
+    if (kind === 'ex') { renderExercise(decodeURIComponent(id)); window.scrollTo(0, 0); return; }
+    renderHub();
+    onHub = true;
+    window.scrollTo(0, hubState.y);
   }
 
   // ---------- shell ----------
