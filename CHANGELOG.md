@@ -2,6 +2,10 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.2.1] — 2026-11-04
+### Fixed
+- A new release now shows the next time you open the app. Before, the browser could keep old files for up to 10 minutes, because GitHub Pages caches for 10 min and the service worker fetched through that cache. It now checks with the server on every request (`cache: 'no-cache'`), and `CACHE` is v2.
+
 ## [0.2.0] — 2026-11-04
 ### Added
 - **Your Código Titán content:** 22 new exercises (23 in total), each with how-to, posture cues, common mistakes and safety notes, in ES / CA / EN. They come from your V3.7 page and your chat.

@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.2.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.2.1'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
 
@@ -196,7 +196,7 @@
   window.addEventListener('hashchange', route);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { /* offline cache is optional */ });
 
-  const get = (f) => fetch(`data/${f}`).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
+  const get = (f) => fetch(`data/${f}`, { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
   Promise.all([get('exercises.json'), get('routines.json'), get('lines.json').catch(() => ({}))])
     .then(([exercises, routines, lines]) => { data = { exercises, routines: resolveRoutines(routines), lines }; setLang(lang); })
     .catch(() => { view.innerHTML = `<p class="empty">⚠️ ${esc(t(TEXT.loadError))}</p>`; renderFoot(); });
