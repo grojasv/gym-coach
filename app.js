@@ -1,9 +1,11 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.4.1'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.5.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
+  const FEEL_KEY = 'gym-coach.feel';
+  const EASY_IN_A_ROW = 2; // an exercise marked easy this many times in a row is a level-up candidate
 
   const TEXT = {
     routines: { es: 'Rutinas', ca: 'Rutines', en: 'Routines' },
@@ -27,6 +29,11 @@
     disclaimer: { es: 'No es consejo médico. Si algo duele, para.', ca: 'No és consell mèdic. Si alguna cosa fa mal, atura’t.', en: 'Not medical advice. If something hurts, stop.' },
     install: { es: 'Instala la app', ca: 'Instal·la l’app', en: 'Install the app' },
     installOther: { es: 'Abre el menú del navegador (⋮) y elige «Instalar aplicación».', ca: 'Obre el menú del navegador (⋮) i tria «Instal·la l’aplicació».', en: 'Open the browser menu (⋮) and choose “Install app”.' },
+    up: { es: 'subir', ca: 'pujar', en: 'level up' },
+    toLevel: { es: 'Para subir', ca: 'Per pujar', en: 'To level up' },
+    toLevelHint: { es: 'Los marcaste fáciles 2 veces seguidas. Ajústalos y pulsa ✓.', ca: 'Els vas marcar fàcils 2 vegades seguides. Ajusta’ls i prem ✓.', en: 'You marked these easy twice in a row. Adjust them, then tap ✓.' },
+    easyTimes: { es: 'Fácil ×{n}', ca: 'Fàcil ×{n}', en: 'Easy ×{n}' },
+    adjusted: { es: 'Ajustado', ca: 'Ajustat', en: 'Adjusted' },
     hello: { es: '¡Qué pasa, fiera! ¡A darle con todo!', ca: 'Què passa, fiera? A donar-ho tot!', en: 'What’s up, beast? Let’s give it everything!' },
   };
   const EQUIP = {
@@ -76,6 +83,26 @@
   // ---------- history ----------
   const readLog = () => { try { return JSON.parse(store.get(LOG_KEY) || '[]'); } catch { return []; } };
   function addLog(entry) { store.set(LOG_KEY, JSON.stringify([entry, ...readLog()].slice(0, 200))); }
+  // Level-up marks (SPEC § Level-up marks): gym-coach.feel is [{ at, routine, ex, v: easy|ok|hard|adjusted }], newest first.
+  const readFeel = () => { try { return JSON.parse(store.get(FEEL_KEY) || '[]'); } catch { return []; } };
+  const writeFeel = (list) => store.set(FEEL_KEY, JSON.stringify(list.sort((a, b) => (a.at < b.at ? 1 : -1)).slice(0, 500)));
+  function setFeel(routine, ex, v, at) {
+    const list = readFeel().filter((f) => !(f.at === at && f.ex === ex)); // re-rating in the same session replaces it
+    if (v) list.push({ at, routine, ex, v });
+    writeFeel(list);
+  }
+  // ex id → { easy: count in a row, routines: [ids] } for exercises whose latest ratings are easy N times in a row.
+  function candidates() {
+    const run = {}, stopped = new Set();
+    for (const f of readFeel()) {
+      if (stopped.has(f.ex)) continue;
+      if (f.v !== 'easy') { stopped.add(f.ex); continue; }
+      const c = (run[f.ex] ||= { easy: 0, routines: [] });
+      c.easy++; if (!c.routines.includes(f.routine)) c.routines.push(f.routine);
+    }
+    return Object.fromEntries(Object.entries(run).filter(([id, c]) => c.easy >= EASY_IN_A_ROW && data.exercises[id]));
+  }
+  const upTag = () => `<span class="up" title="${esc(t(TEXT.toLevel))}">⬆ ${esc(t(TEXT.up))}</span>`;
   function lastWeights() {
     const w = {};
     readLog().slice().reverse().forEach((e) => Object.assign(w, e.weights || {}));
@@ -98,7 +125,9 @@
     return `<a class="card routine c-${group?.color || 'red'}" href="#/play/${encodeURIComponent(r.id)}">
       <div class="r-head"><div><h3>${num('R', r.n)}${esc(t(r.name))}</h3>${r.subtitle ? `<p class="sub">${esc(t(r.subtitle))}</p>` : ''}</div>
         <span class="pill">${Player.fmtLen(Player.duration(items))}</span></div>
-      <p class="chips">${routineEquipment(r).map((e) => `<span class="chip">${esc(t(EQUIP[e]))}</span>`).join('')}</p>
+      <p class="chips">${routineEquipment(r).map((e) => `<span class="chip">${esc(t(EQUIP[e]))}</span>`).join('')}${(() => {
+        const ups = new Set(r.blocks.flatMap((b) => b.steps.map((s) => s.exercise)).filter((id) => cand[id])).size;
+        return ups ? `<span class="up">⬆ ${ups}</span>` : ''; })()}</p>
       <div class="r-foot"><span>${sets} ${esc(t(sets === 1 ? TEXT.set : TEXT.sets))}${last ? ` · ${esc(t(TEXT.last))}: ${esc(dateFmt(last.at))}` : ''}</span>
         <span class="btn small go">▶ ${esc(t(TEXT.play))}</span></div></a>`;
   }
@@ -107,7 +136,24 @@
   // Folding sections: routines by data/groups.json, exercises by main equipment. Open ones are remembered.
   const section = (key, title, count, body, cls = '') => `<details class="group ${cls}" data-key="${key}"${openSet.has(key) ? ' open' : ''}>
     <summary>${title} <span class="pill">${count}</span></summary>${body}</details>`;
+  let cand = {};
+  function levelUpSection() {
+    const ids = Object.keys(cand).sort((a, b) => data.exercises[a].n - data.exercises[b].n);
+    if (!ids.length) return '';
+    const rn = (rid) => { const r = data.routines.find((x) => x.id === rid); return r?.n ? `R${r.n}` : rid; };
+    return `<h2 class="sec">⬆ ${esc(t(TEXT.toLevel))}</h2>
+      <div class="card levelup"><p class="muted">${esc(t(TEXT.toLevelHint))}</p><ul>${ids.map((id) => `<li>
+        <a href="#/ex/${encodeURIComponent(id)}">${num('E', data.exercises[id].n)}${esc(t(data.exercises[id].name))}</a>
+        <span class="muted">${esc(t(TEXT.easyTimes).replace('{n}', cand[id].easy))} · ${esc(cand[id].routines.map(rn).join(', '))}</span>
+        <button type="button" class="btn small" data-adjusted="${esc(id)}">✓ ${esc(t(TEXT.adjusted))}</button></li>`).join('')}</ul></div>`;
+  }
+  view.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-adjusted]'); if (!b) return;
+    const list = readFeel(); list.push({ at: new Date().toISOString(), routine: null, ex: b.dataset.adjusted, v: 'adjusted' }); writeFeel(list);
+    hubState.y = window.scrollY; renderHub(); window.scrollTo(0, hubState.y);
+  });
   function renderHub() {
+    cand = candidates();
     const log = readLog().slice(0, 5);
     const helloPool = data.lines?.hello?.[lang];
     const hello = helloPool?.length ? helloPool[Math.floor(Math.random() * helloPool.length)] : t(TEXT.hello);
@@ -116,6 +162,7 @@
         <div class="mascot pose-idle" id="heroMascot">${mascot('idle')}</div>
         <div class="bubble">${esc(hello)}</div>
       </section>
+      ${levelUpSection()}
       <h2 class="sec">${esc(t(TEXT.routines))}</h2>
       ${data.groups.map((g) => {
         const list = data.routines.filter((r) => r.group === g.id);
@@ -130,7 +177,7 @@
         if (!group.length) return '';
         return section(`e:${eq}`, `<span class="g-title">${esc(t(EQUIP[eq]))}</span>`, group.length,
           `<div class="list grid">${group.map(([id, ex]) => `
-            <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${num('E', ex.n)}${esc(t(ex.name))}</h3>
+            <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${num('E', ex.n)}${esc(t(ex.name))}</h3>${cand[id] ? upTag() : ''}
               <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div>`);
       }).join('')}
       <h2 class="sec">${esc(t(TEXT.history))}</h2>
@@ -149,7 +196,7 @@
       <a class="back" href="#/">${esc(t(TEXT.back))}</a>
       <article class="card detail">
         <h2>${num('E', ex.n)}${esc(t(ex.name))}</h2>
-        <p class="chips">${ex.equipment.map((e) => `<span class="pill">${esc(t(EQUIP[e]) || e)}</span>`).join('')}</p>
+        <p class="chips">${ex.equipment.map((e) => `<span class="pill">${esc(t(EQUIP[e]) || e)}</span>`).join('')}${candidates()[id] ? upTag() : ''}</p>
         ${ex.targets ? `<p class="muted"><b>${esc(t(TEXT.targets))}:</b> ${esc((ex.targets[lang] || ex.targets.es).join(', '))}</p>` : ''}
         <h3>${esc(t(TEXT.how))}</h3><p>${esc(t(ex.how))}</p>
         <h3>✅ ${esc(t(TEXT.cues))}</h3>${list(ex.cues)}
@@ -165,6 +212,7 @@
     player = Player.open(playerEl, {
       routine, exercises: data.exercises, lines: data.lines, getLang: () => lang, store, lastWeights: lastWeights(),
       onFinish: (r) => addLog({ at: new Date().toISOString(), routine: id, ...r }),
+      onFeel: (ex, v, at) => setFeel(id, ex, v, at),
       onExit: () => { player = null; location.hash = '#/'; },
     });
     player.id = id;

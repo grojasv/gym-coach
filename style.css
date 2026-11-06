@@ -95,6 +95,14 @@ a.card:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--edge
   display: inline-block; padding: 3px 10px; border: 2px solid var(--edge); border-radius: 999px; background: var(--gold);
   color: var(--navy); font: 700 13px/1.3 var(--body); white-space: nowrap;
 }
+/* Level-up candidate tag and hub list. */
+.up { display: inline-block; margin-left: 6px; padding: 1px 7px; border: 1.5px solid var(--edge); border-radius: 999px; background: var(--orange); color: var(--navy); font: 700 12px/1.4 var(--body); white-space: nowrap; vertical-align: middle; }
+.card.ex h3 + .up { margin: 0 0 4px; }
+.levelup ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.levelup li { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; align-items: center; }
+.levelup li a { font-weight: 700; color: inherit; }
+.levelup li .muted { grid-column: 1; font-size: 13px; }
+.levelup li .btn { grid-column: 2; grid-row: 1 / span 2; }
 /* Reference number (E7, R3): small inverted tag before a name. */
 .num {
   display: inline-block; margin-right: 6px; padding: 1px 6px; border-radius: 6px; background: var(--ink); color: var(--bg);
@@ -180,6 +188,19 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .weight { display: flex; align-items: center; gap: 8px; font-weight: 600; }
 .weight input { width: 80px; padding: 8px; border: 2.5px solid var(--edge); border-radius: 10px; font: 700 18px var(--body); background: var(--card); color: var(--ink); }
 .p-stage .btn.big { max-width: 420px; }
+/* End screen: rate each exercise (level-up marks). */
+.p-stage.scroll { justify-content: flex-start; overflow-y: auto; padding-bottom: 8px; }
+.p-stage.scroll .mascot { width: min(18vh, 110px); }
+.feel { width: 100%; max-width: 420px; text-align: left; }
+.feel h3 { margin: 6px 0 2px; font: 17px/1.2 var(--display); text-align: center; }
+.feel .p-hint { text-align: center; margin-bottom: 6px; }
+.feel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.feel li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 8px; border: 2px solid var(--edge); border-radius: 12px; background: var(--card); }
+.f-name { font-weight: 600; font-size: 14px; line-height: 1.2; }
+.f-btns { display: flex; gap: 4px; flex-shrink: 0; }
+.f-btns button { display: grid; justify-items: center; min-width: 46px; padding: 3px 4px; border: 2px solid var(--edge); border-radius: 10px; background: var(--bg); color: var(--ink); font-size: 18px; line-height: 1.1; }
+.f-btns small { font: 600 10px/1.2 var(--body); }
+.f-btns button.on { background: var(--gold); color: var(--navy); box-shadow: 2px 2px 0 var(--edge); }
 .p-controls { display: flex; justify-content: center; gap: 14px; padding-top: 10px; }
 .is-paused .timer, .is-paused .secs { opacity: .45; }
 

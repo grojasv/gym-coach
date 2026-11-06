@@ -115,6 +115,17 @@ row. Placeholders: `{name}` is the exercise name, `{n}` is a number, and `{reps}
 Keys: `hello` (on the hub), `start`, `prep` (get ready), `go`, `halfway`, `last3`, `repsGo`, `repsDone`, `rest`, `nextUp`,
 `roundDone`, `finish`, `motto`, `paused`. Each spoken line takes under 5 s to say.
 
+### Level-up marks: `localStorage` `gym-coach.feel` (0.5.0)
+A first step towards making things harder over time, decided with Guille on 2026-11-06:
+- **Rate on the end screen.** After a full routine, each exercise with a finished set gets 😌 Easy / 💪 Good / 🥵 Hard.
+  Optional, one tap, a second tap clears it. Re-rating in the same session replaces the rating.
+- **Candidate after 2 Easy in a row** (`EASY_IN_A_ROW` in `app.js`), counted per exercise across all routines.
+- **Shown as ⬆:** an "⬆ subir" tag on the library card and exercise page, "⬆ N" on each routine card that uses N
+  candidates, and a **"Para subir"** list on top of the hub (E#, "Fácil ×2", the routines where it was rated).
+- **Then:** Guille reviews the list with Claude and changes the data. **✓ Ajustado** clears an exercise until it is
+  rated Easy twice again. No automatic progression yet (levels are "Later").
+- Storage: an array of `{ at, routine, ex, v: easy|ok|hard|adjusted }`, newest first, at most 500.
+
 ### History: `localStorage` `gym-coach.log`
 An array of `{ at, routine, done, steps, total, weights: { exerciseId: kg } }`, with the newest entry first and at most 200.
 

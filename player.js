@@ -30,6 +30,11 @@
     noCaVoice: { es: '', ca: 'Aquest mòbil no té veu en català: el Titan parlarà en castellà.', en: '' },
     exitAsk: { es: '¿Salir del entreno?', ca: 'Vols sortir de l’entrenament?', en: 'Leave the workout?' },
     summary: { es: 'Series completadas', ca: 'Sèries completades', en: 'Sets completed' },
+    feelAsk: { es: '¿Cómo te ha ido cada ejercicio?', ca: 'Com t’ha anat cada exercici?', en: 'How did each exercise feel?' },
+    feelHint: { es: 'Si algo te sobró, márcalo fácil: a las 2 veces seguidas sale para subir.', ca: 'Si alguna cosa et va sobrar, marca-la fàcil: a les 2 vegades seguides surt per pujar.', en: 'If something was too easy, mark it: after 2 in a row it’s flagged to level up.' },
+    easy: { es: 'Fácil', ca: 'Fàcil', en: 'Easy' },
+    ok: { es: 'Bien', ca: 'Bé', en: 'Good' },
+    hard: { es: 'Duro', ca: 'Dur', en: 'Hard' },
   };
   const VOICE_LANG = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const REPS_EST = 4; // seconds per rep when a reps step has no estSeconds
@@ -114,6 +119,9 @@
     let idx = -1, endAt = 0, startedAt = 0, pausedLeft = null, fired = new Set(), timer = null, spoken = '';
     let muted = store.get('gym-coach.muted') === '1';
     const doneSet = new Set(); // indices of finished work items (a redone set counts once)
+    // End-screen ratings (see SPEC § Level-up marks): one per exercise per session, reported through onFeel.
+    const sid = new Date().toISOString(), feels = {};
+    const FEELS = [['easy', '😌'], ['ok', '💪'], ['hard', '🥵']];
 
     // A line is shown in the UI language and spoken in the voice's language (CA falls back to ES, same index).
     const fill = (str, vars) => str.replace(/\{(\w+)\}/g, (_, k) => vars?.[k] ?? '');
@@ -166,6 +174,14 @@
         </div>
         <div class="p-controls"><button class="btn big go" data-act="start">▶ ${esc(t(TEXT.start))}</button></div>`;
     }
+    function feelList() {
+      const ids = [...new Set([...doneSet].map((i) => items[i].exId))];
+      if (!ids.length || !opts.onFeel) return '';
+      return `<section class="feel"><h3>${esc(t(TEXT.feelAsk))}</h3><p class="p-hint">${esc(t(TEXT.feelHint))}</p>
+        <ul>${ids.map((id) => `<li><span class="f-name">${num('E', exercises[id].n)}${esc(t(exercises[id].name))}</span>
+          <span class="f-btns">${FEELS.map(([v, e]) => `<button type="button" data-act="feel" data-ex="${esc(id)}" data-v="${v}"
+            class="${feels[id] === v ? 'on' : ''}" aria-pressed="${feels[id] === v}">${e}<small>${esc(t(TEXT[v]))}</small></button>`).join('')}</span></li>`).join('')}</ul></section>`;
+    }
     function renderItem() {
       const it = items[idx];
       const workIdx = items.slice(0, idx + 1).filter((i) => i.kind === 'work').length;
@@ -176,7 +192,8 @@
       let center = '';
       if (it.kind === 'done') {
         center = `<h2 class="p-title">${esc(t(TEXT.done))}</h2>
-          <p class="p-meta">${esc(t(TEXT.summary))}: <b>${doneSet.size}/${sets}</b></p>`;
+          <p class="p-meta">${esc(t(TEXT.summary))}: <b>${doneSet.size}/${sets}</b></p>
+          ${feelList()}`;
       } else if (it.kind === 'work' && it.mode === 'reps') {
         center = `<div class="p-phase">${esc(t(TEXT.work))}</div>
           <h2 class="p-title">${num('E', it.ex.n)}${esc(t(it.ex.name))}</h2>
@@ -197,7 +214,7 @@
           <span class="p-label">${esc(label)}</span>
           <button class="icon-btn ${muted ? 'off' : ''}" data-act="mute" aria-pressed="${!muted}" aria-label="${esc(t(TEXT.mute))}">${muted ? '🔇' : '🔊'}</button></div>
         <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${sets}" aria-valuenow="${workIdx}"><i style="width:${(idx / (items.length - 1)) * 100}%"></i></div>
-        <div class="p-stage kind-${it.kind}">
+        <div class="p-stage kind-${it.kind}${it.kind === 'done' && doneSet.size ? ' scroll' : ''}">
           <div class="mascot pose-${pose(it)}">${mascot(pose(it))}</div>
           <div class="bubble">${esc(spoken)}</div>
           ${center}
@@ -299,6 +316,11 @@
       } else if (act === 'exit') {
         if (idx >= 0 && items[idx].kind !== 'done' && !confirm(t(TEXT.exitAsk))) return;
         close();
+      } else if (act === 'feel') {
+        const { ex, v } = b.dataset;
+        feels[ex] = feels[ex] === v ? null : v; // a second tap clears it
+        opts.onFeel?.(ex, feels[ex], sid);
+        b.parentElement.querySelectorAll('button').forEach((x) => { const on = x.dataset.v === feels[ex]; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
       } else if (act === 'mute') {
         muted = !muted; store.set('gym-coach.muted', muted ? '1' : '0');
         if (muted) synth?.cancel();

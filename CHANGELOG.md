@@ -2,6 +2,13 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.5.0] — 2026-11-06
+### Added
+- **Level-up marks**, to remember what was too easy:
+  - The end screen asks how each exercise felt: 😌 Fácil / 💪 Bien / 🥵 Duro. It's optional, and a second tap clears it.
+  - An exercise marked easy **2 times in a row** gets an **⬆ subir** tag in the library and on its page. Routines that use it show **⬆ N**.
+  - A **Para subir** list on top of the hub shows each one with "Fácil ×2" and the routines where you rated it. Once it's adjusted, tap **✓ Ajustado**.
+
 ## [0.4.1] — 2026-11-06
 ### Changed
 - **R6 Circuito de torre is now 15 min, with more real work at the tower** (it was 12 min, half of it rest):
