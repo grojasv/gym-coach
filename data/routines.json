@@ -484,7 +484,7 @@
           {
             "exercise": "rotacion-munecas",
             "mode": "time",
-            "seconds": 60,
+            "seconds": 45,
             "weight": false,
             "restAfter": 10,
             "cues": [
@@ -497,7 +497,7 @@
                 }
               },
               {
-                "at": 12,
+                "at": 10,
                 "text": {
                   "es": "Giros amplios, sin prisa.",
                   "ca": "Girs amplis, sense pressa.",
@@ -505,7 +505,7 @@
                 }
               },
               {
-                "at": 30,
+                "at": 22,
                 "text": {
                   "es": "¡Cambia el sentido, hacia la izquierda!",
                   "ca": "Canvia el sentit, cap a l'esquerra!",
@@ -513,7 +513,7 @@
                 }
               },
               {
-                "at": 45,
+                "at": 34,
                 "text": {
                   "es": "Suelta y sacude los dedos al final.",
                   "ca": "Deixa anar i sacseja els dits al final.",
@@ -664,6 +664,56 @@
             ]
           },
           {
+            "exercise": "dominada-escapular",
+            "mode": "time",
+            "seconds": 20,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 45,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Uno: hombros abajo, sin doblar codos.",
+                  "ca": "Una: espatlles avall, sense doblegar colzes.",
+                  "en": "One: shoulders down, elbows straight."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Dos: sube con las escápulas.",
+                  "ca": "Dues: puja amb les escàpules.",
+                  "en": "Two: rise with your shoulder blades."
+                }
+              },
+              {
+                "at": 8,
+                "text": {
+                  "es": "Tres: aguanta arriba y saca pecho.",
+                  "ca": "Tres: aguanta a dalt i treu pit.",
+                  "en": "Three: hold at the top, chest out."
+                }
+              },
+              {
+                "at": 12,
+                "text": {
+                  "es": "Cuatro: baja despacio, sin caer.",
+                  "ca": "Quatre: baixa a poc a poc, sense caure.",
+                  "en": "Four: lower slowly, no dropping."
+                }
+              },
+              {
+                "at": 16,
+                "text": {
+                  "es": "Cinco: ¡la última, aprieta!",
+                  "ca": "Cinc: l'última, estreny!",
+                  "en": "Five: last one, squeeze!"
+                }
+              }
+            ]
+          },
+          {
             "exercise": "dominada-negativa",
             "mode": "time",
             "seconds": 5,
@@ -795,6 +845,56 @@
                 }
               }
             ]
+          },
+          {
+            "exercise": "dominada-negativa",
+            "mode": "time",
+            "seconds": 5,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "¡La tercera! Barbilla arriba.",
+                  "ca": "La tercera! Barbeta amunt.",
+                  "en": "Third one! Chin over the bar."
+                }
+              },
+              {
+                "at": 1,
+                "text": {
+                  "es": "Pecho fuera, frena despacio.",
+                  "ca": "Pit fora, frena a poc a poc.",
+                  "en": "Chest out, brake slowly."
+                }
+              },
+              {
+                "at": 2,
+                "text": {
+                  "es": "Aprieta la espalda, sin caer.",
+                  "ca": "Estreny l'esquena, sense caure.",
+                  "en": "Squeeze your back, don't drop."
+                }
+              },
+              {
+                "at": 3,
+                "text": {
+                  "es": "Casi abajo, control.",
+                  "ca": "Gairebé a baix, control.",
+                  "en": "Almost down, control."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Pies al escalón, ¡bien hecho!",
+                  "ca": "Peus a l'esglaó, ben fet!",
+                  "en": "Feet on the step, well done!"
+                }
+              }
+            ]
           }
         ]
       },
@@ -835,6 +935,40 @@
                   "es": "Abdomen duro, respira fluido.",
                   "ca": "Abdomen dur, respira fluid.",
                   "en": "Abs tight, breathe smoothly."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "fondos-negativos",
+            "mode": "time",
+            "seconds": 15,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Uno: baja en tres, codos atrás.",
+                  "ca": "Una: baixa en tres, colzes enrere.",
+                  "en": "One: lower in three, elbows back."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Dos: baja en tres hasta noventa.",
+                  "ca": "Dues: baixa en tres fins a noranta.",
+                  "en": "Two: lower in three to ninety."
+                }
+              },
+              {
+                "at": 10,
+                "text": {
+                  "es": "Tres: baja en tres, ¡la última!",
+                  "ca": "Tres: baixa en tres, l'última!",
+                  "en": "Three: lower in three, last one!"
                 }
               }
             ]

@@ -1716,6 +1716,90 @@
       "en": "Don't hang before pádel. Stop if you feel sharp pain in your shoulder, and always step down with your feet."
     }
   },
+  "dominada-escapular": {
+    "n": 24,
+    "name": {
+      "es": "Dominada escapular",
+      "ca": "Dominada escapular",
+      "en": "Scapular pull-up"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "trapecio inferior",
+        "dorsales",
+        "serrato",
+        "agarre (antebrazos)"
+      ],
+      "ca": [
+        "trapezi inferior",
+        "dorsals",
+        "serrat",
+        "agafada (avantbraços)"
+      ],
+      "en": [
+        "lower traps",
+        "lats",
+        "serratus",
+        "grip (forearms)"
+      ]
+    },
+    "how": {
+      "es": "Cuélgate de la barra con los brazos estirados y las puntas de los pies rozando el estribo. Sin doblar los codos, tira de los hombros hacia abajo y atrás para subir unos centímetros, aguanta 1 s y baja despacio.",
+      "ca": "Penja't de la barra amb els braços estirats i les puntes dels peus fregant l'estrep. Sense doblegar els colzes, estira les espatlles cap avall i enrere per pujar uns centímetres, aguanta 1 s i baixa a poc a poc.",
+      "en": "Hang from the bar with straight arms and your toes brushing the step. Without bending your elbows, pull your shoulders down and back to rise a few centimetres, hold 1 s and lower slowly."
+    },
+    "cues": {
+      "es": [
+        "Brazos estirados, los codos no se doblan.",
+        "Baja los hombros, lejos de las orejas.",
+        "Sube con las escápulas, saca pecho.",
+        "Aguanta un segundo arriba.",
+        "Baja despacio hasta el cuelgue pasivo."
+      ],
+      "ca": [
+        "Braços estirats, els colzes no es dobleguen.",
+        "Baixa les espatlles, lluny de les orelles.",
+        "Puja amb les escàpules, treu pit.",
+        "Aguanta un segon a dalt.",
+        "Baixa a poc a poc fins a la penjada passiva."
+      ],
+      "en": [
+        "Arms straight, elbows don't bend.",
+        "Shoulders down, away from your ears.",
+        "Rise with your shoulder blades, chest out.",
+        "Hold one second at the top.",
+        "Lower slowly back to a passive hang."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Doblar los codos y convertirla en una dominada corta.",
+        "Encoger los hombros hacia las orejas.",
+        "Balancear las piernas para coger impulso.",
+        "Dejarse caer de golpe al bajar."
+      ],
+      "ca": [
+        "Doblegar els colzes i convertir-la en una dominada curta.",
+        "Arronsar les espatlles cap a les orelles.",
+        "Balancejar les cames per agafar impuls.",
+        "Deixar-se caure de cop en baixar."
+      ],
+      "en": [
+        "Bending your elbows and turning it into a short pull-up.",
+        "Shrugging your shoulders up to your ears.",
+        "Swinging your legs for momentum.",
+        "Dropping suddenly on the way down."
+      ]
+    },
+    "safety": {
+      "es": "Movimiento corto y controlado. Si notas un dolor agudo en el hombro, para y apoya los pies.",
+      "ca": "Moviment curt i controlat. Si notes un dolor agut a l'espatlla, para i recolza els peus.",
+      "en": "Short, controlled movement. If you feel sharp pain in your shoulder, stop and put your feet down."
+    }
+  },
   "apreton-titan": {
     "n": 15,
     "name": {

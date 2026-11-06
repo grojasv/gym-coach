@@ -2,6 +2,14 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.4.1] — 2026-11-06
+### Changed
+- **R6 Circuito de torre is now 15 min, with more real work at the tower** (it was 12 min, half of it rest):
+  - New exercise **E24 Dominada escapular**: 5 counted reps right after the first hang.
+  - A 3rd **E5 dominada negativa**.
+  - **E7 fondos negativos** (3 counted reps) after the parallel-bar hold.
+  - E20 wrist rotations go from 60 s to 45 s.
+
 ## [0.4.0] — 2026-11-06
 ### Added
 - **Reference numbers:** every exercise has a stable number E1–E23 and every routine R1–R10, shown as a small tag before the name on the hub, the exercise page and the player. Say "update E7" or "add a round to R4". Numbers are the `n` field in the data, never reused; `validate.mjs` checks they are unique.
