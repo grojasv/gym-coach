@@ -40,6 +40,16 @@ for (const [id, ex] of Object.entries(exercises)) {
   else ex.equipment.forEach((e) => { if (!EQUIPMENT.includes(e)) err(w, `unknown equipment ${e}`); });
 }
 
+// Stable reference numbers: E<n> for exercises, R<n> for routines. Unique; new items take the next free number.
+const uniqueNums = (kind, list) => {
+  const seen = new Map();
+  list.forEach(([id, n]) => {
+    if (!Number.isInteger(n) || n < 1) err(`${kind} ${id}`, 'n must be a positive integer');
+    else if (seen.has(n)) err(`${kind} ${id}`, `n ${n} already used by ${seen.get(n)}`); else seen.set(n, id);
+  });
+};
+uniqueNums('exercise', Object.entries(exercises).map(([id, ex]) => [id, ex.n]));
+
 const groups = read('groups.json');
 const COLORS = ['red', 'gold', 'teal', 'green'];
 groups.forEach((g) => { localized(`group ${g.id}.name`, g.name); if (!g.emoji) err(`group ${g.id}`, 'no emoji'); if (!COLORS.includes(g.color)) err(`group ${g.id}`, `color must be one of ${COLORS}`); });
@@ -76,6 +86,7 @@ for (const r of routines) {
     });
   });
 }
+uniqueNums('routine', routines.map((r) => [r.id, r.n]));
 // No include cycles.
 const byId = Object.fromEntries(routines.map((r) => [r.id, r]));
 const walk = (id, seen) => (byId[id]?.blocks || []).forEach((b) => {

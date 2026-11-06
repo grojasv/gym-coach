@@ -1,5 +1,6 @@
 {
   "cuelgue-activo": {
+    "n": 1,
     "name": {
       "es": "Cuelgue activo",
       "ca": "Penjada activa",
@@ -83,6 +84,7 @@
     }
   },
   "gato-camello": {
+    "n": 17,
     "name": {
       "es": "Gato-Camello",
       "ca": "Gat-Camell",
@@ -152,6 +154,7 @@
     }
   },
   "zancada-rotacion": {
+    "n": 18,
     "name": {
       "es": "Zancada de caballero con rotación",
       "ca": "Gambada de cavaller amb rotació",
@@ -226,6 +229,7 @@
     }
   },
   "puente-gluteo": {
+    "n": 19,
     "name": {
       "es": "Puente de glúteo",
       "ca": "Pont de gluti",
@@ -295,6 +299,7 @@
     }
   },
   "rotacion-munecas": {
+    "n": 20,
     "name": {
       "es": "Rotación de muñecas",
       "ca": "Rotació de canells",
@@ -358,6 +363,7 @@
     }
   },
   "circulos-brazos": {
+    "n": 21,
     "name": {
       "es": "Círculos de brazos",
       "ca": "Cercles de braços",
@@ -427,6 +433,7 @@
     }
   },
   "retraccion-escapular": {
+    "n": 22,
     "name": {
       "es": "Retracción escapular de pie",
       "ca": "Retracció escapular dret",
@@ -496,6 +503,7 @@
     }
   },
   "estiramiento-pectoral": {
+    "n": 2,
     "name": {
       "es": "Estiramiento de pectoral",
       "ca": "Estirament de pectoral",
@@ -567,6 +575,7 @@
     }
   },
   "estiramiento-dorsal": {
+    "n": 3,
     "name": {
       "es": "Estiramiento de dorsal",
       "ca": "Estirament de dorsal",
@@ -636,6 +645,7 @@
     }
   },
   "cuelgue-pasivo": {
+    "n": 4,
     "name": {
       "es": "Cuelgue pasivo con pies apoyados",
       "ca": "Penjada passiva amb peus recolzats",
@@ -713,6 +723,7 @@
     }
   },
   "remo-waterrower": {
+    "n": 10,
     "name": {
       "es": "Remo WaterRower",
       "ca": "Rem WaterRower",
@@ -799,6 +810,7 @@
     }
   },
   "sentadilla-goblet": {
+    "n": 11,
     "name": {
       "es": "Sentadilla Goblet",
       "ca": "Esquat Goblet",
@@ -882,6 +894,7 @@
     }
   },
   "flexiones-flecha": {
+    "n": 23,
     "name": {
       "es": "Flexiones Flecha",
       "ca": "Flexions Fletxa",
@@ -965,6 +978,7 @@
     }
   },
   "press-militar": {
+    "n": 12,
     "name": {
       "es": "Press militar sentado con mancuernas",
       "ca": "Press militar assegut amb manuelles",
@@ -1048,6 +1062,7 @@
     }
   },
   "extension-triceps": {
+    "n": 13,
     "name": {
       "es": "Extensión de tríceps sobre la cabeza a dos manos",
       "ca": "Extensió de tríceps per sobre del cap a dues mans",
@@ -1128,6 +1143,7 @@
     }
   },
   "curl-biceps": {
+    "n": 14,
     "name": {
       "es": "Curl de bíceps con mancuerna",
       "ca": "Curl de bíceps amb manuella",
@@ -1203,6 +1219,7 @@
     }
   },
   "rueda-abdominal": {
+    "n": 16,
     "name": {
       "es": "Rueda abdominal (modo doble)",
       "ca": "Roda abdominal (mode doble)",
@@ -1286,6 +1303,7 @@
     }
   },
   "dominada-negativa": {
+    "n": 5,
     "name": {
       "es": "Dominada negativa",
       "ca": "Dominada negativa",
@@ -1369,6 +1387,7 @@
     }
   },
   "fondos-negativos": {
+    "n": 7,
     "name": {
       "es": "Fondos negativos en paralelas",
       "ca": "Fons negatius a les paral·leles",
@@ -1449,6 +1468,7 @@
     }
   },
   "soporte-paralelas": {
+    "n": 8,
     "name": {
       "es": "Soporte en paralelas",
       "ca": "Suport a les paral·leles",
@@ -1532,6 +1552,7 @@
     }
   },
   "elevacion-rodillas": {
+    "n": 9,
     "name": {
       "es": "Elevaciones de rodillas",
       "ca": "Elevacions de genolls",
@@ -1612,6 +1633,7 @@
     }
   },
   "cuelgue-alternado": {
+    "n": 6,
     "name": {
       "es": "Cuelgue alternado pasivo/activo",
       "ca": "Penjada alternada passiva/activa",
@@ -1695,6 +1717,7 @@
     }
   },
   "apreton-titan": {
+    "n": 15,
     "name": {
       "es": "El Apretón de Titán",
       "ca": "L'Estreta de Tità",

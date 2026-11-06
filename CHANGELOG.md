@@ -2,6 +2,11 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.4.0] — 2026-11-06
+### Added
+- **Reference numbers:** every exercise has a stable number E1–E23 and every routine R1–R10, shown as a small tag before the name on the hub, the exercise page and the player. Say "update E7" or "add a round to R4". Numbers are the `n` field in the data, never reused; `validate.mjs` checks they are unique.
+- SPEC: the project's two directions, improving the tool and improving the trainings.
+
 ## [0.3.0] — 2026-11-04
 ### Changed
 - **Routines now sit in 4 folding groups** (`data/groups.json`), each with an emoji, a colour and the lengths of its routines:

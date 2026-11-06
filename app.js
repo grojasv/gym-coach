@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.3.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.4.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
 
@@ -96,12 +96,14 @@
     const sets = items.filter((i) => i.kind === 'work').length;
     const last = readLog().find((e) => e.routine === r.id);
     return `<a class="card routine c-${group?.color || 'red'}" href="#/play/${encodeURIComponent(r.id)}">
-      <div class="r-head"><div><h3>${esc(t(r.name))}</h3>${r.subtitle ? `<p class="sub">${esc(t(r.subtitle))}</p>` : ''}</div>
+      <div class="r-head"><div><h3>${num('R', r.n)}${esc(t(r.name))}</h3>${r.subtitle ? `<p class="sub">${esc(t(r.subtitle))}</p>` : ''}</div>
         <span class="pill">${Player.fmtLen(Player.duration(items))}</span></div>
       <p class="chips">${routineEquipment(r).map((e) => `<span class="chip">${esc(t(EQUIP[e]))}</span>`).join('')}</p>
       <div class="r-foot"><span>${sets} ${esc(t(sets === 1 ? TEXT.set : TEXT.sets))}${last ? ` · ${esc(t(TEXT.last))}: ${esc(dateFmt(last.at))}` : ''}</span>
         <span class="btn small go">▶ ${esc(t(TEXT.play))}</span></div></a>`;
   }
+  // Stable reference numbers (E7, R3) so exercises and routines can be named in a request. See SPEC § Numbers.
+  const num = (p, n) => (n ? `<span class="num">${p}${n}</span>` : '');
   // Folding sections: routines by data/groups.json, exercises by main equipment. Open ones are remembered.
   const section = (key, title, count, body, cls = '') => `<details class="group ${cls}" data-key="${key}"${openSet.has(key) ? ' open' : ''}>
     <summary>${title} <span class="pill">${count}</span></summary>${body}</details>`;
@@ -128,7 +130,7 @@
         if (!group.length) return '';
         return section(`e:${eq}`, `<span class="g-title">${esc(t(EQUIP[eq]))}</span>`, group.length,
           `<div class="list grid">${group.map(([id, ex]) => `
-            <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${esc(t(ex.name))}</h3>
+            <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${num('E', ex.n)}${esc(t(ex.name))}</h3>
               <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div>`);
       }).join('')}
       <h2 class="sec">${esc(t(TEXT.history))}</h2>
@@ -146,7 +148,7 @@
     view.innerHTML = `
       <a class="back" href="#/">${esc(t(TEXT.back))}</a>
       <article class="card detail">
-        <h2>${esc(t(ex.name))}</h2>
+        <h2>${num('E', ex.n)}${esc(t(ex.name))}</h2>
         <p class="chips">${ex.equipment.map((e) => `<span class="pill">${esc(t(EQUIP[e]) || e)}</span>`).join('')}</p>
         ${ex.targets ? `<p class="muted"><b>${esc(t(TEXT.targets))}:</b> ${esc((ex.targets[lang] || ex.targets.es).join(', '))}</p>` : ''}
         <h3>${esc(t(TEXT.how))}</h3><p>${esc(t(ex.how))}</p>

@@ -12,6 +12,17 @@ the extracted plan.
 - **Rule of the house:** "Técnica de cirujano sobre el ego": if the posture breaks down, stop the set.
 - Not medical advice. The cues are written and reviewed by hand, never generated at run time.
 
+### Two directions (Guille, 2026-11-06)
+Every change improves the project in one of two directions, which move in parallel:
+1. **The tool:** more interactions and processes in the app itself (how you train, track, choose and get guided).
+2. **The trainings:** routines and exercises that make sense for Guille as the main user and for anyone else
+   (more exercises, more rounds, better progressions, better cues).
+
+### Numbers
+Each exercise has a stable reference number `E<n>` and each routine `R<n>`, shown as a small tag before the name
+(hub, exercise page, player), so a request can say "update E7" or "add a round to R4". Numbers are the `n` field in
+the data, never reused or renumbered; a new item takes the next free number. `validate.mjs` checks they are unique.
+
 ## Decisions
 
 | Topic | Decision |
@@ -38,6 +49,7 @@ the extracted plan.
 ```jsonc
 {
   "cuelgue-activo": {
+    "n": 1,                               // stable reference number, shown as E1 (see § Numbers)
     "name":     { "es": "Cuelgue activo", "ca": "Penjada activa", "en": "Active hang" },
     "equipment": ["pullup-bar"],          // pullup-bar | dip-bars | knee-raise | rower | dumbbells | handgrip | ab-wheel | floor
     "targets":  { "es": ["dorsales", "agarre"], "ca": [...], "en": [...] },
@@ -53,6 +65,7 @@ the extracted plan.
 ```jsonc
 [{
   "id": "ct-fuerza",
+  "n": 4,                               // stable reference number, shown as R4
   "group":   "codigo-titan",            // id in data/groups.json (folding section on the hub)
   "name":    { "es": "Fuerza con mancuernas", "ca": "…", "en": "…" },   // plain: says what it is
   "subtitle": { "es": "Fase 2 · Bloque de fuerza", "ca": "…", "en": "…" }, // optional: the Titán name

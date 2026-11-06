@@ -1,6 +1,7 @@
 [
   {
     "id": "codigo-titan",
+    "n": 1,
     "group": "codigo-titan",
     "name": {
       "es": "Entreno completo",
@@ -35,6 +36,7 @@
   },
   {
     "id": "ct-despertar",
+    "n": 2,
     "group": "codigo-titan",
     "name": {
       "es": "Movilidad de arranque",
@@ -189,6 +191,7 @@
   },
   {
     "id": "ct-remo",
+    "n": 3,
     "group": "codigo-titan",
     "name": {
       "es": "Remo técnico",
@@ -302,6 +305,7 @@
   },
   {
     "id": "ct-fuerza",
+    "n": 4,
     "group": "codigo-titan",
     "name": {
       "es": "Fuerza con mancuernas",
@@ -375,6 +379,7 @@
   },
   {
     "id": "ct-sello",
+    "n": 5,
     "group": "codigo-titan",
     "name": {
       "es": "Core con rueda",
@@ -449,6 +454,7 @@
   },
   {
     "id": "despegue-titan",
+    "n": 6,
     "group": "torre",
     "name": {
       "es": "Circuito de torre",
@@ -1030,6 +1036,7 @@
   },
   {
     "id": "torre-negativas",
+    "n": 7,
     "group": "torre",
     "name": {
       "es": "Negativas: dominada y fondos",
@@ -1182,6 +1189,7 @@
   },
   {
     "id": "comodin-descarga",
+    "n": 10,
     "group": "descarga",
     "name": {
       "es": "Remo suave + movilidad",
@@ -1534,6 +1542,7 @@
   },
   {
     "id": "micro-dosis",
+    "n": 8,
     "group": "rapidas",
     "name": {
       "es": "Cuelgue + agarre exprés",
@@ -1700,6 +1709,7 @@
   },
   {
     "id": "apreton-titan",
+    "n": 9,
     "group": "rapidas",
     "name": {
       "es": "Agarre con hand grip",

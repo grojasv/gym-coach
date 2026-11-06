@@ -98,6 +98,7 @@
   function releaseAwake() { try { lock?.release(); } catch { /* already released */ } lock = null; }
 
   // ---------- player ----------
+  const num = (p, n) => (n ? `<span class="num">${p}${n}</span>` : '');
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const fmt = (sec) => { sec = Math.max(0, Math.round(sec)); return sec >= 60 ? `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}` : String(sec); };
   const fmtLen = (sec) => (sec < 60 ? `${sec} s` : `${Math.round(sec / 60)} min`);
@@ -157,10 +158,10 @@
         <div class="p-stage intro">
           <div class="mascot pose-idle">${mascot('idle')}</div>
           <div class="bubble">${esc(t(routine.summary))}</div>
-          <h2 class="p-title">${esc(t(routine.name))}</h2>
+          <h2 class="p-title">${num('R', routine.n)}${esc(t(routine.name))}</h2>
           ${routine.subtitle ? `<p class="p-meta sub">${esc(t(routine.subtitle))}</p>` : ''}
           <p class="p-meta">${esc(t(TEXT.total))}: <b>${fmtLen(total)}</b> · ${esc(t(TEXT.steps))}: <b>${sets}</b></p>
-          <ul class="p-list">${exIds.map((id) => `<li>${esc(t(exercises[id].name))}</li>`).join('')}</ul>
+          <ul class="p-list">${exIds.map((id) => `<li>${num('E', exercises[id].n)}${esc(t(exercises[id].name))}</li>`).join('')}</ul>
           <p class="p-hint">🔊 ${esc(t(TEXT.voiceHint))}${noCa ? `<br>${esc(TEXT.noCaVoice.ca)}` : ''}</p>
         </div>
         <div class="p-controls"><button class="btn big go" data-act="start">▶ ${esc(t(TEXT.start))}</button></div>`;
@@ -178,7 +179,7 @@
           <p class="p-meta">${esc(t(TEXT.summary))}: <b>${doneSet.size}/${sets}</b></p>`;
       } else if (it.kind === 'work' && it.mode === 'reps') {
         center = `<div class="p-phase">${esc(t(TEXT.work))}</div>
-          <h2 class="p-title">${esc(t(it.ex.name))}</h2>
+          <h2 class="p-title">${num('E', it.ex.n)}${esc(t(it.ex.name))}</h2>
           ${it.toFailure ? `<div class="reps-target fail">${esc(t(TEXT.toFailure))}<small>${esc(t(TEXT.toFailureHint))}</small></div>`
             : `<div class="reps-target"><b>${it.reps}</b> ${esc(t(TEXT.reps))}</div>`}
           ${it.weight ? `<label class="weight">${esc(t(TEXT.weight))}
@@ -186,9 +187,10 @@
           <button class="btn big go" data-act="done">✔ ${esc(t(TEXT.finished))}</button>`;
       } else {
         const name = it.kind === 'work' ? t(it.ex.name) : it.next ? `${t(TEXT.next)}: ${t(it.next.ex.name)}` : '';
+        const nameEx = it.kind === 'work' ? it.ex : it.next?.ex;
         center = `<div class="p-phase">${esc(t(TEXT[it.kind]))}</div>
           <div class="timer">${ring(1)}<span class="secs">${fmt(it.seconds)}</span></div>
-          <h2 class="p-title small">${esc(name)}</h2>`;
+          <h2 class="p-title small">${name && nameEx ? num('E', nameEx.n) : ''}${esc(name)}</h2>`;
       }
       root.innerHTML = `
         <div class="p-top"><button class="icon-btn" data-act="exit" aria-label="${esc(t(TEXT.exit))}">✕</button>
