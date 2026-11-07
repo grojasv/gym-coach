@@ -2,6 +2,14 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [Unreleased]
+### Added
+- **Tap an exercise name in the player to see how it's done.** It works on the set, on the rest screen ("Siguiente: …") and in the start list. The timer pauses while the explanation is open; close it and tap ▶ to carry on.
+### Changed
+- The exercise explanation now lives in `detail.js`, shared by the hub's exercise page and the player, so the two can't drift. The service worker cache is bumped to v4.
+### Fixed
+- **A paused countdown now shows the time left.** Before, pressing ⏸ redrew the clock and ring at the full step length until you resumed.
+
 ## [0.6.1] — 2026-11-07
 ### Changed
 - **More upper-back work in R4 (and so in R1):** the new **E27 Pájaro con mancuernas** (bent-over reverse fly) joins the triceps-and-curl superset, which is now called "Brazos y espalda alta". In hard sets, pushing and pulling are now even. R1 computes to 64 min, R4 to 33 min.
