@@ -2,6 +2,10 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.6.1] — 2026-11-07
+### Changed
+- **More upper-back work in R4 (and so in R1):** the new **E27 Pájaro con mancuernas** (bent-over reverse fly) joins the triceps-and-curl superset, which is now called "Brazos y espalda alta". In hard sets, pushing and pulling are now even. R1 computes to 64 min, R4 to 33 min.
+
 ## [0.6.0] — 2026-11-07
 ### Changed
 - **R1 Entreno completo uses all your equipment and lasts about 60 min** (it was 47). Mobility R2 → rowing R3 → **tower R7** (dominada and fondos negatives) → strength R4 → core R5 → **stretches R11**.

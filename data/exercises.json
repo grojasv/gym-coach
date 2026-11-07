@@ -2037,5 +2037,81 @@
       "ca": "Comença amb poc pes. Baixa només fins on mantinguis l'esquena recta; si notes dolor a la zona lumbar, para.",
       "en": "Start light. Only go as low as you can keep your back straight; if you feel pain in your lower back, stop."
     }
+  },
+  "pajaro-mancuernas": {
+    "n": 27,
+    "name": {
+      "es": "Pájaro con mancuernas",
+      "ca": "Ocell amb manuelles",
+      "en": "Bent-over reverse fly"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "deltoides posterior",
+        "romboides",
+        "trapecio medio"
+      ],
+      "ca": [
+        "deltoide posterior",
+        "romboides",
+        "trapezi mitjà"
+      ],
+      "en": [
+        "rear delts",
+        "rhomboids",
+        "mid traps"
+      ]
+    },
+    "how": {
+      "es": "De pie, inclina el tronco hacia delante con la espalda recta y las rodillas un poco flexionadas, mancuernas ligeras colgando bajo el pecho. Abre los brazos en cruz con los codos un poco doblados, junta las escápulas 1 s arriba y baja en 2 s.",
+      "ca": "Dret, inclina el tronc endavant amb l'esquena recta i els genolls una mica flexionats, manuelles lleugeres penjant sota el pit. Obre els braços en creu amb els colzes una mica doblegats, ajunta les escàpules 1 s a dalt i baixa en 2 s.",
+      "en": "Stand and hinge forward with a straight back and knees slightly bent, light dumbbells hanging under your chest. Open your arms out to the sides with elbows slightly bent, squeeze your shoulder blades for 1 s at the top and lower in 2 s."
+    },
+    "cues": {
+      "es": [
+        "Peso ligero: aquí manda la técnica.",
+        "Espalda recta, pecho hacia el suelo.",
+        "Abre en cruz con los codos un poco doblados.",
+        "Junta las escápulas un segundo arriba.",
+        "Baja en dos segundos, sin balanceo."
+      ],
+      "ca": [
+        "Pes lleuger: aquí mana la tècnica.",
+        "Esquena recta, pit cap al terra.",
+        "Obre en creu amb els colzes una mica doblegats.",
+        "Ajunta les escàpules un segon a dalt.",
+        "Baixa en dos segons, sense balanceig."
+      ],
+      "en": [
+        "Light weight: technique rules here.",
+        "Back straight, chest towards the floor.",
+        "Open wide with elbows slightly bent.",
+        "Squeeze your shoulder blades one second at the top.",
+        "Lower over two seconds, no swinging."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Usar demasiado peso y balancear el cuerpo.",
+        "Encoger los hombros hacia las orejas.",
+        "Redondear la espalda.",
+        "Subir los brazos por encima de la línea de los hombros."
+      ],
+      "ca": [
+        "Fer servir massa pes i balancejar el cos.",
+        "Arronsar les espatlles cap a les orelles.",
+        "Arrodonir l'esquena.",
+        "Pujar els braços per sobre de la línia de les espatlles."
+      ],
+      "en": [
+        "Using too much weight and swinging your body.",
+        "Shrugging your shoulders up to your ears.",
+        "Rounding your back.",
+        "Raising your arms above shoulder height."
+      ]
+    }
   }
 }

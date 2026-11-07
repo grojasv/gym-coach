@@ -383,9 +383,9 @@
       },
       {
         "name": {
-          "es": "Brazos",
-          "ca": "Braços",
-          "en": "Arms"
+          "es": "Brazos y espalda alta",
+          "ca": "Braços i esquena alta",
+          "en": "Arms and upper back"
         },
         "rounds": 2,
         "restBetweenRounds": 60,
@@ -403,6 +403,14 @@
             "mode": "reps",
             "reps": 12,
             "estSeconds": 90,
+            "weight": true,
+            "restAfter": 15
+          },
+          {
+            "exercise": "pajaro-mancuernas",
+            "mode": "reps",
+            "reps": 12,
+            "estSeconds": 55,
             "weight": true,
             "restAfter": 60
           }
