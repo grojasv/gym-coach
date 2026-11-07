@@ -2,6 +2,20 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.6.0] — 2026-11-07
+### Changed
+- **R1 Entreno completo uses all your equipment and lasts about 60 min** (it was 47). Mobility R2 → rowing R3 → **tower R7** (dominada and fondos negatives) → strength R4 → core R5 → **stretches R11**.
+- **R4 Fuerza con mancuernas:**
+  - Adds back pulling with the new **E25 Remo con mancuerna a una mano**, and a hip hinge with the new **E26 Peso muerto rumano**.
+  - Rests between exercises go from 45 s to 30 s.
+  - Triceps and curl now form their own **Brazos** block of 2 rounds, as a superset.
+- **R3 Remo técnico**: 12 → 10 min, with the cues spread over the new length.
+- **R5 Core: rueda y rodillas**: each round adds E9 knee raises after the ab wheel.
+### Added
+- **R11 Estiramientos finales** (Fase 4): passive hang plus chest and lat stretches.
+### Fixed
+- The start screen scrolls when a routine has many exercises, instead of cutting off the top and bottom.
+
 ## [0.5.0] — 2026-11-06
 ### Added
 - **Level-up marks**, to remember what was too easy:

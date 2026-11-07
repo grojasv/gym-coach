@@ -161,6 +161,9 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .p-stage > * { flex-shrink: 0; }
 .p-stage .mascot { width: min(34vh, 180px); }
 .p-stage.intro .mascot { width: min(26vh, 150px); }
+/* Long routines (R1 lists 17 exercises): the start screen scrolls instead of clipping, and stays centred when it fits. */
+.p-stage.intro { justify-content: safe center; overflow-y: auto; }
+.p-stage.intro .p-list { font-size: 15px; line-height: 1.45; }
 .p-stage .bubble { width: 100%; max-width: 420px; font-size: 17px; }
 .p-phase {
   font: 26px/1 var(--display); letter-spacing: 1px; color: #fff; background: var(--red); padding: 8px 16px;

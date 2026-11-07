@@ -1874,5 +1874,168 @@
       "ca": "No el facis servir abans del pàdel. Si notes la més mínima punxada al colze o al canell, para i baixa la resistència al mínim.",
       "en": "Don't use it before pádel. If you feel the slightest twinge in your elbow or wrist, stop and set the resistance to minimum."
     }
+  },
+  "remo-mancuerna": {
+    "n": 25,
+    "name": {
+      "es": "Remo con mancuerna a una mano",
+      "ca": "Rem amb manuella a una mà",
+      "en": "One-arm dumbbell row"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "dorsales",
+        "romboides",
+        "trapecio medio",
+        "bíceps"
+      ],
+      "ca": [
+        "dorsals",
+        "romboides",
+        "trapezi mitjà",
+        "bíceps"
+      ],
+      "en": [
+        "lats",
+        "rhomboids",
+        "mid traps",
+        "biceps"
+      ]
+    },
+    "how": {
+      "es": "Apoya la mano y la rodilla del mismo lado en un banco o una silla firme, espalda recta y paralela al suelo. Tira de la mancuerna hacia la cadera con el codo pegado, aprieta la escápula 1 s arriba y baja en 2 s. Haz todas las reps con un brazo y cambia.",
+      "ca": "Recolza la mà i el genoll del mateix costat en un banc o una cadira ferma, esquena recta i paral·lela al terra. Estira la manuella cap al maluc amb el colze enganxat, estreny l'escàpula 1 s a dalt i baixa en 2 s. Fes totes les reps amb un braç i canvia.",
+      "en": "Put the hand and knee on the same side on a bench or a sturdy chair, back straight and parallel to the floor. Pull the dumbbell towards your hip with the elbow close, squeeze your shoulder blade for 1 s at the top and lower in 2 s. Do all reps on one arm, then switch."
+    },
+    "cues": {
+      "es": [
+        "Espalda plana, como una mesa.",
+        "Tira hacia la cadera, no hacia el hombro.",
+        "Codo pegado al cuerpo.",
+        "Aprieta la escápula un segundo arriba.",
+        "Baja en dos segundos, sin soltar de golpe."
+      ],
+      "ca": [
+        "Esquena plana, com una taula.",
+        "Estira cap al maluc, no cap a l'espatlla.",
+        "Colze enganxat al cos.",
+        "Estreny l'escàpula un segon a dalt.",
+        "Baixa en dos segons, sense deixar anar de cop."
+      ],
+      "en": [
+        "Flat back, like a table.",
+        "Pull towards your hip, not your shoulder.",
+        "Elbow close to your body.",
+        "Squeeze your shoulder blade one second at the top.",
+        "Lower over two seconds, no dropping."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Girar el tronco para subir la mancuerna.",
+        "Encoger el hombro hacia la oreja.",
+        "Redondear la espalda.",
+        "Tirar solo con el bíceps."
+      ],
+      "ca": [
+        "Girar el tronc per pujar la manuella.",
+        "Arronsar l'espatlla cap a l'orella.",
+        "Arrodonir l'esquena.",
+        "Estirar només amb el bíceps."
+      ],
+      "en": [
+        "Twisting your torso to lift the dumbbell.",
+        "Shrugging your shoulder up to your ear.",
+        "Rounding your back.",
+        "Pulling only with your biceps."
+      ]
+    }
+  },
+  "peso-muerto-rumano": {
+    "n": 26,
+    "name": {
+      "es": "Peso muerto rumano con mancuernas",
+      "ca": "Pes mort romanès amb manuelles",
+      "en": "Dumbbell Romanian deadlift"
+    },
+    "equipment": [
+      "dumbbells"
+    ],
+    "targets": {
+      "es": [
+        "isquiotibiales",
+        "glúteo mayor",
+        "erectores espinales",
+        "agarre (antebrazos)"
+      ],
+      "ca": [
+        "isquiotibials",
+        "gluti major",
+        "erectors espinals",
+        "agafada (avantbraços)"
+      ],
+      "en": [
+        "hamstrings",
+        "glutes",
+        "spinal erectors",
+        "grip (forearms)"
+      ]
+    },
+    "how": {
+      "es": "De pie con una mancuerna en cada mano delante de los muslos, rodillas un poco flexionadas. Lleva la cadera atrás y baja las mancuernas pegadas a las piernas en 3 s, con la espalda recta, hasta notar estirar los isquios. Sube empujando la cadera adelante y aprieta el glúteo.",
+      "ca": "Dret amb una manuella a cada mà davant de les cuixes, genolls una mica flexionats. Porta el maluc enrere i baixa les manuelles enganxades a les cames en 3 s, amb l'esquena recta, fins a notar estirar els isquis. Puja empenyent el maluc endavant i estreny el gluti.",
+      "en": "Stand with a dumbbell in each hand in front of your thighs, knees slightly bent. Push your hips back and lower the dumbbells close to your legs over 3 s, back straight, until you feel your hamstrings stretch. Come up by driving your hips forward and squeeze your glutes."
+    },
+    "cues": {
+      "es": [
+        "Cadera atrás, como cerrando una puerta con el culo.",
+        "Espalda recta, pecho fuera.",
+        "Mancuernas rozando las piernas.",
+        "Baja en tres segundos hasta notar los isquios.",
+        "Sube empujando la cadera y aprieta glúteo."
+      ],
+      "ca": [
+        "Maluc enrere, com tancant una porta amb el cul.",
+        "Esquena recta, pit fora.",
+        "Manuelles fregant les cames.",
+        "Baixa en tres segons fins a notar els isquis.",
+        "Puja empenyent el maluc i estreny el gluti."
+      ],
+      "en": [
+        "Hips back, like shutting a door with your backside.",
+        "Back straight, chest out.",
+        "Dumbbells brushing your legs.",
+        "Lower over three seconds until you feel your hamstrings.",
+        "Drive your hips forward and squeeze your glutes."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Redondear la espalda para bajar más.",
+        "Doblar las rodillas y convertirlo en sentadilla.",
+        "Separar las mancuernas de las piernas.",
+        "Echar el cuerpo atrás al subir."
+      ],
+      "ca": [
+        "Arrodonir l'esquena per baixar més.",
+        "Doblegar els genolls i convertir-ho en un esquat.",
+        "Separar les manuelles de les cames.",
+        "Tirar el cos enrere en pujar."
+      ],
+      "en": [
+        "Rounding your back to go lower.",
+        "Bending your knees until it becomes a squat.",
+        "Letting the dumbbells drift away from your legs.",
+        "Leaning back at the top."
+      ]
+    },
+    "safety": {
+      "es": "Empieza con poco peso. Baja solo hasta donde mantengas la espalda recta; si notas dolor en la zona lumbar, para.",
+      "ca": "Comença amb poc pes. Baixa només fins on mantinguis l'esquena recta; si notes dolor a la zona lumbar, para.",
+      "en": "Start light. Only go as low as you can keep your back straight; if you feel pain in your lower back, stop."
+    }
   }
 }

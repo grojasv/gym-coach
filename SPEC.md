@@ -40,7 +40,7 @@ the data, never reused or renumbered; a new item takes the next free number. `va
 | Durations | Configurable per routine. The total is **computed from the steps, never typed in**. Target lengths later: 15 / 30 / 60 min. |
 | History | Basic log on the phone (`localStorage`): date, routine, done or partial, and the dumbbell weight per exercise, which is suggested next time. |
 | Style | One Lucha Libre look: wrestling-poster type, yellow mask gold, deep navy and hot red, with light and dark modes. |
-| Content | 24 exercises and 10 routines from Guille's Código Titán material (0.2.0), grouped on the hub (0.3.0). R6 extended to 15 min with more tower work (0.4.1). |
+| Content | 26 exercises and 11 routines from Guille's Código Titán material (0.2.0), grouped on the hub (0.3.0). R6 extended to 15 min with more tower work (0.4.1). R1 uses all the equipment, about 60 min (0.6.0). |
 | Later | Gamification (boss HP bars, XP, FINAL BOSS round), the weekly calendar with a "today" card, progressions or levels. |
 
 ## Data

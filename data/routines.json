@@ -9,14 +9,14 @@
       "en": "Full workout"
     },
     "subtitle": {
-      "es": "Código Titán · las 4 fases",
-      "ca": "Codi Titan · les 4 fases",
-      "en": "Código Titán · all 4 phases"
+      "es": "Código Titán · todo el equipo",
+      "ca": "Codi Titan · tot l'equip",
+      "en": "Código Titán · all the kit"
     },
     "summary": {
-      "es": "La sesión entera: despertar, remo, fuerza y core para una postura blindada.",
-      "ca": "La sessió sencera: despertar, rem, força i core per a una postura blindada.",
-      "en": "The full session: wake-up, row, strength and core for bulletproof posture."
+      "es": "La sesión entera con todo tu equipo: movilidad, remo, torre, fuerza, core y estiramientos.",
+      "ca": "La sessió sencera amb tot el teu equip: mobilitat, rem, torre, força, core i estiraments.",
+      "en": "The full session with all your kit: mobility, rowing, tower, strength, core and stretches."
     },
     "prepare": 10,
     "blocks": [
@@ -27,10 +27,16 @@
         "routine": "ct-remo"
       },
       {
+        "routine": "torre-negativas"
+      },
+      {
         "routine": "ct-fuerza"
       },
       {
         "routine": "ct-sello"
+      },
+      {
+        "routine": "ct-calma"
       }
     ]
   },
@@ -221,7 +227,7 @@
           {
             "exercise": "remo-waterrower",
             "mode": "time",
-            "seconds": 720,
+            "seconds": 600,
             "weight": false,
             "restAfter": 30,
             "cues": [
@@ -234,7 +240,7 @@
                 }
               },
               {
-                "at": 90,
+                "at": 70,
                 "text": {
                   "es": "Impulso: primero piernas, luego tronco, al final brazos.",
                   "ca": "Impuls: primer cames, després tronc, al final braços.",
@@ -242,7 +248,7 @@
                 }
               },
               {
-                "at": 180,
+                "at": 140,
                 "text": {
                   "es": "Sesenta piernas, treinta tronco, diez brazos.",
                   "ca": "Seixanta cames, trenta tronc, deu braços.",
@@ -250,7 +256,7 @@
                 }
               },
               {
-                "at": 270,
+                "at": 210,
                 "text": {
                   "es": "Final: codos pegados, hombros bajos, pecho abierto.",
                   "ca": "Final: colzes enganxats, espatlles baixes, pit obert.",
@@ -258,7 +264,7 @@
                 }
               },
               {
-                "at": 360,
+                "at": 300,
                 "text": {
                   "es": "Mitad del remo, ¡vas como un titán!",
                   "ca": "Meitat del rem, vas com un tità!",
@@ -266,7 +272,7 @@
                 }
               },
               {
-                "at": 450,
+                "at": 370,
                 "text": {
                   "es": "Recuperación: brazos, tronco y luego piernas.",
                   "ca": "Recuperació: braços, tronc i després cames.",
@@ -274,7 +280,7 @@
                 }
               },
               {
-                "at": 540,
+                "at": 440,
                 "text": {
                   "es": "Manos como ganchos, sin estrangular el manillar.",
                   "ca": "Mans com ganxos, sense escanyar el manillar.",
@@ -282,7 +288,7 @@
                 }
               },
               {
-                "at": 630,
+                "at": 500,
                 "text": {
                   "es": "Respira fluido: sueltas aire en el impulso.",
                   "ca": "Respira fluid: deixes anar l'aire a l'impuls.",
@@ -290,7 +296,7 @@
                 }
               },
               {
-                "at": 690,
+                "at": 540,
                 "text": {
                   "es": "Último minuto, técnica de cirujano.",
                   "ca": "Últim minut, tècnica de cirurgià.",
@@ -318,9 +324,9 @@
       "en": "Phase 2 · Strength block"
     },
     "summary": {
-      "es": "Tres rondas de piernas, empuje y brazos con mancuernas para ganar fuerza con buena postura.",
-      "ca": "Tres rondes de cames, empenta i braços amb manuelles per guanyar força amb bona postura.",
-      "en": "Three rounds of legs, pushing and arms with dumbbells to build strength with good posture."
+      "es": "Tres rondas de piernas, empuje, tirón y brazos con mancuernas para ganar fuerza con buena postura.",
+      "ca": "Tres rondes de cames, empenta, estirada i braços amb manuelles per guanyar força amb bona postura.",
+      "en": "Three rounds of legs, pushing, pulling and arms with dumbbells to build strength with good posture."
     },
     "prepare": 10,
     "blocks": [
@@ -339,7 +345,7 @@
             "reps": 15,
             "estSeconds": 75,
             "weight": true,
-            "restAfter": 45
+            "restAfter": 30
           },
           {
             "exercise": "flexiones-flecha",
@@ -347,7 +353,23 @@
             "estSeconds": 45,
             "weight": false,
             "toFailure": true,
-            "restAfter": 45
+            "restAfter": 30
+          },
+          {
+            "exercise": "remo-mancuerna",
+            "mode": "reps",
+            "reps": 10,
+            "estSeconds": 80,
+            "weight": true,
+            "restAfter": 30
+          },
+          {
+            "exercise": "peso-muerto-rumano",
+            "mode": "reps",
+            "reps": 12,
+            "estSeconds": 60,
+            "weight": true,
+            "restAfter": 30
           },
           {
             "exercise": "press-militar",
@@ -355,15 +377,26 @@
             "reps": 12,
             "estSeconds": 55,
             "weight": true,
-            "restAfter": 45
-          },
+            "restAfter": 30
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Brazos",
+          "ca": "Braços",
+          "en": "Arms"
+        },
+        "rounds": 2,
+        "restBetweenRounds": 60,
+        "steps": [
           {
             "exercise": "extension-triceps",
             "mode": "reps",
             "reps": 12,
             "estSeconds": 55,
             "weight": true,
-            "restAfter": 45
+            "restAfter": 15
           },
           {
             "exercise": "curl-biceps",
@@ -382,9 +415,9 @@
     "n": 5,
     "group": "codigo-titan",
     "name": {
-      "es": "Core con rueda",
-      "ca": "Core amb roda",
-      "en": "Ab wheel core"
+      "es": "Core: rueda y rodillas",
+      "ca": "Core: roda i genolls",
+      "en": "Core: wheel and knee raises"
     },
     "subtitle": {
       "es": "Fase 3 · El sello de hierro",
@@ -392,9 +425,9 @@
       "en": "Phase 3 · The iron seal"
     },
     "summary": {
-      "es": "Rueda abdominal en tres rondas para un core de acero que protege la espalda.",
-      "ca": "Roda abdominal en tres rondes per a un core d'acer que protegeix l'esquena.",
-      "en": "Ab wheel in three rounds for a steel core that protects your back."
+      "es": "Rueda abdominal y elevaciones de rodillas en tres rondas para un core de acero que protege la espalda.",
+      "ca": "Roda abdominal i elevacions de genolls en tres rondes per a un core d'acer que protegeix l'esquena.",
+      "en": "Ab wheel and knee raises in three rounds for a steel core that protects your back."
     },
     "prepare": 10,
     "blocks": [
@@ -412,7 +445,7 @@
             "mode": "time",
             "seconds": 30,
             "weight": false,
-            "restAfter": 45,
+            "restAfter": 30,
             "cues": [
               {
                 "at": 0,
@@ -444,6 +477,220 @@
                   "es": "Vuelve tirando del abdomen.",
                   "ca": "Torna tirant de l'abdomen.",
                   "en": "Pull back with your abs."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "elevacion-rodillas",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 45,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Uno: rodillas al pecho, baja despacio.",
+                  "ca": "Una: genolls al pit, baixa a poc a poc.",
+                  "en": "One: knees to chest, lower slowly."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Dos: tira con el abdomen, sin tirones.",
+                  "ca": "Dues: tira amb l'abdomen, sense estirades.",
+                  "en": "Two: lift with your abs, no jerking."
+                }
+              },
+              {
+                "at": 10,
+                "text": {
+                  "es": "Tres: suelta el aire al subir.",
+                  "ca": "Tres: deixa anar l'aire en pujar.",
+                  "en": "Three: breathe out as you lift."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Cuatro: hombros abajo, cuello largo.",
+                  "ca": "Quatre: espatlles avall, coll llarg.",
+                  "en": "Four: shoulders down, long neck."
+                }
+              },
+              {
+                "at": 20,
+                "text": {
+                  "es": "Cinco: controla la bajada.",
+                  "ca": "Cinc: controla la baixada.",
+                  "en": "Five: control the way down."
+                }
+              },
+              {
+                "at": 25,
+                "text": {
+                  "es": "Seis: aprieta arriba y baja suave.",
+                  "ca": "Sis: estreny a dalt i baixa suau.",
+                  "en": "Six: squeeze at the top, lower gently."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ct-calma",
+    "n": 11,
+    "group": "codigo-titan",
+    "name": {
+      "es": "Estiramientos finales",
+      "ca": "Estiraments finals",
+      "en": "Cool-down stretches"
+    },
+    "subtitle": {
+      "es": "Fase 4 · Enfriar el motor",
+      "ca": "Fase 4 · Refredar el motor",
+      "en": "Phase 4 · Cooling the engine"
+    },
+    "summary": {
+      "es": "Cuelgue pasivo y estiramientos de pecho y dorsal para cerrar con la postura abierta.",
+      "ca": "Penjada passiva i estiraments de pit i dorsal per tancar amb la postura oberta.",
+      "en": "Passive hang plus chest and lat stretches to finish with an open posture."
+    },
+    "prepare": 10,
+    "blocks": [
+      {
+        "name": {
+          "es": "Vuelta a la calma",
+          "ca": "Tornada a la calma",
+          "en": "Cool-down"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "cuelgue-pasivo",
+            "mode": "time",
+            "seconds": 40,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Pies en los estribos, relaja los hombros.",
+                  "ca": "Peus als estreps, relaxa les espatlles.",
+                  "en": "Feet on the steps, relax your shoulders."
+                }
+              },
+              {
+                "at": 8,
+                "text": {
+                  "es": "Coge aire hinchando el pecho.",
+                  "ca": "Agafa aire inflant el pit.",
+                  "en": "Breathe in, fill your chest."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Suéltalo despacio y estira la columna.",
+                  "ca": "Deixa'l anar a poc a poc i estira la columna.",
+                  "en": "Let it out slowly, lengthen your spine."
+                }
+              },
+              {
+                "at": 25,
+                "text": {
+                  "es": "Cada vértebra se separa, sin moverte.",
+                  "ca": "Cada vèrtebra se separa, sense moure't.",
+                  "en": "Each vertebra opens, stay still."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "estiramiento-pectoral",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Antebrazo derecho al poste, a la altura del hombro.",
+                  "ca": "Avantbraç dret al pal, a l'altura de l'espatlla.",
+                  "en": "Right forearm on the post, at shoulder height."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Gira el tronco hasta abrir el pecho.",
+                  "ca": "Gira el tronc fins a obrir el pit.",
+                  "en": "Turn your trunk until your chest opens."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Cambia: brazo izquierdo al poste.",
+                  "ca": "Canvia: braç esquerre al pal.",
+                  "en": "Switch: left arm on the post."
+                }
+              },
+              {
+                "at": 21,
+                "text": {
+                  "es": "Respira hondo y suelta.",
+                  "ca": "Respira fondo i deixa anar.",
+                  "en": "Breathe deep and let go."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "estiramiento-dorsal",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "restAfter": 0,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Manos en los postes, a la altura de la cintura.",
+                  "ca": "Mans als pals, a l'altura de la cintura.",
+                  "en": "Hands on the posts, at waist height."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Glúteos atrás, torso paralelo al suelo.",
+                  "ca": "Glutis enrere, tors paral·lel a terra.",
+                  "en": "Hips back, torso parallel to the floor."
+                }
+              },
+              {
+                "at": 14,
+                "text": {
+                  "es": "Cabeza entre los brazos.",
+                  "ca": "Cap entre els braços.",
+                  "en": "Head between your arms."
+                }
+              },
+              {
+                "at": 20,
+                "text": {
+                  "es": "Siente estirarse toda la espalda.",
+                  "ca": "Nota com s'estira tota l'esquena.",
+                  "en": "Feel your whole back stretch."
                 }
               }
             ]

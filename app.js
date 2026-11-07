@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.5.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.6.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
   const FEEL_KEY = 'gym-coach.feel';
