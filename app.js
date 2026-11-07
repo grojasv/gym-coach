@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.7.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.8.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
   const FEEL_KEY = 'gym-coach.feel';
@@ -24,6 +24,7 @@
     disclaimer: { es: 'No es consejo médico. Si algo duele, para.', ca: 'No és consell mèdic. Si alguna cosa fa mal, atura’t.', en: 'Not medical advice. If something hurts, stop.' },
     install: { es: 'Instala la app', ca: 'Instal·la l’app', en: 'Install the app' },
     installOther: { es: 'Abre el menú del navegador (⋮) y elige «Instalar aplicación».', ca: 'Obre el menú del navegador (⋮) i tria «Instal·la l’aplicació».', en: 'Open the browser menu (⋮) and choose “Install app”.' },
+    more: { es: 'Más rutinas', ca: 'Més rutines', en: 'More routines' },
     up: { es: 'subir', ca: 'pujar', en: 'level up' },
     toLevel: { es: 'Para subir', ca: 'Per pujar', en: 'To level up' },
     toLevelHint: { es: 'Los marcaste fáciles 2 veces seguidas. Ajústalos y pulsa ✓.', ca: 'Els vas marcar fàcils 2 vegades seguides. Ajusta’ls i prem ✓.', en: 'You marked these easy twice in a row. Adjust them, then tap ✓.' },
@@ -138,6 +139,14 @@
     const list = readFeel(); list.push({ at: new Date().toISOString(), routine: null, ex: b.dataset.adjusted, v: 'adjusted' }); writeFeel(list);
     hubState.y = window.scrollY; renderHub(); window.scrollTo(0, hubState.y);
   });
+  // Main routines (pinned group) sit open on top; the other groups fold inside "Más rutinas". See SPEC § groups.
+  function groupSection(g) {
+    const list = data.routines.filter((r) => r.group === g.id);
+    if (!list.length) return '';
+    const lens = list.map((r) => Player.fmtLen(Player.duration(Player.buildTimeline(r, data.exercises)))).join(' · ');
+    return section(`r:${g.id}`, `<span class="g-emoji" aria-hidden="true">${g.emoji}</span><span class="g-title">${esc(t(g.name))}<small>${esc(lens)}</small></span>`,
+      list.length, `<div class="list">${list.map((r) => routineCard(r, g)).join('')}</div>`, `g-${g.color}`);
+  }
   function renderHub() {
     cand = candidates();
     const log = readLog().slice(0, 5);
@@ -150,13 +159,15 @@
       </section>
       ${levelUpSection()}
       <h2 class="sec">${esc(t(TEXT.routines))}</h2>
-      ${data.groups.map((g) => {
+      ${data.groups.filter((g) => g.pinned).map((g) => {
         const list = data.routines.filter((r) => r.group === g.id);
-        if (!list.length) return '';
-        const lens = list.map((r) => Player.fmtLen(Player.duration(Player.buildTimeline(r, data.exercises)))).join(' · ');
-        return section(`r:${g.id}`, `<span class="g-emoji" aria-hidden="true">${g.emoji}</span><span class="g-title">${esc(t(g.name))}<small>${esc(lens)}</small></span>`,
-          list.length, `<div class="list">${list.map((r) => routineCard(r, g)).join('')}</div>`, `g-${g.color}`);
+        return list.length ? `<div class="list pinned">${list.map((r) => routineCard(r, g)).join('')}</div>` : '';
       }).join('')}
+      ${(() => {
+        const more = data.groups.filter((g) => !g.pinned).map(groupSection).join('');
+        const n = data.routines.filter((r) => !data.groups.find((g) => g.id === r.group)?.pinned).length;
+        return more ? section('r:more', `<span class="g-emoji" aria-hidden="true">📦</span><span class="g-title">${esc(t(TEXT.more))}</span>`, n, `<div class="more-groups">${more}</div>`, 'more') : '';
+      })()}
       <h2 class="sec">${esc(t(TEXT.library))}</h2>
       ${Object.keys(EQUIP).map((eq) => {
         const group = Object.entries(data.exercises).filter(([, ex]) => ex.equipment[0] === eq);

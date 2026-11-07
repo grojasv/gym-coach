@@ -350,5 +350,22 @@
       "The ring is waiting. No rush.",
       "Paused. Breathe deep and we'll be back."
     ]
+  },
+  "repsOne": {
+    "es": [
+      "Una sola, limpia y estricta. Luego dale a Hecho.",
+      "Una repetición perfecta, fiera. Dale a Hecho al bajar.",
+      "Solo una, pero de cirujano. Luego dale a Hecho."
+    ],
+    "ca": [
+      "Només una, neta i estricta. Després toca Fet.",
+      "Una repetició perfecta, fiera. Toca Fet en baixar.",
+      "Només una, però de cirurgià. Després toca Fet."
+    ],
+    "en": [
+      "Just one, clean and strict. Then tap Done.",
+      "One perfect rep, beast. Tap Done when you're down.",
+      "Only one, surgeon style. Then tap Done."
+    ]
   }
 }

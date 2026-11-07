@@ -1386,6 +1386,90 @@
       "en": "Only do it after a warm-up, never cold. One descent at a time with your feet near the steps; stop if you feel sharp pain in your shoulder or elbow."
     }
   },
+  "dominada-estricta": {
+    "n": 28,
+    "name": {
+      "es": "Dominada estricta",
+      "ca": "Dominada estricta",
+      "en": "Strict pull-up"
+    },
+    "equipment": [
+      "pullup-bar"
+    ],
+    "targets": {
+      "es": [
+        "dorsales",
+        "bíceps",
+        "trapecio inferior",
+        "agarre (antebrazos)"
+      ],
+      "ca": [
+        "dorsals",
+        "bíceps",
+        "trapezi inferior",
+        "agafada (avantbraços)"
+      ],
+      "en": [
+        "lats",
+        "biceps",
+        "lower traps",
+        "grip (forearms)"
+      ]
+    },
+    "how": {
+      "es": "Cuélgate con las manos algo más abiertas que los hombros y los brazos estirados. Baja los hombros, aprieta el abdomen y sube sin impulso hasta pasar la barbilla por encima de la barra. Baja controlando hasta estirar del todo. Una sola repetición limpia y descansa.",
+      "ca": "Penja't amb les mans una mica més obertes que les espatlles i els braços estirats. Baixa les espatlles, estreny l'abdomen i puja sense impuls fins a passar la barbeta per sobre de la barra. Baixa controlant fins a estirar del tot. Una sola repetició neta i descansa.",
+      "en": "Hang with your hands a bit wider than your shoulders and your arms straight. Pull your shoulders down, brace your abs and pull up without swinging until your chin clears the bar. Lower under control until your arms are straight. One clean rep, then rest."
+    },
+    "cues": {
+      "es": [
+        "Empieza colgado con los brazos estirados.",
+        "Primero baja los hombros, luego tira.",
+        "Codos hacia las costillas.",
+        "Barbilla por encima de la barra, sin estirar el cuello.",
+        "Baja controlando, sin dejarte caer."
+      ],
+      "ca": [
+        "Comença penjat amb els braços estirats.",
+        "Primer baixa les espatlles, després estira.",
+        "Colzes cap a les costelles.",
+        "Barbeta per sobre de la barra, sense estirar el coll.",
+        "Baixa controlant, sense deixar-te caure."
+      ],
+      "en": [
+        "Start from a dead hang, arms straight.",
+        "Shoulders down first, then pull.",
+        "Drive your elbows towards your ribs.",
+        "Chin over the bar without craning your neck.",
+        "Lower under control, don't drop."
+      ]
+    },
+    "mistakes": {
+      "es": [
+        "Balancear las piernas o dar un tirón para subir.",
+        "Hacer media repetición sin estirar abajo.",
+        "Estirar el cuello para llegar a la barra.",
+        "Encadenar repeticiones feas en vez de una limpia."
+      ],
+      "ca": [
+        "Balancejar les cames o fer una estrebada per pujar.",
+        "Fer mitja repetició sense estirar a baix.",
+        "Estirar el coll per arribar a la barra.",
+        "Encadenar repeticions lletges en lloc d'una de neta."
+      ],
+      "en": [
+        "Swinging your legs or kipping to get up.",
+        "Doing half reps without straightening at the bottom.",
+        "Craning your neck to reach the bar.",
+        "Chaining ugly reps instead of one clean one."
+      ]
+    },
+    "safety": {
+      "es": "Hazla solo después de calentar. Si una repetición sale fea o notas dolor agudo en hombro o codo, para la serie.",
+      "ca": "Fes-la només després d'escalfar. Si una repetició surt lletja o notes dolor agut a l'espatlla o al colze, atura la sèrie.",
+      "en": "Only after a warm-up. If a rep gets ugly or you feel sharp pain in your shoulder or elbow, stop the set."
+    }
+  },
   "fondos-negativos": {
     "n": 7,
     "name": {

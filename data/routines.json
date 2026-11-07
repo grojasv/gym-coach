@@ -2,7 +2,7 @@
   {
     "id": "codigo-titan",
     "n": 1,
-    "group": "codigo-titan",
+    "group": "principales",
     "name": {
       "es": "Entreno completo",
       "ca": "Entrenament complet",
@@ -37,6 +37,1155 @@
       },
       {
         "routine": "ct-calma"
+      }
+    ]
+  },
+  {
+    "id": "despegue-titan",
+    "n": 6,
+    "group": "principales",
+    "name": {
+      "es": "Circuito de torre",
+      "ca": "Circuit de torre",
+      "en": "Tower circuit"
+    },
+    "subtitle": {
+      "es": "Despegue Titán",
+      "ca": "Enlairament Tità",
+      "en": "Titan Liftoff"
+    },
+    "summary": {
+      "es": "Tu día de dominadas: activación, dominadas estrictas sueltas y negativas para pasar de una a tres.",
+      "ca": "El teu dia de dominades: activació, dominades estrictes soltes i negatives per passar d'una a tres.",
+      "en": "Your pull-up day: activation, single strict pull-ups and negatives to go from one to three."
+    },
+    "prepare": 10,
+    "blocks": [
+      {
+        "name": {
+          "es": "Calentamiento",
+          "ca": "Escalfament",
+          "en": "Warm-up"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "rotacion-munecas",
+            "mode": "time",
+            "seconds": 45,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Entrelaza los dedos y gira hacia la derecha.",
+                  "ca": "Entrellaça els dits i gira cap a la dreta.",
+                  "en": "Lace your fingers and circle to the right."
+                }
+              },
+              {
+                "at": 10,
+                "text": {
+                  "es": "Giros amplios, sin prisa.",
+                  "ca": "Girs amplis, sense pressa.",
+                  "en": "Wide circles, no rush."
+                }
+              },
+              {
+                "at": 22,
+                "text": {
+                  "es": "¡Cambia el sentido, hacia la izquierda!",
+                  "ca": "Canvia el sentit, cap a l'esquerra!",
+                  "en": "Switch direction, to the left!"
+                }
+              },
+              {
+                "at": 34,
+                "text": {
+                  "es": "Suelta y sacude los dedos al final.",
+                  "ca": "Deixa anar i sacseja els dits al final.",
+                  "en": "Then let go and shake your fingers."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "circulos-brazos",
+            "mode": "time",
+            "seconds": 60,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Brazos en cruz, círculos amplios hacia delante.",
+                  "ca": "Braços en creu, cercles amplis cap endavant.",
+                  "en": "Arms out wide, big circles forward."
+                }
+              },
+              {
+                "at": 12,
+                "text": {
+                  "es": "Aprieta las escápulas en cada vuelta.",
+                  "ca": "Estreny els omòplats a cada volta.",
+                  "en": "Squeeze your shoulder blades each turn."
+                }
+              },
+              {
+                "at": 30,
+                "text": {
+                  "es": "¡Invierte el giro, hacia atrás!",
+                  "ca": "Inverteix el gir, cap enrere!",
+                  "en": "Reverse it, circle backward!"
+                }
+              },
+              {
+                "at": 42,
+                "text": {
+                  "es": "Abre bien la caja torácica.",
+                  "ca": "Obre bé la caixa toràcica.",
+                  "en": "Open your rib cage wide."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "retraccion-escapular",
+            "mode": "time",
+            "seconds": 60,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Brazos al frente, palmas enfrentadas.",
+                  "ca": "Braços endavant, palmells encarats.",
+                  "en": "Arms out front, palms facing."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Junta las paletas sin doblar los codos.",
+                  "ca": "Ajunta els omòplats sense doblegar els colzes.",
+                  "en": "Squeeze your shoulder blades, elbows straight."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Aguanta un segundo y saca pecho.",
+                  "ca": "Aguanta un segon i treu pit.",
+                  "en": "Hold one second and lift your chest."
+                }
+              },
+              {
+                "at": 25,
+                "text": {
+                  "es": "Empuja adelante y vuelve.",
+                  "ca": "Empeny endavant i torna.",
+                  "en": "Push forward and come back."
+                }
+              },
+              {
+                "at": 35,
+                "text": {
+                  "es": "Hombros lejos de las orejas.",
+                  "ca": "Espatlles lluny de les orelles.",
+                  "en": "Shoulders away from your ears."
+                }
+              },
+              {
+                "at": 45,
+                "text": {
+                  "es": "Fluido y controlado, ya casi.",
+                  "ca": "Fluid i controlat, ja gairebé hi ets.",
+                  "en": "Smooth and controlled, almost there."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Activación",
+          "ca": "Activació",
+          "en": "Activation"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "cuelgue-activo",
+            "mode": "time",
+            "seconds": 15,
+            "weight": false,
+            "restAfter": 45,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Puntas de los pies rozando el estribo.",
+                  "ca": "Puntes dels peus fregant l'estrep.",
+                  "en": "Toes just touching the step."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Hombros abajo y atrás, saca pecho.",
+                  "ca": "Espatlles avall i enrere, treu pit.",
+                  "en": "Shoulders down and back, chest up."
+                }
+              },
+              {
+                "at": 9,
+                "text": {
+                  "es": "Aprieta la barra, ¡aguanta!",
+                  "ca": "Estreny la barra, aguanta!",
+                  "en": "Squeeze the bar, hold on!"
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "dominada-escapular",
+            "mode": "time",
+            "seconds": 20,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Uno: hombros abajo, sin doblar codos.",
+                  "ca": "Una: espatlles avall, sense doblegar colzes.",
+                  "en": "One: shoulders down, elbows straight."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Dos: sube con las escápulas.",
+                  "ca": "Dues: puja amb les escàpules.",
+                  "en": "Two: rise with your shoulder blades."
+                }
+              },
+              {
+                "at": 8,
+                "text": {
+                  "es": "Tres: aguanta arriba y saca pecho.",
+                  "ca": "Tres: aguanta a dalt i treu pit.",
+                  "en": "Three: hold at the top, chest out."
+                }
+              },
+              {
+                "at": 12,
+                "text": {
+                  "es": "Cuatro: baja despacio, sin caer.",
+                  "ca": "Quatre: baixa a poc a poc, sense caure.",
+                  "en": "Four: lower slowly, no dropping."
+                }
+              },
+              {
+                "at": 16,
+                "text": {
+                  "es": "Cinco: ¡la última, aprieta!",
+                  "ca": "Cinc: l'última, estreny!",
+                  "en": "Five: last one, squeeze!"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Dominadas estrictas",
+          "ca": "Dominades estrictes",
+          "en": "Strict pull-ups"
+        },
+        "rounds": 4,
+        "restBetweenRounds": 90,
+        "steps": [
+          {
+            "exercise": "dominada-estricta",
+            "mode": "reps",
+            "reps": 1,
+            "estSeconds": 10,
+            "weight": false,
+            "restAfter": 90
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Negativas",
+          "ca": "Negatives",
+          "en": "Negatives"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "dominada-negativa",
+            "mode": "time",
+            "seconds": 5,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "¡Barbilla arriba, aguanta!",
+                  "ca": "Barbeta amunt, aguanta!",
+                  "en": "Chin over the bar, hold!"
+                }
+              },
+              {
+                "at": 1,
+                "text": {
+                  "es": "Frena apretando la espalda.",
+                  "ca": "Frena estrenyent l'esquena.",
+                  "en": "Brake with your back."
+                }
+              },
+              {
+                "at": 2,
+                "text": {
+                  "es": "Codos a noventa, no caigas.",
+                  "ca": "Colzes a noranta, no caiguis.",
+                  "en": "Elbows at ninety, don't drop."
+                }
+              },
+              {
+                "at": 3,
+                "text": {
+                  "es": "Brazos casi estirados, control.",
+                  "ca": "Braços gairebé estirats, control.",
+                  "en": "Arms nearly straight, control."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Estira y apoya los pies.",
+                  "ca": "Estira i recolza els peus.",
+                  "en": "Straighten, feet down."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "dominada-negativa",
+            "mode": "time",
+            "seconds": 5,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "¡Cuatro segundos de puro fuego!",
+                  "ca": "Quatre segons de foc pur!",
+                  "en": "Four seconds of pure fire!"
+                }
+              },
+              {
+                "at": 1,
+                "text": {
+                  "es": "Suelta milímetro a milímetro.",
+                  "ca": "Deixa anar mil·límetre a mil·límetre.",
+                  "en": "Lower millimetre by millimetre."
+                }
+              },
+              {
+                "at": 2,
+                "text": {
+                  "es": "Aguanta con los dorsales.",
+                  "ca": "Aguanta amb els dorsals.",
+                  "en": "Hold it with your lats."
+                }
+              },
+              {
+                "at": 3,
+                "text": {
+                  "es": "Codos firmes, brazos controlados.",
+                  "ca": "Colzes ferms, braços controlats.",
+                  "en": "Elbows firm, arms controlled."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Estira y apoya las puntas.",
+                  "ca": "Estira i recolza les puntes.",
+                  "en": "Straighten, toes down."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "dominada-negativa",
+            "mode": "time",
+            "seconds": 5,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "¡La tercera! Barbilla arriba.",
+                  "ca": "La tercera! Barbeta amunt.",
+                  "en": "Third one! Chin over the bar."
+                }
+              },
+              {
+                "at": 1,
+                "text": {
+                  "es": "Pecho fuera, frena despacio.",
+                  "ca": "Pit fora, frena a poc a poc.",
+                  "en": "Chest out, brake slowly."
+                }
+              },
+              {
+                "at": 2,
+                "text": {
+                  "es": "Aprieta la espalda, sin caer.",
+                  "ca": "Estreny l'esquena, sense caure.",
+                  "en": "Squeeze your back, don't drop."
+                }
+              },
+              {
+                "at": 3,
+                "text": {
+                  "es": "Casi abajo, control.",
+                  "ca": "Gairebé a baix, control.",
+                  "en": "Almost down, control."
+                }
+              },
+              {
+                "at": 4,
+                "text": {
+                  "es": "Pies al escalón, ¡bien hecho!",
+                  "ca": "Peus a l'esglaó, ben fet!",
+                  "en": "Feet on the step, well done!"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Fondos y abdomen",
+          "ca": "Fons i abdomen",
+          "en": "Dips and abs"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "fondos-negativos",
+            "mode": "time",
+            "seconds": 15,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Uno: baja en tres, codos atrás.",
+                  "ca": "Una: baixa en tres, colzes enrere.",
+                  "en": "One: lower in three, elbows back."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Dos: baja en tres hasta noventa.",
+                  "ca": "Dues: baixa en tres fins a noranta.",
+                  "en": "Two: lower in three to ninety."
+                }
+              },
+              {
+                "at": 10,
+                "text": {
+                  "es": "Tres: baja en tres, ¡la última!",
+                  "ca": "Tres: baixa en tres, l'última!",
+                  "en": "Three: lower in three, last one!"
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "elevacion-rodillas",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 45,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Uno: rodillas al pecho, baja despacio.",
+                  "ca": "Una: genolls al pit, baixa a poc a poc.",
+                  "en": "One: knees to chest, lower slowly."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Dos: tira con el abdomen, sin tirones.",
+                  "ca": "Dues: tira amb l'abdomen, sense estirades.",
+                  "en": "Two: lift with your abs, no jerking."
+                }
+              },
+              {
+                "at": 10,
+                "text": {
+                  "es": "Tres: suelta el aire al subir.",
+                  "ca": "Tres: deixa anar l'aire en pujar.",
+                  "en": "Three: breathe out as you lift."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Cuatro: hombros abajo, cuello largo.",
+                  "ca": "Quatre: espatlles avall, coll llarg.",
+                  "en": "Four: shoulders down, long neck."
+                }
+              },
+              {
+                "at": 20,
+                "text": {
+                  "es": "Cinco: controla la bajada.",
+                  "ca": "Cinc: controla la baixada.",
+                  "en": "Five: control the way down."
+                }
+              },
+              {
+                "at": 25,
+                "text": {
+                  "es": "Seis: aprieta arriba y baja suave.",
+                  "ca": "Sis: estreny a dalt i baixa suau.",
+                  "en": "Six: squeeze at the top, lower gently."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Vuelta a la calma",
+          "ca": "Tornada a la calma",
+          "en": "Cool-down"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "cuelgue-pasivo",
+            "mode": "time",
+            "seconds": 40,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Pies en los estribos, relaja los hombros.",
+                  "ca": "Peus als estreps, relaxa les espatlles.",
+                  "en": "Feet on the steps, relax your shoulders."
+                }
+              },
+              {
+                "at": 8,
+                "text": {
+                  "es": "Coge aire hinchando el pecho.",
+                  "ca": "Agafa aire inflant el pit.",
+                  "en": "Breathe in, fill your chest."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Suéltalo despacio y estira la columna.",
+                  "ca": "Deixa'l anar a poc a poc i estira la columna.",
+                  "en": "Let it out slowly, lengthen your spine."
+                }
+              },
+              {
+                "at": 25,
+                "text": {
+                  "es": "Cada vértebra se separa, sin moverte.",
+                  "ca": "Cada vèrtebra se separa, sense moure't.",
+                  "en": "Each vertebra opens, stay still."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "estiramiento-pectoral",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Antebrazo derecho al poste, a la altura del hombro.",
+                  "ca": "Avantbraç dret al pal, a l'altura de l'espatlla.",
+                  "en": "Right forearm on the post, at shoulder height."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Gira el tronco hasta abrir el pecho.",
+                  "ca": "Gira el tronc fins a obrir el pit.",
+                  "en": "Turn your trunk until your chest opens."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Cambia: brazo izquierdo al poste.",
+                  "ca": "Canvia: braç esquerre al pal.",
+                  "en": "Switch: left arm on the post."
+                }
+              },
+              {
+                "at": 21,
+                "text": {
+                  "es": "Respira hondo y suelta.",
+                  "ca": "Respira fondo i deixa anar.",
+                  "en": "Breathe deep and let go."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "estiramiento-dorsal",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "restAfter": 0,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Manos en los postes, a la altura de la cintura.",
+                  "ca": "Mans als pals, a l'altura de la cintura.",
+                  "en": "Hands on the posts, at waist height."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Glúteos atrás, torso paralelo al suelo.",
+                  "ca": "Glutis enrere, tors paral·lel a terra.",
+                  "en": "Hips back, torso parallel to the floor."
+                }
+              },
+              {
+                "at": 14,
+                "text": {
+                  "es": "Cabeza entre los brazos.",
+                  "ca": "Cap entre els braços.",
+                  "en": "Head between your arms."
+                }
+              },
+              {
+                "at": 20,
+                "text": {
+                  "es": "Siente estirarse toda la espalda.",
+                  "ca": "Nota com s'estira tota l'esquena.",
+                  "en": "Feel your whole back stretch."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "torre-suave",
+    "n": 12,
+    "group": "principales",
+    "name": {
+      "es": "Torre suave",
+      "ca": "Torre suau",
+      "en": "Easy tower"
+    },
+    "subtitle": {
+      "es": "Torre · días suaves",
+      "ca": "Torre · dies suaus",
+      "en": "Tower · easy days"
+    },
+    "summary": {
+      "es": "Movilidad y estiramientos sin colgarte ni apretar: para antes del pádel o la víspera del entreno completo.",
+      "ca": "Mobilitat i estiraments sense penjar-te ni estrènyer: per abans del pàdel o la vigília de l'entrenament complet.",
+      "en": "Mobility and stretches with no hanging or gripping: for before padel or the day before the full workout."
+    },
+    "prepare": 10,
+    "blocks": [
+      {
+        "name": {
+          "es": "Movilidad",
+          "ca": "Mobilitat",
+          "en": "Mobility"
+        },
+        "rounds": 2,
+        "restBetweenRounds": 30,
+        "steps": [
+          {
+            "exercise": "circulos-brazos",
+            "mode": "time",
+            "seconds": 60,
+            "weight": false,
+            "restAfter": 15,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Brazos en cruz, círculos amplios hacia delante.",
+                  "ca": "Braços en creu, cercles amplis cap endavant.",
+                  "en": "Arms out wide, big circles forward."
+                }
+              },
+              {
+                "at": 12,
+                "text": {
+                  "es": "Aprieta las escápulas en cada vuelta.",
+                  "ca": "Estreny els omòplats a cada volta.",
+                  "en": "Squeeze your shoulder blades each turn."
+                }
+              },
+              {
+                "at": 30,
+                "text": {
+                  "es": "¡Invierte el giro, hacia atrás!",
+                  "ca": "Inverteix el gir, cap enrere!",
+                  "en": "Reverse it, circle backward!"
+                }
+              },
+              {
+                "at": 42,
+                "text": {
+                  "es": "Abre bien la caja torácica.",
+                  "ca": "Obre bé la caixa toràcica.",
+                  "en": "Open your rib cage wide."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "retraccion-escapular",
+            "mode": "time",
+            "seconds": 60,
+            "weight": false,
+            "restAfter": 15,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Brazos al frente, palmas enfrentadas.",
+                  "ca": "Braços endavant, palmells encarats.",
+                  "en": "Arms out front, palms facing."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Junta las paletas sin doblar los codos.",
+                  "ca": "Ajunta els omòplats sense doblegar els colzes.",
+                  "en": "Squeeze your shoulder blades, elbows straight."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Aguanta un segundo y saca pecho.",
+                  "ca": "Aguanta un segon i treu pit.",
+                  "en": "Hold one second and lift your chest."
+                }
+              },
+              {
+                "at": 25,
+                "text": {
+                  "es": "Empuja adelante y vuelve.",
+                  "ca": "Empeny endavant i torna.",
+                  "en": "Push forward and come back."
+                }
+              },
+              {
+                "at": 35,
+                "text": {
+                  "es": "Hombros lejos de las orejas.",
+                  "ca": "Espatlles lluny de les orelles.",
+                  "en": "Shoulders away from your ears."
+                }
+              },
+              {
+                "at": 45,
+                "text": {
+                  "es": "Fluido y controlado, ya casi.",
+                  "ca": "Fluid i controlat, ja gairebé hi ets.",
+                  "en": "Smooth and controlled, almost there."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "gato-camello",
+            "mode": "time",
+            "seconds": 45,
+            "weight": false,
+            "restAfter": 15,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "A cuatro patas, manos bajo los hombros.",
+                  "ca": "A quatre grapes, mans sota les espatlles.",
+                  "en": "On all fours, hands under your shoulders."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Coge aire y hunde la espalda: camello.",
+                  "ca": "Agafa aire i enfonsa l'esquena: camell.",
+                  "en": "Breathe in and drop your back: camel."
+                }
+              },
+              {
+                "at": 14,
+                "text": {
+                  "es": "Suelta el aire y arquea: gato.",
+                  "ca": "Deixa anar l'aire i arqueja: gat.",
+                  "en": "Breathe out and round up: cat."
+                }
+              },
+              {
+                "at": 22,
+                "text": {
+                  "es": "Lento, vértebra a vértebra.",
+                  "ca": "A poc a poc, vèrtebra a vèrtebra.",
+                  "en": "Slow, one vertebra at a time."
+                }
+              },
+              {
+                "at": 30,
+                "text": {
+                  "es": "Inhala al bajar, exhala al subir.",
+                  "ca": "Inspira en baixar, expira en pujar.",
+                  "en": "Inhale going down, exhale going up."
+                }
+              },
+              {
+                "at": 37,
+                "text": {
+                  "es": "Dos más, sin prisa.",
+                  "ca": "Dues més, sense pressa.",
+                  "en": "Two more, no rush."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "zancada-rotacion",
+            "mode": "time",
+            "seconds": 60,
+            "weight": false,
+            "restAfter": 15,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Rodilla al suelo, pie delantero firme.",
+                  "ca": "Genoll a terra, peu davanter ferm.",
+                  "en": "Knee down, front foot planted."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Gira el pecho hacia la pierna delantera.",
+                  "ca": "Gira el pit cap a la cama davantera.",
+                  "en": "Turn your chest toward the front leg."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Abre el brazo y sigue la mano con la mirada.",
+                  "ca": "Obre el braç i segueix la mà amb la mirada.",
+                  "en": "Open your arm and follow your hand with your eyes."
+                }
+              },
+              {
+                "at": 30,
+                "text": {
+                  "es": "¡Cambia de lado!",
+                  "ca": "Canvia de costat!",
+                  "en": "Switch sides!"
+                }
+              },
+              {
+                "at": 36,
+                "text": {
+                  "es": "Gira el pecho hacia la pierna delantera.",
+                  "ca": "Gira el pit cap a la cama davantera.",
+                  "en": "Turn your chest toward the front leg."
+                }
+              },
+              {
+                "at": 45,
+                "text": {
+                  "es": "Cadera estable, respira hondo.",
+                  "ca": "Maluc estable, respira fondo.",
+                  "en": "Hips steady, breathe deep."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "puente-gluteo",
+            "mode": "reps",
+            "reps": 10,
+            "estSeconds": 40,
+            "weight": false,
+            "restAfter": 20
+          }
+        ]
+      },
+      {
+        "name": {
+          "es": "Estiramientos",
+          "ca": "Estiraments",
+          "en": "Stretches"
+        },
+        "rounds": 1,
+        "steps": [
+          {
+            "exercise": "estiramiento-pectoral",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "restAfter": 10,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Antebrazo derecho al poste, a la altura del hombro.",
+                  "ca": "Avantbraç dret al pal, a l'altura de l'espatlla.",
+                  "en": "Right forearm on the post, at shoulder height."
+                }
+              },
+              {
+                "at": 5,
+                "text": {
+                  "es": "Gira el tronco hasta abrir el pecho.",
+                  "ca": "Gira el tronc fins a obrir el pit.",
+                  "en": "Turn your trunk until your chest opens."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Cambia: brazo izquierdo al poste.",
+                  "ca": "Canvia: braç esquerre al pal.",
+                  "en": "Switch: left arm on the post."
+                }
+              },
+              {
+                "at": 21,
+                "text": {
+                  "es": "Respira hondo y suelta.",
+                  "ca": "Respira fondo i deixa anar.",
+                  "en": "Breathe deep and let go."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "estiramiento-dorsal",
+            "mode": "time",
+            "seconds": 30,
+            "weight": false,
+            "restAfter": 0,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Manos en los postes, a la altura de la cintura.",
+                  "ca": "Mans als pals, a l'altura de la cintura.",
+                  "en": "Hands on the posts, at waist height."
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Glúteos atrás, torso paralelo al suelo.",
+                  "ca": "Glutis enrere, tors paral·lel a terra.",
+                  "en": "Hips back, torso parallel to the floor."
+                }
+              },
+              {
+                "at": 14,
+                "text": {
+                  "es": "Cabeza entre los brazos.",
+                  "ca": "Cap entre els braços.",
+                  "en": "Head between your arms."
+                }
+              },
+              {
+                "at": 20,
+                "text": {
+                  "es": "Siente estirarse toda la espalda.",
+                  "ca": "Nota com s'estira tota l'esquena.",
+                  "en": "Feel your whole back stretch."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "apreton-titan",
+    "n": 9,
+    "group": "principales",
+    "name": {
+      "es": "Agarre con hand grip",
+      "ca": "Agafada amb hand grip",
+      "en": "Hand grip strength"
+    },
+    "subtitle": {
+      "es": "El Apretón de Titán · mientras caminas",
+      "ca": "L'Estreta del Titan · mentre camines",
+      "en": "El Apretón de Titán · while walking"
+    },
+    "summary": {
+      "es": "Hand grip mientras caminas tus pasos: lunes, jueves y viernes. Nunca antes del pádel.",
+      "ca": "Hand grip mentre camines els teus passos: dilluns, dijous i divendres. Mai abans del pàdel.",
+      "en": "Hand grip while you walk your steps: Monday, Thursday and Friday. Never before padel."
+    },
+    "prepare": 10,
+    "blocks": [
+      {
+        "name": {
+          "es": "Apretón",
+          "ca": "Estrenyuda",
+          "en": "Squeeze"
+        },
+        "rounds": 3,
+        "restBetweenRounds": 60,
+        "steps": [
+          {
+            "exercise": "apreton-titan",
+            "mode": "time",
+            "seconds": 45,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "¡Aprieta fuerte, las dos manos!",
+                  "ca": "Estreny fort, les dues mans!",
+                  "en": "Squeeze hard, both hands!"
+                }
+              },
+              {
+                "at": 6,
+                "text": {
+                  "es": "Abre lento.",
+                  "ca": "Obre a poc a poc.",
+                  "en": "Open slowly."
+                }
+              },
+              {
+                "at": 9,
+                "text": {
+                  "es": "¡Aprieta! Muñeca recta.",
+                  "ca": "Estreny! Canell recte.",
+                  "en": "Squeeze! Wrist straight."
+                }
+              },
+              {
+                "at": 15,
+                "text": {
+                  "es": "Abre lento.",
+                  "ca": "Obre a poc a poc.",
+                  "en": "Open slowly."
+                }
+              },
+              {
+                "at": 18,
+                "text": {
+                  "es": "¡Aprieta! Hombro bajo.",
+                  "ca": "Estreny! Espatlla baixa.",
+                  "en": "Squeeze! Shoulder down."
+                }
+              },
+              {
+                "at": 24,
+                "text": {
+                  "es": "Abre lento.",
+                  "ca": "Obre a poc a poc.",
+                  "en": "Open slowly."
+                }
+              },
+              {
+                "at": 27,
+                "text": {
+                  "es": "¡Aprieta! Puño cerrado del todo.",
+                  "ca": "Estreny! Puny ben tancat.",
+                  "en": "Squeeze! Fist fully closed."
+                }
+              },
+              {
+                "at": 33,
+                "text": {
+                  "es": "Abre lento.",
+                  "ca": "Obre a poc a poc.",
+                  "en": "Open slowly."
+                }
+              },
+              {
+                "at": 36,
+                "text": {
+                  "es": "¡Último apretón, con todo!",
+                  "ca": "Última estrenyuda, amb tot!",
+                  "en": "Last squeeze, all in!"
+                }
+              },
+              {
+                "at": 42,
+                "text": {
+                  "es": "Abre lento.",
+                  "ca": "Obre a poc a poc.",
+                  "en": "Open slowly."
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -345,7 +1494,8 @@
             "reps": 15,
             "estSeconds": 75,
             "weight": true,
-            "restAfter": 30
+            "restAfter": 30,
+            "repsMax": 20
           },
           {
             "exercise": "flexiones-flecha",
@@ -358,26 +1508,29 @@
           {
             "exercise": "remo-mancuerna",
             "mode": "reps",
-            "reps": 10,
+            "reps": 8,
             "estSeconds": 80,
             "weight": true,
-            "restAfter": 30
+            "restAfter": 30,
+            "repsMax": 12
           },
           {
             "exercise": "peso-muerto-rumano",
             "mode": "reps",
-            "reps": 12,
+            "reps": 10,
             "estSeconds": 60,
             "weight": true,
-            "restAfter": 30
+            "restAfter": 30,
+            "repsMax": 15
           },
           {
             "exercise": "press-militar",
             "mode": "reps",
-            "reps": 12,
+            "reps": 10,
             "estSeconds": 55,
             "weight": true,
-            "restAfter": 30
+            "restAfter": 30,
+            "repsMax": 15
           }
         ]
       },
@@ -393,18 +1546,20 @@
           {
             "exercise": "extension-triceps",
             "mode": "reps",
-            "reps": 12,
+            "reps": 10,
             "estSeconds": 55,
             "weight": true,
-            "restAfter": 15
+            "restAfter": 15,
+            "repsMax": 15
           },
           {
             "exercise": "curl-biceps",
             "mode": "reps",
-            "reps": 12,
+            "reps": 10,
             "estSeconds": 90,
             "weight": true,
-            "restAfter": 15
+            "restAfter": 15,
+            "repsMax": 15
           },
           {
             "exercise": "pajaro-mancuernas",
@@ -412,7 +1567,8 @@
             "reps": 12,
             "estSeconds": 55,
             "weight": true,
-            "restAfter": 60
+            "restAfter": 60,
+            "repsMax": 15
           }
         ]
       }
@@ -708,223 +1864,41 @@
     ]
   },
   {
-    "id": "despegue-titan",
-    "n": 6,
+    "id": "torre-negativas",
+    "n": 7,
     "group": "torre",
     "name": {
-      "es": "Circuito de torre",
-      "ca": "Circuit de torre",
-      "en": "Tower circuit"
+      "es": "Dominadas y negativas",
+      "ca": "Dominades i negatives",
+      "en": "Pull-ups and negatives"
     },
     "subtitle": {
-      "es": "Despegue Titán",
-      "ca": "Enlairament Tità",
-      "en": "Titan Liftoff"
+      "es": "Torre · lun/vie",
+      "ca": "Torre · dl/dv",
+      "en": "Tower · Mon/Fri"
     },
     "summary": {
-      "es": "Circuito en la torre para ganar agarre, escápulas y control rumbo a la primera dominada.",
-      "ca": "Circuit a la torre per guanyar agafada, omòplats i control cap a la primera dominada.",
-      "en": "Tower circuit for grip, shoulder blades and control on the way to your first pull-up."
+      "es": "Activación de escápulas, dominadas estrictas sueltas y negativas de dominada y fondos; solo después de calentar.",
+      "ca": "Activació d'escàpules, dominades estrictes soltes i negatives de dominada i fons; només després d'escalfar.",
+      "en": "Shoulder-blade activation, single strict pull-ups and pull-up and dip negatives; only after a warm-up."
     },
     "prepare": 10,
     "blocks": [
       {
         "name": {
-          "es": "Calentamiento",
-          "ca": "Escalfament",
-          "en": "Warm-up"
+          "es": "Activación",
+          "ca": "Activació",
+          "en": "Activation"
         },
         "rounds": 1,
         "steps": [
-          {
-            "exercise": "rotacion-munecas",
-            "mode": "time",
-            "seconds": 45,
-            "weight": false,
-            "restAfter": 10,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Entrelaza los dedos y gira hacia la derecha.",
-                  "ca": "Entrellaça els dits i gira cap a la dreta.",
-                  "en": "Lace your fingers and circle to the right."
-                }
-              },
-              {
-                "at": 10,
-                "text": {
-                  "es": "Giros amplios, sin prisa.",
-                  "ca": "Girs amplis, sense pressa.",
-                  "en": "Wide circles, no rush."
-                }
-              },
-              {
-                "at": 22,
-                "text": {
-                  "es": "¡Cambia el sentido, hacia la izquierda!",
-                  "ca": "Canvia el sentit, cap a l'esquerra!",
-                  "en": "Switch direction, to the left!"
-                }
-              },
-              {
-                "at": 34,
-                "text": {
-                  "es": "Suelta y sacude los dedos al final.",
-                  "ca": "Deixa anar i sacseja els dits al final.",
-                  "en": "Then let go and shake your fingers."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "circulos-brazos",
-            "mode": "time",
-            "seconds": 60,
-            "weight": false,
-            "restAfter": 10,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Brazos en cruz, círculos amplios hacia delante.",
-                  "ca": "Braços en creu, cercles amplis cap endavant.",
-                  "en": "Arms out wide, big circles forward."
-                }
-              },
-              {
-                "at": 12,
-                "text": {
-                  "es": "Aprieta las escápulas en cada vuelta.",
-                  "ca": "Estreny els omòplats a cada volta.",
-                  "en": "Squeeze your shoulder blades each turn."
-                }
-              },
-              {
-                "at": 30,
-                "text": {
-                  "es": "¡Invierte el giro, hacia atrás!",
-                  "ca": "Inverteix el gir, cap enrere!",
-                  "en": "Reverse it, circle backward!"
-                }
-              },
-              {
-                "at": 42,
-                "text": {
-                  "es": "Abre bien la caja torácica.",
-                  "ca": "Obre bé la caixa toràcica.",
-                  "en": "Open your rib cage wide."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "retraccion-escapular",
-            "mode": "time",
-            "seconds": 60,
-            "weight": false,
-            "restAfter": 10,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Brazos al frente, palmas enfrentadas.",
-                  "ca": "Braços endavant, palmells encarats.",
-                  "en": "Arms out front, palms facing."
-                }
-              },
-              {
-                "at": 6,
-                "text": {
-                  "es": "Junta las paletas sin doblar los codos.",
-                  "ca": "Ajunta els omòplats sense doblegar els colzes.",
-                  "en": "Squeeze your shoulder blades, elbows straight."
-                }
-              },
-              {
-                "at": 15,
-                "text": {
-                  "es": "Aguanta un segundo y saca pecho.",
-                  "ca": "Aguanta un segon i treu pit.",
-                  "en": "Hold one second and lift your chest."
-                }
-              },
-              {
-                "at": 25,
-                "text": {
-                  "es": "Empuja adelante y vuelve.",
-                  "ca": "Empeny endavant i torna.",
-                  "en": "Push forward and come back."
-                }
-              },
-              {
-                "at": 35,
-                "text": {
-                  "es": "Hombros lejos de las orejas.",
-                  "ca": "Espatlles lluny de les orelles.",
-                  "en": "Shoulders away from your ears."
-                }
-              },
-              {
-                "at": 45,
-                "text": {
-                  "es": "Fluido y controlado, ya casi.",
-                  "ca": "Fluid i controlat, ja gairebé hi ets.",
-                  "en": "Smooth and controlled, almost there."
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": {
-          "es": "Torre",
-          "ca": "Torre",
-          "en": "Tower"
-        },
-        "rounds": 1,
-        "steps": [
-          {
-            "exercise": "cuelgue-activo",
-            "mode": "time",
-            "seconds": 15,
-            "weight": false,
-            "restAfter": 45,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Puntas de los pies rozando el estribo.",
-                  "ca": "Puntes dels peus fregant l'estrep.",
-                  "en": "Toes just touching the step."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Hombros abajo y atrás, saca pecho.",
-                  "ca": "Espatlles avall i enrere, treu pit.",
-                  "en": "Shoulders down and back, chest up."
-                }
-              },
-              {
-                "at": 9,
-                "text": {
-                  "es": "Aprieta la barra, ¡aguanta!",
-                  "ca": "Estreny la barra, aguanta!",
-                  "en": "Squeeze the bar, hold on!"
-                }
-              }
-            ]
-          },
           {
             "exercise": "dominada-escapular",
             "mode": "time",
             "seconds": 20,
             "weight": false,
             "beeps": false,
-            "restAfter": 45,
+            "restAfter": 60,
             "cues": [
               {
                 "at": 0,
@@ -967,490 +1941,35 @@
                 }
               }
             ]
-          },
-          {
-            "exercise": "dominada-negativa",
-            "mode": "time",
-            "seconds": 5,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡Barbilla arriba, aguanta!",
-                  "ca": "Barbeta amunt, aguanta!",
-                  "en": "Chin over the bar, hold!"
-                }
-              },
-              {
-                "at": 1,
-                "text": {
-                  "es": "Frena apretando la espalda.",
-                  "ca": "Frena estrenyent l'esquena.",
-                  "en": "Brake with your back."
-                }
-              },
-              {
-                "at": 2,
-                "text": {
-                  "es": "Codos a noventa, no caigas.",
-                  "ca": "Colzes a noranta, no caiguis.",
-                  "en": "Elbows at ninety, don't drop."
-                }
-              },
-              {
-                "at": 3,
-                "text": {
-                  "es": "Brazos casi estirados, control.",
-                  "ca": "Braços gairebé estirats, control.",
-                  "en": "Arms nearly straight, control."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Estira y apoya los pies.",
-                  "ca": "Estira i recolza els peus.",
-                  "en": "Straighten, feet down."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "cuelgue-alternado",
-            "mode": "time",
-            "seconds": 12,
-            "weight": false,
-            "restAfter": 45,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Pasivo: suelta el aire, deja estirar.",
-                  "ca": "Passiu: deixa anar l'aire, deixa estirar.",
-                  "en": "Passive: breathe out, let it stretch."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Activo: hombros abajo, saca pecho.",
-                  "ca": "Actiu: espatlles avall, treu pit.",
-                  "en": "Active: shoulders down, chest up."
-                }
-              },
-              {
-                "at": 8,
-                "text": {
-                  "es": "Máximo: abdomen duro, ¡sin balancearte!",
-                  "ca": "Màxim: abdomen dur, sense balancejar-te!",
-                  "en": "Max: abs tight, no swinging!"
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "dominada-negativa",
-            "mode": "time",
-            "seconds": 5,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡Cuatro segundos de puro fuego!",
-                  "ca": "Quatre segons de foc pur!",
-                  "en": "Four seconds of pure fire!"
-                }
-              },
-              {
-                "at": 1,
-                "text": {
-                  "es": "Suelta milímetro a milímetro.",
-                  "ca": "Deixa anar mil·límetre a mil·límetre.",
-                  "en": "Lower millimetre by millimetre."
-                }
-              },
-              {
-                "at": 2,
-                "text": {
-                  "es": "Aguanta con los dorsales.",
-                  "ca": "Aguanta amb els dorsals.",
-                  "en": "Hold it with your lats."
-                }
-              },
-              {
-                "at": 3,
-                "text": {
-                  "es": "Codos firmes, brazos controlados.",
-                  "ca": "Colzes ferms, braços controlats.",
-                  "en": "Elbows firm, arms controlled."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Estira y apoya las puntas.",
-                  "ca": "Estira i recolza les puntes.",
-                  "en": "Straighten, toes down."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "dominada-negativa",
-            "mode": "time",
-            "seconds": 5,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡La tercera! Barbilla arriba.",
-                  "ca": "La tercera! Barbeta amunt.",
-                  "en": "Third one! Chin over the bar."
-                }
-              },
-              {
-                "at": 1,
-                "text": {
-                  "es": "Pecho fuera, frena despacio.",
-                  "ca": "Pit fora, frena a poc a poc.",
-                  "en": "Chest out, brake slowly."
-                }
-              },
-              {
-                "at": 2,
-                "text": {
-                  "es": "Aprieta la espalda, sin caer.",
-                  "ca": "Estreny l'esquena, sense caure.",
-                  "en": "Squeeze your back, don't drop."
-                }
-              },
-              {
-                "at": 3,
-                "text": {
-                  "es": "Casi abajo, control.",
-                  "ca": "Gairebé a baix, control.",
-                  "en": "Almost down, control."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Pies al escalón, ¡bien hecho!",
-                  "ca": "Peus a l'esglaó, ben fet!",
-                  "en": "Feet on the step, well done!"
-                }
-              }
-            ]
           }
         ]
       },
       {
         "name": {
-          "es": "Fondos y abdomen",
-          "ca": "Fons i abdomen",
-          "en": "Dips and abs"
+          "es": "Dominadas estrictas",
+          "ca": "Dominades estrictes",
+          "en": "Strict pull-ups"
         },
-        "rounds": 1,
+        "rounds": 3,
+        "restBetweenRounds": 90,
         "steps": [
           {
-            "exercise": "soporte-paralelas",
-            "mode": "time",
-            "seconds": 15,
+            "exercise": "dominada-estricta",
+            "mode": "reps",
+            "reps": 1,
+            "estSeconds": 10,
             "weight": false,
-            "restAfter": 45,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Empuja las barras al suelo, pecho fuera.",
-                  "ca": "Empeny les barres cap a terra, pit enfora.",
-                  "en": "Push the bars down, chest out."
-                }
-              },
-              {
-                "at": 5,
-                "text": {
-                  "es": "Hombros bajos, que no se hunda el cuello.",
-                  "ca": "Espatlles baixes, que no s'enfonsi el coll.",
-                  "en": "Shoulders low, don't sink your neck."
-                }
-              },
-              {
-                "at": 10,
-                "text": {
-                  "es": "Abdomen duro, respira fluido.",
-                  "ca": "Abdomen dur, respira fluid.",
-                  "en": "Abs tight, breathe smoothly."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "fondos-negativos",
-            "mode": "time",
-            "seconds": 15,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Uno: baja en tres, codos atrás.",
-                  "ca": "Una: baixa en tres, colzes enrere.",
-                  "en": "One: lower in three, elbows back."
-                }
-              },
-              {
-                "at": 5,
-                "text": {
-                  "es": "Dos: baja en tres hasta noventa.",
-                  "ca": "Dues: baixa en tres fins a noranta.",
-                  "en": "Two: lower in three to ninety."
-                }
-              },
-              {
-                "at": 10,
-                "text": {
-                  "es": "Tres: baja en tres, ¡la última!",
-                  "ca": "Tres: baixa en tres, l'última!",
-                  "en": "Three: lower in three, last one!"
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "elevacion-rodillas",
-            "mode": "time",
-            "seconds": 30,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 45,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Uno: rodillas al pecho, baja despacio.",
-                  "ca": "Una: genolls al pit, baixa a poc a poc.",
-                  "en": "One: knees to chest, lower slowly."
-                }
-              },
-              {
-                "at": 5,
-                "text": {
-                  "es": "Dos: tira con el abdomen, sin tirones.",
-                  "ca": "Dues: tira amb l'abdomen, sense estirades.",
-                  "en": "Two: lift with your abs, no jerking."
-                }
-              },
-              {
-                "at": 10,
-                "text": {
-                  "es": "Tres: suelta el aire al subir.",
-                  "ca": "Tres: deixa anar l'aire en pujar.",
-                  "en": "Three: breathe out as you lift."
-                }
-              },
-              {
-                "at": 15,
-                "text": {
-                  "es": "Cuatro: hombros abajo, cuello largo.",
-                  "ca": "Quatre: espatlles avall, coll llarg.",
-                  "en": "Four: shoulders down, long neck."
-                }
-              },
-              {
-                "at": 20,
-                "text": {
-                  "es": "Cinco: controla la bajada.",
-                  "ca": "Cinc: controla la baixada.",
-                  "en": "Five: control the way down."
-                }
-              },
-              {
-                "at": 25,
-                "text": {
-                  "es": "Seis: aprieta arriba y baja suave.",
-                  "ca": "Sis: estreny a dalt i baixa suau.",
-                  "en": "Six: squeeze at the top, lower gently."
-                }
-              }
-            ]
+            "restAfter": 90
           }
         ]
       },
-      {
-        "name": {
-          "es": "Vuelta a la calma",
-          "ca": "Tornada a la calma",
-          "en": "Cool-down"
-        },
-        "rounds": 1,
-        "steps": [
-          {
-            "exercise": "cuelgue-pasivo",
-            "mode": "time",
-            "seconds": 40,
-            "weight": false,
-            "restAfter": 10,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Pies en los estribos, relaja los hombros.",
-                  "ca": "Peus als estreps, relaxa les espatlles.",
-                  "en": "Feet on the steps, relax your shoulders."
-                }
-              },
-              {
-                "at": 8,
-                "text": {
-                  "es": "Coge aire hinchando el pecho.",
-                  "ca": "Agafa aire inflant el pit.",
-                  "en": "Breathe in, fill your chest."
-                }
-              },
-              {
-                "at": 15,
-                "text": {
-                  "es": "Suéltalo despacio y estira la columna.",
-                  "ca": "Deixa'l anar a poc a poc i estira la columna.",
-                  "en": "Let it out slowly, lengthen your spine."
-                }
-              },
-              {
-                "at": 25,
-                "text": {
-                  "es": "Cada vértebra se separa, sin moverte.",
-                  "ca": "Cada vèrtebra se separa, sense moure't.",
-                  "en": "Each vertebra opens, stay still."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "estiramiento-pectoral",
-            "mode": "time",
-            "seconds": 30,
-            "weight": false,
-            "restAfter": 10,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Antebrazo derecho al poste, a la altura del hombro.",
-                  "ca": "Avantbraç dret al pal, a l'altura de l'espatlla.",
-                  "en": "Right forearm on the post, at shoulder height."
-                }
-              },
-              {
-                "at": 5,
-                "text": {
-                  "es": "Gira el tronco hasta abrir el pecho.",
-                  "ca": "Gira el tronc fins a obrir el pit.",
-                  "en": "Turn your trunk until your chest opens."
-                }
-              },
-              {
-                "at": 15,
-                "text": {
-                  "es": "Cambia: brazo izquierdo al poste.",
-                  "ca": "Canvia: braç esquerre al pal.",
-                  "en": "Switch: left arm on the post."
-                }
-              },
-              {
-                "at": 21,
-                "text": {
-                  "es": "Respira hondo y suelta.",
-                  "ca": "Respira fondo i deixa anar.",
-                  "en": "Breathe deep and let go."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "estiramiento-dorsal",
-            "mode": "time",
-            "seconds": 30,
-            "weight": false,
-            "restAfter": 0,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "Manos en los postes, a la altura de la cintura.",
-                  "ca": "Mans als pals, a l'altura de la cintura.",
-                  "en": "Hands on the posts, at waist height."
-                }
-              },
-              {
-                "at": 6,
-                "text": {
-                  "es": "Glúteos atrás, torso paralelo al suelo.",
-                  "ca": "Glutis enrere, tors paral·lel a terra.",
-                  "en": "Hips back, torso parallel to the floor."
-                }
-              },
-              {
-                "at": 14,
-                "text": {
-                  "es": "Cabeza entre los brazos.",
-                  "ca": "Cap entre els braços.",
-                  "en": "Head between your arms."
-                }
-              },
-              {
-                "at": 20,
-                "text": {
-                  "es": "Siente estirarse toda la espalda.",
-                  "ca": "Nota com s'estira tota l'esquena.",
-                  "en": "Feel your whole back stretch."
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "torre-negativas",
-    "n": 7,
-    "group": "torre",
-    "name": {
-      "es": "Negativas: dominada y fondos",
-      "ca": "Negatives: dominades i fons",
-      "en": "Negatives: pull-ups and dips"
-    },
-    "subtitle": {
-      "es": "Torre · lun/vie",
-      "ca": "Torre · dl/dv",
-      "en": "Tower · Mon/Fri"
-    },
-    "summary": {
-      "es": "Negativas de dominada y de fondos para fuerza; solo después de calentar, nunca en frío.",
-      "ca": "Negatives de dominada i de fons per a força; només després d'escalfar, mai en fred.",
-      "en": "Pull-up and dip negatives for strength; only after a warm-up, never cold."
-    },
-    "prepare": 10,
-    "blocks": [
       {
         "name": {
           "es": "Negativas de dominada",
           "ca": "Negatives de dominada",
           "en": "Pull-up negatives"
         },
-        "rounds": 5,
+        "rounds": 3,
         "restBetweenRounds": 30,
         "steps": [
           {
@@ -2009,130 +2528,6 @@
             "weight": false,
             "beeps": false,
             "restAfter": 0,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡Aprieta fuerte, las dos manos!",
-                  "ca": "Estreny fort, les dues mans!",
-                  "en": "Squeeze hard, both hands!"
-                }
-              },
-              {
-                "at": 6,
-                "text": {
-                  "es": "Abre lento.",
-                  "ca": "Obre a poc a poc.",
-                  "en": "Open slowly."
-                }
-              },
-              {
-                "at": 9,
-                "text": {
-                  "es": "¡Aprieta! Muñeca recta.",
-                  "ca": "Estreny! Canell recte.",
-                  "en": "Squeeze! Wrist straight."
-                }
-              },
-              {
-                "at": 15,
-                "text": {
-                  "es": "Abre lento.",
-                  "ca": "Obre a poc a poc.",
-                  "en": "Open slowly."
-                }
-              },
-              {
-                "at": 18,
-                "text": {
-                  "es": "¡Aprieta! Hombro bajo.",
-                  "ca": "Estreny! Espatlla baixa.",
-                  "en": "Squeeze! Shoulder down."
-                }
-              },
-              {
-                "at": 24,
-                "text": {
-                  "es": "Abre lento.",
-                  "ca": "Obre a poc a poc.",
-                  "en": "Open slowly."
-                }
-              },
-              {
-                "at": 27,
-                "text": {
-                  "es": "¡Aprieta! Puño cerrado del todo.",
-                  "ca": "Estreny! Puny ben tancat.",
-                  "en": "Squeeze! Fist fully closed."
-                }
-              },
-              {
-                "at": 33,
-                "text": {
-                  "es": "Abre lento.",
-                  "ca": "Obre a poc a poc.",
-                  "en": "Open slowly."
-                }
-              },
-              {
-                "at": 36,
-                "text": {
-                  "es": "¡Último apretón, con todo!",
-                  "ca": "Última estrenyuda, amb tot!",
-                  "en": "Last squeeze, all in!"
-                }
-              },
-              {
-                "at": 42,
-                "text": {
-                  "es": "Abre lento.",
-                  "ca": "Obre a poc a poc.",
-                  "en": "Open slowly."
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "apreton-titan",
-    "n": 9,
-    "group": "rapidas",
-    "name": {
-      "es": "Agarre con hand grip",
-      "ca": "Agafada amb hand grip",
-      "en": "Hand grip strength"
-    },
-    "subtitle": {
-      "es": "El Apretón de Titán",
-      "ca": "L'Estrenyuda de Tità",
-      "en": "The Titan Squeeze"
-    },
-    "summary": {
-      "es": "Hand grip isométrico en la cinta para un agarre de acero; nunca en días de pádel.",
-      "ca": "Hand grip isomètric a la cinta per a una agafada d'acer; mai els dies de pàdel.",
-      "en": "Isometric hand grip on the treadmill for a steel grip; never on padel days."
-    },
-    "prepare": 10,
-    "blocks": [
-      {
-        "name": {
-          "es": "Apretón",
-          "ca": "Estrenyuda",
-          "en": "Squeeze"
-        },
-        "rounds": 3,
-        "restBetweenRounds": 60,
-        "steps": [
-          {
-            "exercise": "apreton-titan",
-            "mode": "time",
-            "seconds": 45,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
             "cues": [
               {
                 "at": 0,

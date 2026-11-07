@@ -12,6 +12,7 @@
     next: { es: 'Siguiente', ca: 'Següent', en: 'Next' },
     round: { es: 'Ronda', ca: 'Ronda', en: 'Round' },
     reps: { es: 'reps', ca: 'reps', en: 'reps' },
+    rep: { es: 'rep', ca: 'rep', en: 'rep' },
     toFailure: { es: 'Al fallo técnico', ca: 'Fins a la fallada tècnica', en: 'To technical failure' },
     toFailureHint: { es: 'Para cuando la postura se rompa', ca: 'Atura’t quan la postura es trenqui', en: 'Stop when your form breaks' },
     kg: { es: 'kg', ca: 'kg', en: 'kg' },
@@ -30,6 +31,8 @@
     noCaVoice: { es: '', ca: 'Aquest mòbil no té veu en català: el Titan parlarà en castellà.', en: '' },
     exitAsk: { es: '¿Salir del entreno?', ca: 'Vols sortir de l’entrenament?', en: 'Leave the workout?' },
     summary: { es: 'Series completadas', ca: 'Sèries completades', en: 'Sets completed' },
+    to: { es: 'a', ca: 'a', en: 'to' },
+    rangeHint: { es: '¿{max} en todas las series? La próxima, sube peso.', ca: '{max} a totes les sèries? La propera, puja pes.', en: '{max} in every set? Next time, go up in weight.' },
     feelAsk: { es: '¿Cómo te ha ido cada ejercicio?', ca: 'Com t’ha anat cada exercici?', en: 'How did each exercise feel?' },
     feelHint: { es: 'Si algo te sobró, márcalo fácil: a las 2 veces seguidas sale para subir.', ca: 'Si alguna cosa et va sobrar, marca-la fàcil: a les 2 vegades seguides surt per pujar.', en: 'If something was too easy, mark it: after 2 in a row it’s flagged to level up.' },
     easy: { es: 'Fácil', ca: 'Fàcil', en: 'Easy' },
@@ -55,7 +58,7 @@
           const est = step.mode === 'time' ? step.seconds
             : (step.estSeconds || (step.toFailure ? FAILURE_EST : (step.reps || 10) * REPS_EST));
           items.push({ kind: 'work', mode: step.mode, seconds: step.mode === 'time' ? step.seconds : null, est,
-            reps: step.reps, toFailure: !!step.toFailure, beeps: step.beeps !== false, weight: !!step.weight, exId: step.exercise, ex, cues: step.cues || [], block, round: r + 1, rounds });
+            reps: step.reps, repsMax: step.repsMax, toFailure: !!step.toFailure, beeps: step.beeps !== false, weight: !!step.weight, exId: step.exercise, ex, cues: step.cues || [], block, round: r + 1, rounds });
           const lastStep = s === block.steps.length - 1;
           const rest = lastStep && r < rounds - 1 && block.restBetweenRounds != null ? block.restBetweenRounds : step.restAfter;
           if (rest > 0) items.push({ kind: 'rest', seconds: rest });
@@ -219,7 +222,8 @@
         center = `<div class="p-phase">${esc(t(TEXT.work))}</div>
           <h2 class="p-title">${exName(it.exId, t(it.ex.name))}</h2>
           ${it.toFailure ? `<div class="reps-target fail">${esc(t(TEXT.toFailure))}<small>${esc(t(TEXT.toFailureHint))}</small></div>`
-            : `<div class="reps-target"><b>${it.reps}</b> ${esc(t(TEXT.reps))}</div>`}
+            : `<div class="reps-target"><b>${it.reps}${it.repsMax ? `–${it.repsMax}` : ''}</b> ${esc(t(it.reps === 1 && !it.repsMax ? TEXT.rep : TEXT.reps))}${it.repsMax
+              ? `<small>${esc(t(TEXT.rangeHint).replace('{max}', it.repsMax))}</small>` : ''}</div>`}
           ${it.weight ? `<label class="weight">${esc(t(TEXT.weight))}
             <input type="number" inputmode="decimal" min="0" step="0.5" data-weight value="${weights[it.exId] ?? ''}"> ${esc(t(TEXT.kg))}</label>` : ''}
           <button class="btn big go" data-act="done">✔ ${esc(t(TEXT.finished))}</button>`;
@@ -262,7 +266,8 @@
         if (it.kind === 'prep') { if (it.seconds >= 15) sayKey('start'); sayKey('prep', { name: it.next ? t(it.next.ex.name) : '' }); }
         else if (it.kind === 'work') {
           beep(1320, 380);
-          if (it.mode === 'reps') { if (it.toFailure) say(t(TEXT.toFailureHint)); else sayKey('repsGo', { reps: it.reps }); }
+          if (it.mode === 'reps') { if (it.toFailure) say(t(TEXT.toFailureHint)); else if (it.reps === 1 && !it.repsMax && lines?.repsOne) sayKey('repsOne');
+            else sayKey('repsGo', { reps: it.repsMax ? `${it.reps} ${t(TEXT.to)} ${it.repsMax}` : it.reps }); }
           else if (!it.cues.length) sayKey('go'); // authored cues replace the generic lines
         } else if (it.kind === 'rest') {
           beep(660, 380);

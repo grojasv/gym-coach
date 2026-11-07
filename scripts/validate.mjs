@@ -81,6 +81,7 @@ for (const r of routines) {
       } else if (s.mode === 'reps') {
         if (!(s.reps > 0) && !s.toFailure) err(sw, 'reps step needs reps or toFailure');
         if (s.cues?.length) err(sw, 'reps steps take no timed cues');
+        if (s.repsMax != null && !(s.repsMax > s.reps)) err(sw, 'repsMax must be above reps');
       } else err(sw, `mode must be time or reps, got ${s.mode}`);
       if (s.restAfter != null && !(s.restAfter >= 0)) err(sw, 'bad restAfter');
     });
@@ -95,7 +96,7 @@ const walk = (id, seen) => (byId[id]?.blocks || []).forEach((b) => {
 });
 routines.forEach((r) => walk(r.id, [r.id]));
 
-const KEYS = ['hello', 'start', 'prep', 'go', 'halfway', 'last3', 'repsGo', 'repsDone', 'rest', 'nextUp', 'roundDone', 'finish', 'motto', 'paused'];
+const KEYS = ['hello', 'start', 'prep', 'go', 'halfway', 'last3', 'repsGo', 'repsDone', 'rest', 'nextUp', 'roundDone', 'finish', 'motto', 'paused', 'repsOne'];
 const lines = read('lines.json');
 for (const k of KEYS) localized(`lines.${k}`, lines[k], { list: true, maxWords: 18 });
 LANGS.forEach((l) => {

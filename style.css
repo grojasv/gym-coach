@@ -95,6 +95,10 @@ a.card:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--edge
   display: inline-block; padding: 3px 10px; border: 2px solid var(--edge); border-radius: 999px; background: var(--gold);
   color: var(--navy); font: 700 13px/1.3 var(--body); white-space: nowrap;
 }
+/* Hub: main routines on top, the rest folded in "Más rutinas". */
+.list.pinned { margin-bottom: 14px; }
+.more-groups { display: grid; gap: 10px; padding: 10px 0 2px; }
+.more-groups .group { box-shadow: none; }
 /* Level-up candidate tag and hub list. */
 .up { display: inline-block; margin-left: 6px; padding: 1px 7px; border: 1.5px solid var(--edge); border-radius: 999px; background: var(--orange); color: var(--navy); font: 700 12px/1.4 var(--body); white-space: nowrap; vertical-align: middle; }
 .card.ex h3 + .up { margin: 0 0 4px; }
@@ -162,7 +166,8 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .p-stage .mascot { width: min(34vh, 180px); }
 .p-stage.intro .mascot { width: min(26vh, 150px); }
 /* Long routines (R1 lists 17 exercises): the start screen scrolls instead of clipping, and stays centred when it fits. */
-.p-stage.intro { justify-content: safe center; overflow-y: auto; }
+/* Every player screen scrolls inside itself rather than running under the controls (320×568 with a rep range + weight). */
+.p-stage { justify-content: safe center; overflow-y: auto; }
 .p-stage.intro .p-list { font-size: 15px; line-height: 1.45; }
 .p-stage .bubble { width: 100%; max-width: 420px; font-size: 17px; }
 .p-phase {
@@ -234,6 +239,9 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
   .p-stage { gap: 6px; }
   .p-stage .bubble { font-size: 15px; padding: 8px 10px; min-height: 0; }
   .p-phase { font-size: 20px; }
+  .reps-target small { font-size: 13px; }
+  .reps-target b { font-size: 44px; }
+  .p-stage:has(.reps-target) .mascot { display: none; } /* room for Hecho without scrolling */
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

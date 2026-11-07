@@ -1,5 +1,16 @@
 [
   {
+    "id": "principales",
+    "emoji": "⭐",
+    "color": "red",
+    "pinned": true,
+    "name": {
+      "es": "Mis rutinas",
+      "ca": "Les meves rutines",
+      "en": "My routines"
+    }
+  },
+  {
     "id": "codigo-titan",
     "emoji": "🧩",
     "color": "red",
@@ -7,7 +18,8 @@
       "es": "Código Titán",
       "ca": "Codi Titan",
       "en": "Código Titán"
-    }
+    },
+    "more": true
   },
   {
     "id": "torre",
@@ -17,7 +29,8 @@
       "es": "Torre y dominadas",
       "ca": "Torre i dominades",
       "en": "Tower and pull-ups"
-    }
+    },
+    "more": true
   },
   {
     "id": "rapidas",
@@ -27,7 +40,8 @@
       "es": "Rápidas",
       "ca": "Ràpides",
       "en": "Quick ones"
-    }
+    },
+    "more": true
   },
   {
     "id": "descarga",
@@ -37,6 +51,7 @@
       "es": "Descarga",
       "ca": "Descàrrega",
       "en": "Recovery"
-    }
+    },
+    "more": true
   }
 ]
