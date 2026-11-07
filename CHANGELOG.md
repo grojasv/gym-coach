@@ -2,12 +2,13 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
-## [Unreleased]
+## [0.7.0] — 2026-11-07
 ### Added
 - **Tap an exercise name in the player to see how it's done.** It works on the set, on the rest screen ("Siguiente: …") and in the start list. The timer pauses while the explanation is open; close it and tap ▶ to carry on.
 ### Changed
 - The exercise explanation now lives in `detail.js`, shared by the hub's exercise page and the player, so the two can't drift. The service worker cache is bumped to v4.
 ### Fixed
+- E20 Rotación de muñecas no longer says 30 s per side; R6 does it for 45 s, so it now says "half the time".
 - **A paused countdown now shows the time left.** Before, pressing ⏸ redrew the clock and ring at the full step length until you resumed.
 
 ## [0.6.1] — 2026-11-07
