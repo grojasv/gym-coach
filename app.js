@@ -16,11 +16,6 @@
     sets: { es: 'series', ca: 'sèries', en: 'sets' },
     set: { es: 'serie', ca: 'sèrie', en: 'set' },
     last: { es: 'Última vez', ca: 'Última vegada', en: 'Last time' },
-    how: { es: 'Cómo se hace', ca: 'Com es fa', en: 'How to do it' },
-    cues: { es: 'Claves de postura', ca: 'Claus de postura', en: 'Posture cues' },
-    mistakes: { es: 'Errores comunes', ca: 'Errors comuns', en: 'Common mistakes' },
-    safety: { es: 'Seguridad', ca: 'Seguretat', en: 'Safety' },
-    targets: { es: 'Trabaja', ca: 'Treballa', en: 'Works' },
     back: { es: '‹ Volver', ca: '‹ Torna', en: '‹ Back' },
     done: { es: 'completo', ca: 'complet', en: 'complete' },
     partial: { es: 'parcial', ca: 'parcial', en: 'partial' },
@@ -36,16 +31,7 @@
     adjusted: { es: 'Ajustado', ca: 'Ajustat', en: 'Adjusted' },
     hello: { es: '¡Qué pasa, fiera! ¡A darle con todo!', ca: 'Què passa, fiera? A donar-ho tot!', en: 'What’s up, beast? Let’s give it everything!' },
   };
-  const EQUIP = {
-    'pullup-bar': { es: 'Barra de dominadas', ca: 'Barra de dominades', en: 'Pull-up bar' },
-    'dip-bars': { es: 'Paralelas', ca: 'Paral·leles', en: 'Dip bars' },
-    'knee-raise': { es: 'Silla romana', ca: 'Cadira romana', en: 'Roman chair' },
-    rower: { es: 'Remo', ca: 'Rem', en: 'Rower' },
-    dumbbells: { es: 'Mancuernas', ca: 'Manuelles', en: 'Dumbbells' },
-    handgrip: { es: 'Hand grip', ca: 'Hand grip', en: 'Hand grip' },
-    'ab-wheel': { es: 'Rueda abdominal', ca: 'Roda abdominal', en: 'Ab wheel' },
-    floor: { es: 'Suelo', ca: 'Terra', en: 'Floor' },
-  };
+  const EQUIP = Detail.EQUIP; // shared with the player's info overlay (detail.js)
 
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch { return null; } },
@@ -191,17 +177,9 @@
   function renderExercise(id) {
     const ex = data.exercises[id];
     if (!ex) { view.innerHTML = `<p class="empty">${esc(t(TEXT.notFound))}</p>`; return; }
-    const list = (o) => `<ul>${(o?.[lang] || o?.es || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
     view.innerHTML = `
       <a class="back" href="#/">${esc(t(TEXT.back))}</a>
-      <article class="card detail">
-        <h2>${num('E', ex.n)}${esc(t(ex.name))}</h2>
-        <p class="chips">${ex.equipment.map((e) => `<span class="pill">${esc(t(EQUIP[e]) || e)}</span>`).join('')}${candidates()[id] ? upTag() : ''}</p>
-        ${ex.targets ? `<p class="muted"><b>${esc(t(TEXT.targets))}:</b> ${esc((ex.targets[lang] || ex.targets.es).join(', '))}</p>` : ''}
-        <h3>${esc(t(TEXT.how))}</h3><p>${esc(t(ex.how))}</p>
-        <h3>✅ ${esc(t(TEXT.cues))}</h3>${list(ex.cues)}
-        <h3>❌ ${esc(t(TEXT.mistakes))}</h3>${list(ex.mistakes)}
-        ${ex.safety ? `<div class="safety"><b>⚠️ ${esc(t(TEXT.safety))}:</b> ${esc(t(ex.safety))}</div>` : ''}
+      <article class="card detail">${Detail.html(ex, lang, { extraChips: candidates()[id] ? upTag() : '' })}
       </article>`;
   }
   function openPlayer(id) {

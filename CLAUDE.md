@@ -6,6 +6,7 @@ Phone-first hub of workout routines, played as a timed script by El Titán (a ca
 - `index.html`, `style.css`: the shell and the Lucha Libre poster look (tokens on `:root`, light and dark).
 - `app.js`: the hub (routines, exercise library, history), languages, install button, footer. **`VERSION` here must match `CHANGELOG.md`.**
 - `player.js`: builds the timeline from a routine and plays it (timestamps, cues, beeps, speech, wake lock).
+- `detail.js`: the exercise explanation (`Detail.html`) and equipment names, shared by the hub's exercise page and the player's info overlay.
 - `mascot.js`: El Titán as SVG (`Titan.svg(pose)`, `Titan.head()`), UMD so `scripts/make-icons.mjs` can reuse it.
 - `data/exercises.json`, `data/routines.json`, `data/lines.json`: all the content. Schemas are in `SPEC.md`.
 - `raw/`: Guille's private source material (a Gemini chat and his old Código Titán pages). **Gitignored. Never commit or publish it.** `raw/NOTES.md` summarises it.
