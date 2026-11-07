@@ -2,6 +2,21 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.8.0] — 2026-11-07
+Applies the goals review agreed on 2026-11-07, most important first.
+### Changed
+- **Pull-ups: from 1 to 2–3.** The new exercise **E28 Dominada estricta** is done one rep at a time: tap Hecho, then rest 90 s.
+  - **R7** (and so R1 on Monday and Friday) now runs scapular pull-ups (E24) → **3 strict singles** → 3 pull-up negatives (it was 5) → dip negatives. It's renamed "Dominadas y negativas".
+  - **R6 is your pull-up day:** active hang + scapular pull-ups → **4 strict singles** → 3 negatives → dips and knee raises → stretches. E6 and E8 are gone from it.
+- **Grip:** R9 is now the hand grip you do while walking your steps: Monday, Thursday and Friday, never before padel.
+- **The hub shows your routines first:** R1, R6, R12 and R9 sit open at the top, and everything else is inside a closed **📦 Más rutinas**.
+- **Rep ranges in R4:** for example "15–20 reps" for the goblet squat. The screen reminds you: "¿20 en todas las series? La próxima, sube peso."
+### Added
+- **R12 Torre suave** (13 min): mobility and stretches with no hanging or gripping, for Wednesday morning before padel or the day before R1.
+- El Titán has his own lines for single-rep sets.
+### Fixed
+- **Short phones:** a player screen with a rep range and weight no longer runs under the controls. Screens scroll, and on short phones the rep screen hides El Titán so Hecho stays in view.
+
 ## [0.7.0] — 2026-11-07
 ### Added
 - **Tap an exercise name in the player to see how it's done.** It works on the set, on the rest screen ("Siguiente: …") and in the start list. The timer pauses while the explanation is open; close it and tap ▶ to carry on.

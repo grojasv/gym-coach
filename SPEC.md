@@ -40,7 +40,7 @@ the data, never reused or renumbered; a new item takes the next free number. `va
 | Durations | Configurable per routine. The total is **computed from the steps, never typed in**. Target lengths later: 15 / 30 / 60 min. |
 | History | Basic log on the phone (`localStorage`): date, routine, done or partial, and the dumbbell weight per exercise, which is suggested next time. |
 | Style | One Lucha Libre look: wrestling-poster type, yellow mask gold, deep navy and hot red, with light and dark modes. |
-| Content | 27 exercises and 11 routines from Guille's Código Titán material (0.2.0), grouped on the hub (0.3.0). R6 extended to 15 min with more tower work (0.4.1). R1 uses all the equipment, about 60 min (0.6.0). |
+| Content | 28 exercises and 12 routines from Guille's Código Titán material (0.2.0), grouped on the hub (0.3.0). R6 extended to 15 min with more tower work (0.4.1). R1 uses all the equipment, about 60 min (0.6.0). Goals review 2026-11-07 (0.8.0): strict pull-up singles in R1 and R6, R12 Torre suave for clash days, hand grip while walking (R9), rep ranges, main routines pinned on the hub. |
 | Later | Gamification (boss HP bars, XP, FINAL BOSS round), the weekly calendar with a "today" card, progressions or levels. |
 
 ## Data
@@ -80,6 +80,7 @@ the data, never reused or renumbered; a new item takes the next free number. `va
       "mode": "time",                   // time: countdown | reps: wait for Done
       "seconds": 15,                    // mode time
       "reps": 10,                       // mode reps (shown as the target)
+      "repsMax": 15,                    // optional: a range "10–15"; at the top in every set, go up in weight next time
       "estSeconds": 40,                 // mode reps: estimate for the computed duration (default reps × 4)
       "weight": false,                  // true: ask for and log the dumbbell weight
       "toFailure": false,               // mode reps: no number, "to technical failure" (estimate 45 s)
@@ -93,7 +94,7 @@ the data, never reused or renumbered; a new item takes the next free number. `va
 }]
 ```
 **Includes:** a block can be `{ "routine": "<id>" }` instead. It is replaced by that routine's blocks, so a full
-session is built from its phases (`codigo-titan` = its 4 phase routines). The `prepare` used is the outer routine's.
+session is built from its phases (`codigo-titan` = R2 + R3 + R7 + R4 + R5 + R11). The `prepare` used is the outer routine's.
 Between included routines, the last step's `restAfter` is the transition rest.
 
 **Cue rules** (checked by `node scripts/validate.mjs`): `at` values increase and stay below `seconds - 3`, or below
@@ -105,7 +106,9 @@ by its **rest**. The rest is `restAfter`, except after a round's last step, wher
 last rest of the routine is dropped, and the timeline ends with **done**. The duration is the sum of all of it.
 
 ### `data/groups.json`: the hub's routine sections, in order
-`[{ "id": "codigo-titan", "emoji": "🧩", "color": "red|gold|teal|green", "name": { "es": "…", "ca": "…", "en": "…" } }]`.
+`[{ "id": "codigo-titan", "emoji": "🧩", "color": "red|gold|teal|green", "pinned": false, "more": true, "name": { "es": "…", "ca": "…", "en": "…" } }]`.
+A `pinned` group (⭐ "Mis rutinas": R1, R6, R12, R9) shows its cards open on top of the hub without a header; every other
+group folds inside one "Más rutinas" section.
 Within a group, routines keep their order in `routines.json`. The equipment chips on each card are computed from its
 exercises. Open sections (routines and library) are remembered in `localStorage` `gym-coach.open`.
 
@@ -113,7 +116,7 @@ exercises. Open sections (routines and library) are remembered in `localStorage`
 Each key holds `{ "es": [...], "ca": [...], "en": [...] }`. A line is picked at random and is not repeated twice in a
 row. Placeholders: `{name}` is the exercise name, `{n}` is a number, and `{reps}` is the reps.
 Keys: `hello` (on the hub), `start`, `prep` (get ready), `go`, `halfway`, `last3`, `repsGo`, `repsDone`, `rest`, `nextUp`,
-`roundDone`, `finish`, `motto`, `paused`. Each spoken line takes under 5 s to say.
+`roundDone`, `finish`, `motto`, `paused`, `repsOne` (a single-rep step such as a strict pull-up, instead of `repsGo`). Each spoken line takes under 5 s to say.
 
 ### Level-up marks: `localStorage` `gym-coach.feel` (0.5.0)
 A first step towards making things harder over time, decided with Guille on 2026-11-06:
