@@ -2,6 +2,10 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.9.1] — 2026-11-10
+### Changed
+- **R6 rests match R1:** 60 s between strict pull-ups (it was 90) and 45 s after the scapular pull-ups (it was 60). R6 now takes 18 min (it was 20).
+
 ## [0.9.0] — 2026-11-10
 From Guille's feedback after a full R1.
 ### Added

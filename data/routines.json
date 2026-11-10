@@ -257,7 +257,7 @@
             "seconds": 20,
             "weight": false,
             "beeps": false,
-            "restAfter": 60,
+            "restAfter": 45,
             "cues": [
               {
                 "at": 0,
@@ -310,7 +310,7 @@
           "en": "Strict pull-ups"
         },
         "rounds": 4,
-        "restBetweenRounds": 90,
+        "restBetweenRounds": 60,
         "steps": [
           {
             "exercise": "dominada-estricta",
@@ -318,7 +318,7 @@
             "reps": 1,
             "estSeconds": 10,
             "weight": false,
-            "restAfter": 90
+            "restAfter": 60
           }
         ]
       },
