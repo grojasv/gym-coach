@@ -124,6 +124,11 @@ a.card:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--edge
 .history { list-style: none; margin: 0; padding: 6px 14px; }
 .history li { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; padding: 8px 0; border-bottom: 2px dashed rgb(127 127 127 / 25%); }
 .history li:last-child { border: 0; }
+.notes { padding: 12px 14px; }
+.notes p.muted { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
+.notes ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 6px; font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; }
+.notes-btns { display: flex; gap: 8px; margin: 10px 0 0; }
+.btn.ghost { background: var(--card); color: var(--ink); }
 .history li span:first-child { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
 .tag { font-size: 13px; font-weight: 700; color: var(--muted); }
 .tag.ok { color: var(--green); }
@@ -223,6 +228,24 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .f-btns button.on { background: var(--gold); color: var(--navy); box-shadow: 2px 2px 0 var(--edge); }
 .p-controls { display: flex; justify-content: center; gap: 14px; padding-top: 10px; }
 .is-paused .timer, .is-paused .secs { opacity: .45; }
+.p-top:has([data-act="note"]) { grid-template-columns: 44px 1fr 44px 44px; }
+/* A reps set's target time (its estimate): counts down, then shows overtime. Only Hecho moves on. */
+.rep-clock { font-variant-numeric: tabular-nums; }
+.rep-clock.over { color: var(--gold); }
+.is-paused .rep-clock { opacity: .6; }
+.weight { flex-wrap: wrap; justify-content: center; }
+.weight small { flex-basis: 100%; font-size: 12px; font-weight: 600; color: var(--muted); }
+/* Stations: set up / put away (also spoken). */
+.p-equip { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.p-equip span { padding: 4px 10px; border: 2px solid var(--edge); border-radius: 999px; background: var(--card); font-weight: 700; font-size: 14px; }
+/* 📝 note overlay */
+.p-note h2 { margin: 0 0 6px; font: 22px/1.15 var(--display); }
+.p-note textarea { width: 100%; margin: 10px 0 6px; padding: 10px; border: 2.5px solid var(--edge); border-radius: 10px; font: 16px/1.3 var(--body); background: var(--bg); color: var(--ink); resize: vertical; }
+.note-tags { display: flex; gap: 8px; margin: 10px 0 0; }
+.note-tags button { flex: 1; padding: 10px; border: 2.5px solid var(--edge); border-radius: 10px; background: var(--bg); color: var(--ink); font: 700 16px var(--body); }
+.note-tags button.on { background: var(--gold); color: var(--navy); box-shadow: 2px 2px 0 var(--edge); }
+.note-btns { display: flex; gap: 10px; flex-shrink: 0; }
+.note-btns .btn { flex: 1; }
 
 /* El Titán: talking and wiggle */
 .mascot.talking .titan-mouth { animation: talk .22s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
@@ -241,7 +264,7 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
   .p-phase { font-size: 20px; }
   .reps-target small { font-size: 13px; }
   .reps-target b { font-size: 44px; }
-  .p-stage:has(.reps-target) .mascot { display: none; } /* room for Hecho without scrolling */
+  .p-stage:has(.reps-target) .mascot, .p-stage:has(.p-equip) .mascot { display: none; } /* room for Hecho / the set-up chip without scrolling */
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

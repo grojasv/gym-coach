@@ -36,5 +36,15 @@
       ${ex.safety ? `<div class="safety"><b>⚠️ ${esc(t(TEXT.safety))}:</b> ${esc(t(ex.safety))}</div>` : ''}`;
   }
 
-  window.Detail = { html, EQUIP };
+  // Stations: what Guille sets out in the room. The bar, the dip bars and the knee raise are one tower; the floor is none.
+  const STATION = { 'pullup-bar': 'tower', 'dip-bars': 'tower', 'knee-raise': 'tower', rower: 'rower', dumbbells: 'dumbbells', handgrip: 'handgrip', 'ab-wheel': 'ab-wheel' };
+  // With the article, for the spoken "Prepara {x}" lines (gender and number differ per station).
+  const STATION_NAME = {
+    tower: { es: 'la torre', ca: 'la torre', en: 'the tower' },
+    rower: { es: 'el remo', ca: 'el rem', en: 'the rower' },
+    dumbbells: { es: 'las mancuernas', ca: 'les manuelles', en: 'the dumbbells' },
+    handgrip: { es: 'el hand grip', ca: 'el hand grip', en: 'the hand grip' },
+    'ab-wheel': { es: 'la rueda', ca: 'la roda', en: 'the ab wheel' },
+  };
+  window.Detail = { html, EQUIP, STATION, STATION_NAME };
 })();

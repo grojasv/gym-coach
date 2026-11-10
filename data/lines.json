@@ -367,5 +367,39 @@
       "One perfect rep, beast. Tap Done when you're down.",
       "Only one, surgeon style. Then tap Done."
     ]
+  },
+  "equipSet": {
+    "es": [
+      "Prepara {x}.",
+      "Ve preparando {x}, fiera.",
+      "Ahora toca {x}. A prepararlo todo."
+    ],
+    "ca": [
+      "Prepara {x}.",
+      "Ves preparant {x}, fiera.",
+      "Ara toca {x}. A preparar-ho tot."
+    ],
+    "en": [
+      "Get {x} ready.",
+      "Set up {x}, beast.",
+      "Time for {x}. Get set up."
+    ]
+  },
+  "equipAway": {
+    "es": [
+      "Ya puedes recoger {x}.",
+      "Recoge {x}, ya no toca más.",
+      "Hora de recoger {x}, fiera."
+    ],
+    "ca": [
+      "Ja pots recollir {x}.",
+      "Recull {x}, ja no toca més.",
+      "Hora de recollir {x}, fiera."
+    ],
+    "en": [
+      "You can put {x} away now.",
+      "Put {x} away, we are done there.",
+      "Time to clear {x} away, beast."
+    ]
   }
 }

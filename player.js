@@ -32,7 +32,19 @@
     exitAsk: { es: '¿Salir del entreno?', ca: 'Vols sortir de l’entrenament?', en: 'Leave the workout?' },
     summary: { es: 'Series completadas', ca: 'Sèries completades', en: 'Sets completed' },
     to: { es: 'a', ca: 'a', en: 'to' },
-    rangeHint: { es: '¿{max} en todas las series? La próxima, sube peso.', ca: '{max} a totes les sèries? La propera, puja pes.', en: '{max} in every set? Next time, go up in weight.' },
+    rangeHint: { es: '¿{max} en todas las series? La próxima, baja en 3 segundos.', ca: '{max} a totes les sèries? La propera, baixa en 3 segons.', en: '{max} in every set? Next time, lower in 3 seconds.' },
+    weightOnce: { es: 'El mismo para todo el entreno', ca: 'El mateix per a tot l’entrenament', en: 'The same for the whole workout' },
+    setUp: { es: 'Prepara', ca: 'Prepara', en: 'Set up' },
+    putAway: { es: 'Recoge', ca: 'Recull', en: 'Put away' },
+    note: { es: 'Apuntar una nota', ca: 'Apunta una nota', en: 'Write a note' },
+    noteTitle: { es: 'Nota para mejorar', ca: 'Nota per millorar', en: 'Note to improve' },
+    noteHint: { es: 'Se guarda en Notas, en el hub, para pasármela luego.', ca: 'Es desa a Notes, al hub, per passar-me-la després.', en: 'Saved in Notes, on the hub, to send me later.' },
+    notePh: { es: 'Opcional: qué cambiarías', ca: 'Opcional: què canviaries', en: 'Optional: what you would change' },
+    save: { es: 'Guardar', ca: 'Desa', en: 'Save' },
+    cancel: { es: 'Cancelar', ca: 'Cancel·la', en: 'Cancel' },
+    saved: { es: 'Nota guardada.', ca: 'Nota desada.', en: 'Note saved.' },
+    short: { es: 'Corto', ca: 'Curt', en: 'Too short' },
+    long: { es: 'Largo', ca: 'Llarg', en: 'Too long' },
     feelAsk: { es: '¿Cómo te ha ido cada ejercicio?', ca: 'Com t’ha anat cada exercici?', en: 'How did each exercise feel?' },
     feelHint: { es: 'Si algo te sobró, márcalo fácil: a las 2 veces seguidas sale para subir.', ca: 'Si alguna cosa et va sobrar, marca-la fàcil: a les 2 vegades seguides surt per pujar.', en: 'If something was too easy, mark it: after 2 in a row it’s flagged to level up.' },
     easy: { es: 'Fácil', ca: 'Fàcil', en: 'Easy' },
@@ -67,6 +79,21 @@
     });
     while (items.length && items[items.length - 1].kind === 'rest') items.pop(); // no rest after the last set
     items.push({ kind: 'done', seconds: null });
+    // Stations (SPEC § Player): "set up" on the prep/rest before a station's first use, "put away" after its last use.
+    const STATION = window.Detail?.STATION || {};
+    const work = items.map((it, i) => [it, i]).filter(([it]) => it.kind === 'work');
+    work.forEach(([it]) => { it.station = STATION[it.ex.equipment[0]] || null; });
+    const where = (i) => (items[i] && items[i].kind !== 'done' ? items[i] : null);
+    [...new Set(work.map(([it]) => it.station).filter(Boolean))].forEach((st) => {
+      const uses = work.filter(([it]) => it.station === st).map(([, i]) => i);
+      const before = items[uses[0] - 1], at = before && before.kind !== 'work' ? before : items[uses[0]];
+      (at.setUp ||= []).push(st);
+      const after = where(uses[uses.length - 1] + 1);
+      if (after) (after.putAway ||= []).push(st);
+    });
+    // One pair of dumbbells, one weight: asked on the first weighted set (and on the rest that sets the dumbbells up).
+    const firstKg = items.findIndex((it) => it.kind === 'work' && it.weight);
+    if (firstKg >= 0) { items[firstKg].askKg = true; if (items[firstKg - 1]?.kind !== 'work' && items[firstKg - 1]) items[firstKg - 1].askKg = true; }
     for (let i = items.length - 1, nextWork = null; i >= 0; i--) { // each prep/rest knows what comes next
       if (items[i].kind === 'work') nextWork = items[i]; else items[i].next = nextWork;
     }
@@ -120,10 +147,11 @@
     const items = buildTimeline(routine, exercises);
     const total = duration(items);
     const lastLine = {};
-    const weights = { ...(opts.lastWeights || {}) };
-    let idx = -1, endAt = 0, startedAt = 0, pausedLeft = null, fired = new Set(), timer = null, spoken = '';
+    let kg = opts.lastKg ?? ''; // the one dumbbell weight for this session
+    let idx = -1, endAt = 0, repEnd = 0, startedAt = 0, pausedLeft = null, fired = new Set(), timer = null, spoken = '';
     let muted = store.get('gym-coach.muted') === '1';
     let infoId = null; // the exercise whose explanation is open over the player (see infoOverlay)
+    let noteOpen = false, noteResume = false, noteTag = null; // the 📝 overlay (see noteOverlay)
     const doneSet = new Set(); // indices of finished work items (a redone set counts once)
     // End-screen ratings (see SPEC § Level-up marks): one per exercise per session, reported through onFeel.
     const sid = new Date().toISOString(), feels = {};
@@ -179,6 +207,54 @@
       root.insertAdjacentHTML('beforeend', infoOverlay());
       root.querySelector('.p-info [data-act="info-close"]')?.focus();
     }
+    const STN = (st) => t(window.Detail?.STATION_NAME?.[st]) || st;
+    const kgField = () => `<label class="weight">${esc(t(TEXT.weight))}
+      <input type="number" inputmode="decimal" min="0" step="0.5" data-weight value="${esc(kg)}"> ${esc(t(TEXT.kg))}<small>${esc(t(TEXT.weightOnce))}</small></label>`;
+    const equipLine = (it) => (it.setUp || it.putAway ? `<p class="p-equip">${(it.putAway || []).map((st) => `<span>📦 ${esc(t(TEXT.putAway))} ${esc(STN(st))}</span>`).join('')}${(it.setUp || []).map((st) => `<span>🧰 ${esc(t(TEXT.setUp))} ${esc(STN(st))}</span>`).join('')}</p>` : '');
+    const noteTags = (it) => (it.kind === 'work' ? ['easy', 'hard'] : it.kind === 'rest' ? ['short', 'long'] : []);
+    function noteOverlay() {
+      const it = items[idx];
+      if (!noteOpen || !it) return '';
+      return `<div class="p-info p-note" role="dialog" aria-modal="true" aria-labelledby="p-note-title">
+        <article class="card detail"><h2 id="p-note-title">📝 ${esc(t(TEXT.noteTitle))}</h2>
+          <p class="p-hint">${esc(noteContext(it))}</p>
+          ${noteTags(it).length ? `<p class="note-tags">${noteTags(it).map((v) => `<button type="button" data-act="note-tag" data-v="${v}" class="${noteTag === v ? 'on' : ''}" aria-pressed="${noteTag === v}">${esc(t(TEXT[v]))}</button>`).join('')}</p>` : ''}
+          <textarea data-note rows="3" placeholder="${esc(t(TEXT.notePh))}"></textarea>
+          <p class="p-hint">${esc(t(TEXT.noteHint))}</p></article>
+        <div class="note-btns"><button type="button" class="btn" data-act="note-cancel">${esc(t(TEXT.cancel))}</button>
+          <button type="button" class="btn go" data-act="note-save">${esc(t(TEXT.save))}</button></div></div>`;
+    }
+    const prevWorkOf = (i) => items.slice(0, i).reverse().find((x) => x.kind === 'work');
+    function noteContext(it) {
+      const ex = it.kind === 'work' ? it : it.next;
+      const name = ex ? `${ex.ex.n ? `E${ex.ex.n} ` : ''}${t(ex.ex.name)}` : '';
+      if (it.kind === 'rest') return `${t(TEXT.rest)} ${it.seconds} s · ${t(TEXT.next)}: ${name}`;
+      if (it.kind === 'prep') return `${t(TEXT.prep)} · ${name}`;
+      return `${name} · ${t(TEXT.round)} ${it.round}/${it.rounds}`;
+    }
+    function showNote() {
+      root.querySelector('.p-note')?.remove();
+      if (!noteOpen) return;
+      root.insertAdjacentHTML('beforeend', noteOverlay());
+    }
+    function closeNote(save) {
+      const it = items[idx];
+      if (save) {
+        const text = (root.querySelector('[data-note]')?.value || '').trim();
+        if (text || noteTag) {
+          const ex = it.kind === 'work' ? it : it.next, prev = it.kind === 'rest' ? prevWorkOf(idx) : null;
+          opts.onNote?.({ at: new Date().toISOString(), routine: routine.id, kind: it.kind, ex: ex?.exId || null, prev: prev?.exId || null,
+            seconds: it.kind === 'work' ? (it.seconds || it.est) : it.seconds, round: (ex || {}).round, rounds: (ex || {}).rounds,
+            block: ex ? t(ex.block.name) : '', tag: noteTag, text });
+          // Fácil / Duro mid-workout is the same rating as the end screen (same session), so it never counts twice.
+          if (it.kind === 'work' && noteTag) { feels[it.exId] = noteTag; opts.onFeel?.(it.exId, noteTag, sid); }
+          spoken = t(TEXT.saved);
+        }
+      }
+      noteOpen = false; noteTag = null;
+      if (noteResume) { resume(); noteResume = false; }
+      renderItem();
+    }
     function renderIntro() {
       const sets = items.filter((i) => i.kind === 'work').length;
       const exIds = [...new Set(items.filter((i) => i.kind === 'work').map((i) => i.exId))];
@@ -219,13 +295,12 @@
           <p class="p-meta">${esc(t(TEXT.summary))}: <b>${doneSet.size}/${sets}</b></p>
           ${feelList()}`;
       } else if (it.kind === 'work' && it.mode === 'reps') {
-        center = `<div class="p-phase">${esc(t(TEXT.work))}</div>
+        center = `<div class="p-phase">${esc(t(TEXT.work))} · <span class="rep-clock">⏱ <span class="rsecs">${repLeft()}</span></span></div>
           <h2 class="p-title">${exName(it.exId, t(it.ex.name))}</h2>
           ${it.toFailure ? `<div class="reps-target fail">${esc(t(TEXT.toFailure))}<small>${esc(t(TEXT.toFailureHint))}</small></div>`
             : `<div class="reps-target"><b>${it.reps}${it.repsMax ? `–${it.repsMax}` : ''}</b> ${esc(t(it.reps === 1 && !it.repsMax ? TEXT.rep : TEXT.reps))}${it.repsMax
               ? `<small>${esc(t(TEXT.rangeHint).replace('{max}', it.repsMax))}</small>` : ''}</div>`}
-          ${it.weight ? `<label class="weight">${esc(t(TEXT.weight))}
-            <input type="number" inputmode="decimal" min="0" step="0.5" data-weight value="${weights[it.exId] ?? ''}"> ${esc(t(TEXT.kg))}</label>` : ''}
+          ${it.askKg ? kgField() : ''}
           <button class="btn big go" data-act="done">✔ ${esc(t(TEXT.finished))}</button>`;
       } else {
         const nameIt = it.kind === 'work' ? it : it.next;
@@ -233,11 +308,13 @@
         const left = Math.min(it.seconds, Math.max(0, (pausedLeft != null ? pausedLeft : endAt - Date.now()) / 1000));
         center = `<div class="p-phase">${esc(t(TEXT[it.kind]))}</div>
           <div class="timer">${ring(left / it.seconds)}<span class="secs">${fmt(Math.ceil(left))}</span></div>
-          <h2 class="p-title small">${nameIt ? exName(nameIt.exId, t(nameIt.ex.name), it.kind === 'work' ? '' : `${esc(t(TEXT.next))}: `) : ''}</h2>`;
+          <h2 class="p-title small">${nameIt ? exName(nameIt.exId, t(nameIt.ex.name), it.kind === 'work' ? '' : `${esc(t(TEXT.next))}: `) : ''}</h2>
+          ${it.kind !== 'work' ? equipLine(it) : ''}${it.kind !== 'work' && it.askKg ? kgField() : ''}`;
       }
       root.innerHTML = `
         <div class="p-top"><button class="icon-btn" data-act="exit" aria-label="${esc(t(TEXT.exit))}">✕</button>
           <span class="p-label">${esc(label)}</span>
+          ${it.kind !== 'done' ? `<button class="icon-btn" data-act="note" aria-label="${esc(t(TEXT.note))}">📝</button>` : ''}
           <button class="icon-btn ${muted ? 'off' : ''}" data-act="mute" aria-pressed="${!muted}" aria-label="${esc(t(TEXT.mute))}">${muted ? '🔇' : '🔊'}</button></div>
         <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${sets}" aria-valuenow="${workIdx}"><i style="width:${(idx / (items.length - 1)) * 100}%"></i></div>
         <div class="p-stage kind-${it.kind}${it.kind === 'done' && doneSet.size ? ' scroll' : ''}">
@@ -251,7 +328,12 @@
              <button class="icon-btn lg" data-act="pause" aria-label="${esc(t(pausedLeft != null ? TEXT.resume : TEXT.pause))}">${pausedLeft != null ? '▶' : '⏸'}</button>
              <button class="icon-btn lg" data-act="skip" aria-label="${esc(t(TEXT.skip))}">⏭</button>`}</div>`;
       root.classList.toggle('is-paused', pausedLeft != null);
-      showInfo();
+      showInfo(); showNote();
+    }
+    // A reps set has a target time too (its estimate): it counts down, then up as overtime. Only Done moves on.
+    function repLeft() {
+      const left = (pausedLeft != null ? pausedLeft : repEnd - Date.now()) / 1000;
+      return left >= 0 ? fmt(Math.ceil(left)) : `+${fmt(Math.floor(-left))}`;
     }
 
     // ----- engine -----
@@ -259,13 +341,16 @@
       idx = i; fired = new Set();
       const it = items[idx];
       endAt = it.seconds ? from + it.seconds * 1000 : 0;
+      repEnd = it.kind === 'work' && it.mode === 'reps' ? from + it.est * 1000 : 0;
       startedAt = from;
       const live = !it.seconds || Date.now() < endAt; // false while catching up after the page was hidden
       if (live) {
         renderItem();
-        if (it.kind === 'prep') { if (it.seconds >= 15) sayKey('start'); sayKey('prep', { name: it.next ? t(it.next.ex.name) : '' }); }
+        const equip = () => { (it.putAway || []).forEach((st) => sayKey('equipAway', { x: STN(st) })); (it.setUp || []).forEach((st) => sayKey('equipSet', { x: STN(st) })); };
+        if (it.kind === 'prep') { if (it.seconds >= 15) sayKey('start'); sayKey('prep', { name: it.next ? t(it.next.ex.name) : '' }); equip(); }
         else if (it.kind === 'work') {
           beep(1320, 380);
+          equip();
           if (it.mode === 'reps') { if (it.toFailure) say(t(TEXT.toFailureHint)); else if (it.reps === 1 && !it.repsMax && lines?.repsOne) sayKey('repsOne');
             else sayKey('repsGo', { reps: it.repsMax ? `${it.reps} ${t(TEXT.to)} ${it.repsMax}` : it.reps }); }
           else if (!it.cues.length) sayKey('go'); // authored cues replace the generic lines
@@ -274,6 +359,7 @@
           const prevWork = items.slice(0, idx).reverse().find((x) => x.kind === 'work');
           if (prevWork && prevWork.round === prevWork.rounds && it.next && it.next.block !== prevWork.block) sayKey('roundDone');
           else sayKey('rest');
+          equip();
           if (it.next) sayKey('nextUp', { name: t(it.next.ex.name) });
           const tips = it.next?.ex.cues;
           const n = tips ? Math.floor(Math.random() * (tips.es || []).length) : -1;
@@ -291,14 +377,22 @@
     function tick() {
       if (idx < 0 || pausedLeft != null) return;
       let it = items[idx];
+      const once = (k, fn) => { if (!fired.has(k)) { fired.add(k); fn(); } };
       // Catch up: steps that ended while the page was hidden are passed silently, keeping the clock continuous.
       while (it.seconds && Date.now() >= endAt && it.kind !== 'done') { advance(true); it = items[idx]; }
-      if (!it.seconds) { talkAnim(); return; }
+      if (!it.seconds) {
+        if (repEnd) {
+          const s = root.querySelector(".rsecs"); if (s) s.textContent = repLeft();
+          const over = Date.now() >= repEnd;
+          root.querySelector('.rep-clock')?.classList.toggle('over', over);
+          if (over) once('repEnd', () => beep(660, 250));
+        }
+        talkAnim(); return;
+      }
       const left = (endAt - Date.now()) / 1000, elapsed = it.seconds - left, secs = Math.ceil(left);
       const s = root.querySelector('.secs'); if (s) s.textContent = fmt(secs);
       const fg = root.querySelector('.ring-fg');
       if (fg) fg.setAttribute('stroke-dashoffset', String(2 * Math.PI * 54 * (1 - left / it.seconds)));
-      const once = (k, fn) => { if (!fired.has(k)) { fired.add(k); fn(); } };
       if (it.kind === 'work') {
         // A timed cue cuts off whatever is still being said, so the voice stays on the clock.
         it.cues.forEach((c, n) => { if (elapsed >= c.at) once(`c${n}`, () => { if (!muted) synth?.cancel(); sayL(c.text); }); });
@@ -315,24 +409,39 @@
     function finish() {
       releaseAwake();
       setTimeout(() => { sayKey('finish'); const f = spoken; sayKey('motto'); spoken = `${f} ${spoken}`; const b = root.querySelector('.bubble'); if (b) b.textContent = spoken; }, 300);
-      opts.onFinish?.({ done: true, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights });
+      opts.onFinish?.({ done: true, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights: weights() });
       logged = true;
     }
     let logged = false;
+    // The log keeps a weight per exercise (older entries do too); with one pair of dumbbells they all share kg.
+    function weights() {
+      if (kg === '' || kg == null) return {};
+      const w = { dumbbells: Number(kg) };
+      doneSet.forEach((i) => { if (items[i].weight) w[items[i].exId] = Number(kg); });
+      return w;
+    }
     // quiet: closed by the app (route change), so don't call onExit, which would navigate.
     function close(quiet = false) {
       clearInterval(timer); timer = null; synth?.cancel(); releaseAwake();
       document.removeEventListener('visibilitychange', onVis);
       document.removeEventListener('keydown', onKey);
-      if (!logged && doneSet.size > 0) opts.onFinish?.({ done: false, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights });
+      if (!logged && doneSet.size > 0) opts.onFinish?.({ done: false, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights: weights() });
       if (!quiet) onExit?.();
     }
     function onVis() {
       if (document.visibilityState === 'visible' && idx >= 0 && items[idx].kind !== 'done') { keepAwake(); tick(); }
     }
 
-    function pause() { pausedLeft = endAt ? endAt - Date.now() : 0; synth?.cancel(); }
-    function onKey(e) { if (e.key === 'Escape' && infoId) { infoId = null; showInfo(); } }
+    function pause() { pausedLeft = endAt ? endAt - Date.now() : repEnd ? repEnd - Date.now() : 0; synth?.cancel(); }
+    function resume() { if (endAt) endAt = Date.now() + pausedLeft; else if (repEnd) repEnd = Date.now() + pausedLeft; pausedLeft = null; }
+    const running = () => idx >= 0 && items[idx].kind !== 'done' && pausedLeft == null;
+    // Closes the ⓘ or 📝 overlay if one is open (the app calls it on the phone's back button).
+    function closeOverlay() {
+      if (noteOpen) { closeNote(false); return true; }
+      if (infoId) { infoId = null; showInfo(); return true; }
+      return false;
+    }
+    function onKey(e) { if (e.key === 'Escape') closeOverlay(); }
     document.addEventListener('keydown', onKey);
     root.onclick = (e) => {
       const b = e.target.closest('[data-act]'); if (!b) return;
@@ -358,20 +467,28 @@
         if (muted) synth?.cancel();
         renderItem();
       } else if (act === 'pause') {
-        if (pausedLeft == null) { pause(); sayKey('paused'); } else { if (endAt) endAt = Date.now() + pausedLeft; pausedLeft = null; }
+        if (pausedLeft == null) { pause(); sayKey('paused'); } else resume();
         renderItem();
       } else if (act === 'info') {
         // Opening the explanation pauses a running set or rest (same mechanism as the pause button), quietly.
-        const running = idx >= 0 && items[idx].kind !== 'done' && pausedLeft == null;
-        if (running) pause();
+        const wasRunning = running();
+        if (wasRunning) pause();
         infoId = b.dataset.ex;
-        if (running) renderItem(); else showInfo();
+        if (wasRunning) renderItem(); else showInfo();
       } else if (act === 'info-close') {
         infoId = null; showInfo();
         root.querySelector('[data-act="pause"], [data-act="start"]')?.focus();
+      } else if (act === 'note') {
+        noteResume = running();
+        if (noteResume) pause();
+        noteOpen = true; noteTag = null; renderItem();
+        root.querySelector('[data-note]')?.focus({ preventScroll: true });
+      } else if (act === 'note-tag') {
+        noteTag = noteTag === b.dataset.v ? null : b.dataset.v;
+        b.parentElement.querySelectorAll('button').forEach((x) => { const on = x.dataset.v === noteTag; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+      } else if (act === 'note-save' || act === 'note-cancel') {
+        closeNote(act === 'note-save');
       } else if (act === 'skip' || act === 'done') {
-        const w = root.querySelector('[data-weight]');
-        if (w && w.value !== '') weights[items[idx].exId] = Number(w.value);
         synth?.cancel(); pausedLeft = null;
         if (act === 'done') sayKey('repsDone');
         advance(false, act === 'done');
@@ -382,11 +499,12 @@
       }
     };
     root.addEventListener('input', (e) => {
-      if (e.target.matches('[data-weight]') && e.target.value !== '') weights[items[idx].exId] = Number(e.target.value);
+      if (e.target.matches('[data-weight]')) kg = e.target.value;
     });
     renderIntro();
-    return { close, rerender: () => (idx < 0 ? renderIntro() : renderItem()) };
+    return { close, closeOverlay, isActive: () => idx >= 0 && items[idx].kind !== 'done', rerender: () => (idx < 0 ? renderIntro() : renderItem()) };
   }
 
-  window.Player = { open, buildTimeline, duration, fmtLen };
+  const exitAsk = () => { const l = document.documentElement.lang; return TEXT.exitAsk[l] || TEXT.exitAsk.es; };
+  window.Player = { open, buildTimeline, duration, fmtLen, exitAsk };
 })();

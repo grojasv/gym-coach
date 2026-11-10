@@ -38,7 +38,7 @@ the data, never reused or renumbered; a new item takes the next free number. `va
 | Hub | Routines in folding groups (plain name, Titán subtitle, equipment chips, colour per group; duration computed from their steps) plus an exercise library (how to do it, posture cues, common mistakes) and a recent-history list. |
 | Sets | **Hybrid.** `time` steps count down. `reps` steps wait for a **Done** tap. Rests are always timed and start on their own. |
 | Durations | Configurable per routine. The total is **computed from the steps, never typed in**. Target lengths later: 15 / 30 / 60 min. |
-| History | Basic log on the phone (`localStorage`): date, routine, done or partial, and the dumbbell weight per exercise, which is suggested next time. |
+| History | Basic log on the phone (`localStorage`): date, routine, done or partial, and the dumbbell weight. Guille has one pair of dumbbells at a fixed weight, so it's asked once per session and suggested next time (0.9.0). |
 | Style | One Lucha Libre look: wrestling-poster type, yellow mask gold, deep navy and hot red, with light and dark modes. |
 | Content | 28 exercises and 12 routines from Guille's Código Titán material (0.2.0), grouped on the hub (0.3.0). R6 extended to 15 min with more tower work (0.4.1). R1 uses all the equipment, about 60 min (0.6.0). Goals review 2026-11-07 (0.8.0): strict pull-up singles in R1 and R6, R12 Torre suave for clash days, hand grip while walking (R9), rep ranges, main routines pinned on the hub. |
 | Later | Gamification (boss HP bars, XP, FINAL BOSS round), the weekly calendar with a "today" card, progressions or levels. |
@@ -80,9 +80,9 @@ the data, never reused or renumbered; a new item takes the next free number. `va
       "mode": "time",                   // time: countdown | reps: wait for Done
       "seconds": 15,                    // mode time
       "reps": 10,                       // mode reps (shown as the target)
-      "repsMax": 15,                    // optional: a range "10–15"; at the top in every set, go up in weight next time
+      "repsMax": 15,                    // optional: a range "10–15"; at the top in every set, slow the tempo next time (one fixed weight)
       "estSeconds": 40,                 // mode reps: estimate for the computed duration (default reps × 4)
-      "weight": false,                  // true: ask for and log the dumbbell weight
+      "weight": false,                  // true: uses the dumbbells (their one weight is asked on the first such set)
       "toFailure": false,               // mode reps: no number, "to technical failure" (estimate 45 s)
       "beeps": true,                    // mode time: false drops the 3-2-1 beeps (short counted steps, e.g. a 5 s negative)
       "restAfter": 45,                  // seconds; always timed
@@ -116,7 +116,8 @@ exercises. Open sections (routines and library) are remembered in `localStorage`
 Each key holds `{ "es": [...], "ca": [...], "en": [...] }`. A line is picked at random and is not repeated twice in a
 row. Placeholders: `{name}` is the exercise name, `{n}` is a number, and `{reps}` is the reps.
 Keys: `hello` (on the hub), `start`, `prep` (get ready), `go`, `halfway`, `last3`, `repsGo`, `repsDone`, `rest`, `nextUp`,
-`roundDone`, `finish`, `motto`, `paused`, `repsOne` (a single-rep step such as a strict pull-up, instead of `repsGo`). Each spoken line takes under 5 s to say.
+`roundDone`, `finish`, `motto`, `paused`, `repsOne` (a single-rep step such as a strict pull-up, instead of `repsGo`),
+`equipSet` and `equipAway` (`{x}` is a station with its article, "las mancuernas"). Each spoken line takes under 5 s to say.
 
 ### Level-up marks: `localStorage` `gym-coach.feel` (0.5.0)
 A first step towards making things harder over time, decided with Guille on 2026-11-06:
@@ -130,7 +131,16 @@ A first step towards making things harder over time, decided with Guille on 2026
 - Storage: an array of `{ at, routine, ex, v: easy|ok|hard|adjusted }`, newest first, at most 500.
 
 ### History: `localStorage` `gym-coach.log`
-An array of `{ at, routine, done, steps, total, weights: { exerciseId: kg } }`, with the newest entry first and at most 200.
+An array of `{ at, routine, done, steps, total, weights: { dumbbells: kg, exerciseId: kg } }`, with the newest entry first and
+at most 200. Since 0.9.0 every dumbbell exercise of a session has the same kg; older entries only have per-exercise kg.
+
+### Notes: `localStorage` `gym-coach.notes` (0.9.0)
+The 📝 button in the player's top bar, on sets, rests and get-ready screens. It pauses the clock, offers two tags
+(a set: Fácil / Duro; a rest: Corto / Largo) and an optional text, and resumes on Guardar or Cancelar. The hub lists the
+notes under **📝 Notas** with **Copiar todo** (one line per note, oldest first, to paste to Claude) and **Borrar**.
+A Fácil / Duro tag is also the session's end-screen rating for that exercise (same session id, so it never counts twice).
+Storage: an array of `{ at, routine, kind: work|rest|prep, ex, prev, seconds, round, rounds, block, tag, text }`, newest
+first, at most 300.
 
 ## Player and phone behaviour (from research on 2026-11-04)
 - **Start is a tap**, and it unlocks everything. Inside that tap handler the player primes `speechSynthesis`, resumes the
@@ -138,6 +148,13 @@ An array of `{ at, routine, done, steps, total, weights: { exerciseId: kg } }`, 
 - **Countdowns come from timestamps** (`endAt`), never from counting ticks. On `visibilitychange` the player catches up
   with the clock and asks for the wake lock again, because the phone releases it when the page is hidden.
 - **Cues run on the timeline**, not on the speech `onend` event, which is unreliable.
+- **Reps sets have a target time** too (0.9.0): their `estSeconds` counts down beside "¡A tope!", then shows overtime
+  (+0:12) with one beep. It never advances on its own: only Hecho does. It uses its own deadline, not `endAt`, so the
+  catch-up loop never skips a reps set.
+- **Stations** (0.9.0): an exercise's first equipment maps to a station (`Detail.STATION`): the bar, the dip bars and the
+  knee raise are one **tower**, and the floor is none. The prep or rest before a station's first use shows and says
+  "Prepara …"; the step after its last use says "Recoge …".
+- **Back button** (0.9.0): mid-workout, the phone's back first closes an open ⓘ / 📝 overlay, then asks before leaving.
 - **Beeps:** at 3-2-1, then a long one at go and at the end of each step. The beep is Web Audio, so it plays when the
   voice is muted.
 - **Still to test on the Android phone:** speech in the installed app, and whether speech pauses or ducks Spotify. No

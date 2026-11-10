@@ -1,10 +1,11 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.8.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.9.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
   const FEEL_KEY = 'gym-coach.feel';
+  const NOTE_KEY = 'gym-coach.notes'; // 📝 notes written mid-workout, to copy and paste to Claude
   const EASY_IN_A_ROW = 2; // an exercise marked easy this many times in a row is a level-up candidate
 
   const TEXT = {
@@ -30,6 +31,22 @@
     toLevelHint: { es: 'Los marcaste fáciles 2 veces seguidas. Ajústalos y pulsa ✓.', ca: 'Els vas marcar fàcils 2 vegades seguides. Ajusta’ls i prem ✓.', en: 'You marked these easy twice in a row. Adjust them, then tap ✓.' },
     easyTimes: { es: 'Fácil ×{n}', ca: 'Fàcil ×{n}', en: 'Easy ×{n}' },
     adjusted: { es: 'Ajustado', ca: 'Ajustat', en: 'Adjusted' },
+    notes: { es: 'Notas', ca: 'Notes', en: 'Notes' },
+    notesHint: { es: 'Lo que apuntaste con 📝 durante el entreno. Cópialo y pásamelo.', ca: 'El que vas apuntar amb 📝 durant l’entrenament. Copia-ho i passa-m’ho.', en: 'What you wrote with 📝 during workouts. Copy it and send it to me.' },
+    copy: { es: 'Copiar todo', ca: 'Copia-ho tot', en: 'Copy all' },
+    copied: { es: '¡Copiado!', ca: 'Copiat!', en: 'Copied!' },
+    clear: { es: 'Borrar', ca: 'Esborra', en: 'Clear' },
+    clearAsk: { es: '¿Borrar todas las notas?', ca: 'Vols esborrar totes les notes?', en: 'Clear all notes?' },
+    noteRest: { es: 'descanso {s} s', ca: 'descans {s} s', en: 'rest {s} s' },
+    noteAfter: { es: 'tras', ca: 'després de', en: 'after' },
+    noteBetween: { es: 'entre series de', ca: 'entre sèries de', en: 'between sets of' },
+    noteBefore: { es: 'antes de', ca: 'abans de', en: 'before' },
+    notePrep: { es: 'preparación', ca: 'preparació', en: 'get ready' },
+    round: { es: 'ronda', ca: 'ronda', en: 'round' },
+    tagEasy: { es: 'Fácil', ca: 'Fàcil', en: 'Easy' },
+    tagHard: { es: 'Duro', ca: 'Dur', en: 'Hard' },
+    tagShort: { es: 'Corto', ca: 'Curt', en: 'Too short' },
+    tagLong: { es: 'Largo', ca: 'Llarg', en: 'Too long' },
     hello: { es: '¡Qué pasa, fiera! ¡A darle con todo!', ca: 'Què passa, fiera? A donar-ho tot!', en: 'What’s up, beast? Let’s give it everything!' },
   };
   const EQUIP = Detail.EQUIP; // shared with the player's info overlay (detail.js)
@@ -90,11 +107,51 @@
     return Object.fromEntries(Object.entries(run).filter(([id, c]) => c.easy >= EASY_IN_A_ROW && data.exercises[id]));
   }
   const upTag = () => `<span class="up" title="${esc(t(TEXT.toLevel))}">⬆ ${esc(t(TEXT.up))}</span>`;
-  function lastWeights() {
-    const w = {};
-    readLog().slice().reverse().forEach((e) => Object.assign(w, e.weights || {}));
-    return w;
+  // The one dumbbell weight: the newest logged one (older entries only have per-exercise weights).
+  function lastKg() {
+    for (const e of readLog()) {
+      const w = e.weights || {};
+      if (w.dumbbells != null) return w.dumbbells;
+      const v = Object.values(w).find((x) => typeof x === 'number');
+      if (v != null) return v;
+    }
+    return '';
   }
+  // ---------- notes ----------
+  const readNotes = () => { try { return JSON.parse(store.get(NOTE_KEY) || '[]'); } catch { return []; } };
+  function addNote(n) { store.set(NOTE_KEY, JSON.stringify([n, ...readNotes()].slice(0, 300))); }
+  const exLabel = (id) => { const ex = id && data.exercises[id]; return ex ? `E${ex.n} ${t(ex.name)}` : ''; };
+  // One line per note, oldest first, written to be pasted straight into a chat with Claude.
+  function noteLine(n) {
+    const r = data.routines.find((x) => x.id === n.routine);
+    const where = n.kind === 'rest'
+      ? `${t(TEXT.noteRest).replace('{s}', n.seconds)} ${n.prev === n.ex ? `${t(TEXT.noteBetween)} ${exLabel(n.ex)}`
+        : `${n.prev ? `${t(TEXT.noteAfter)} ${exLabel(n.prev)} ` : ''}${t(TEXT.noteBefore)} ${exLabel(n.ex)}`}`
+      : n.kind === 'prep' ? `${t(TEXT.notePrep)} ${t(TEXT.noteBefore)} ${exLabel(n.ex)}` : exLabel(n.ex);
+    const tag = n.tag ? t(TEXT['tag' + n.tag[0].toUpperCase() + n.tag.slice(1)]) : '';
+    return [dateFmt(n.at), r ? `R${r.n}` : n.routine, where, n.rounds > 1 ? `${t(TEXT.round)} ${n.round}/${n.rounds}` : '', tag, n.text ? `«${n.text}»` : '']
+      .filter(Boolean).join(' · ');
+  }
+  function notesSection() {
+    const notes = readNotes();
+    if (!notes.length) return '';
+    return `<h2 class="sec">📝 ${esc(t(TEXT.notes))}</h2>
+      <section class="card notes"><p class="muted">${esc(t(TEXT.notesHint))}</p>
+        <ul>${notes.map((n) => `<li>${esc(noteLine(n))}</li>`).join('')}</ul>
+        <p class="notes-btns"><button type="button" class="btn small" data-notes="copy">📋 ${esc(t(TEXT.copy))}</button>
+          <button type="button" class="btn small ghost" data-notes="clear">${esc(t(TEXT.clear))}</button></p></section>`;
+  }
+  view.addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-notes]'); if (!b) return;
+    if (b.dataset.notes === 'clear') {
+      if (!confirm(t(TEXT.clearAsk))) return;
+      store.set(NOTE_KEY, '[]'); renderHub(); return;
+    }
+    const text = readNotes().slice().reverse().map(noteLine).join('\n');
+    try { await navigator.clipboard.writeText(text); }
+    catch { const ta = Object.assign(document.createElement('textarea'), { value: text }); document.body.append(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+    b.textContent = `✓ ${t(TEXT.copied)}`;
+  });
   const dateFmt = (iso) => new Intl.DateTimeFormat({ es: 'es-ES', ca: 'ca-ES', en: 'en-GB' }[lang], { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
 
   // ---------- views ----------
@@ -177,6 +234,7 @@
             <a class="card ex" href="#/ex/${encodeURIComponent(id)}"><h3>${num('E', ex.n)}${esc(t(ex.name))}</h3>${cand[id] ? upTag() : ''}
               <p>${ex.equipment.map((e) => esc(t(EQUIP[e]) || e)).join(' · ')}</p></a>`).join('')}</div>`);
       }).join('')}
+      ${notesSection()}
       <h2 class="sec">${esc(t(TEXT.history))}</h2>
       ${log.length ? `<ul class="card history">${log.map((e) => {
         const r = data.routines.find((x) => x.id === e.routine);
@@ -199,9 +257,10 @@
     document.body.classList.add('playing');
     playerEl.hidden = false;
     player = Player.open(playerEl, {
-      routine, exercises: data.exercises, lines: data.lines, getLang: () => lang, store, lastWeights: lastWeights(),
+      routine, exercises: data.exercises, lines: data.lines, getLang: () => lang, store, lastKg: lastKg(),
       onFinish: (r) => addLog({ at: new Date().toISOString(), routine: id, ...r }),
       onFeel: (ex, v, at) => setFeel(id, ex, v, at),
+      onNote: addNote,
       onExit: () => { player = null; location.hash = '#/'; },
     });
     player.id = id;
@@ -225,6 +284,12 @@
     if (!data) return;
     saveHub();
     const [, kind, id] = location.hash.match(/^#\/(\w+)\/(.+)$/) || [];
+    // The phone's back button mid-workout: first it closes an open ⓘ / 📝 overlay, then it asks before leaving.
+    if (kind !== 'play' && player?.isActive()) {
+      const back = () => history.pushState(null, '', `#/play/${encodeURIComponent(player.id)}`);
+      if (player.closeOverlay()) { back(); return; }
+      if (!confirm(Player.exitAsk())) { back(); return; }
+    }
     if (kind === 'play') {
       const rid = decodeURIComponent(id);
       if (player?.id !== rid) { closePlayer(); openPlayer(rid); }

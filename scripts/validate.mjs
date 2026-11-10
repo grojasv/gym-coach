@@ -96,7 +96,7 @@ const walk = (id, seen) => (byId[id]?.blocks || []).forEach((b) => {
 });
 routines.forEach((r) => walk(r.id, [r.id]));
 
-const KEYS = ['hello', 'start', 'prep', 'go', 'halfway', 'last3', 'repsGo', 'repsDone', 'rest', 'nextUp', 'roundDone', 'finish', 'motto', 'paused', 'repsOne'];
+const KEYS = ['hello', 'start', 'prep', 'go', 'halfway', 'last3', 'repsGo', 'repsDone', 'rest', 'nextUp', 'roundDone', 'finish', 'motto', 'paused', 'repsOne', 'equipSet', 'equipAway'];
 const lines = read('lines.json');
 for (const k of KEYS) localized(`lines.${k}`, lines[k], { list: true, maxWords: 18 });
 LANGS.forEach((l) => {

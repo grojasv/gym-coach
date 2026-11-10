@@ -1491,11 +1491,11 @@
           {
             "exercise": "sentadilla-goblet",
             "mode": "reps",
-            "reps": 15,
-            "estSeconds": 75,
+            "reps": 20,
+            "estSeconds": 100,
             "weight": true,
             "restAfter": 30,
-            "repsMax": 20
+            "repsMax": 25
           },
           {
             "exercise": "flexiones-flecha",
@@ -1508,29 +1508,29 @@
           {
             "exercise": "remo-mancuerna",
             "mode": "reps",
-            "reps": 8,
-            "estSeconds": 80,
+            "reps": 12,
+            "estSeconds": 90,
             "weight": true,
             "restAfter": 30,
-            "repsMax": 12
+            "repsMax": 15
           },
           {
             "exercise": "peso-muerto-rumano",
             "mode": "reps",
-            "reps": 10,
-            "estSeconds": 60,
+            "reps": 15,
+            "estSeconds": 80,
             "weight": true,
             "restAfter": 30,
-            "repsMax": 15
+            "repsMax": 20
           },
           {
             "exercise": "press-militar",
             "mode": "reps",
-            "reps": 10,
-            "estSeconds": 55,
+            "reps": 8,
+            "estSeconds": 45,
             "weight": true,
             "restAfter": 30,
-            "repsMax": 15
+            "repsMax": 12
           }
         ]
       },
@@ -1546,11 +1546,11 @@
           {
             "exercise": "extension-triceps",
             "mode": "reps",
-            "reps": 10,
-            "estSeconds": 55,
+            "reps": 8,
+            "estSeconds": 45,
             "weight": true,
             "restAfter": 15,
-            "repsMax": 15
+            "repsMax": 12
           },
           {
             "exercise": "curl-biceps",
@@ -1564,11 +1564,11 @@
           {
             "exercise": "pajaro-mancuernas",
             "mode": "reps",
-            "reps": 12,
-            "estSeconds": 55,
+            "reps": 8,
+            "estSeconds": 45,
             "weight": true,
             "restAfter": 60,
-            "repsMax": 15
+            "repsMax": 12
           }
         ]
       }
@@ -1898,7 +1898,7 @@
             "seconds": 20,
             "weight": false,
             "beeps": false,
-            "restAfter": 60,
+            "restAfter": 45,
             "cues": [
               {
                 "at": 0,
@@ -1951,7 +1951,7 @@
           "en": "Strict pull-ups"
         },
         "rounds": 3,
-        "restBetweenRounds": 90,
+        "restBetweenRounds": 60,
         "steps": [
           {
             "exercise": "dominada-estricta",
@@ -1959,7 +1959,7 @@
             "reps": 1,
             "estSeconds": 10,
             "weight": false,
-            "restAfter": 90
+            "restAfter": 60
           }
         ]
       },

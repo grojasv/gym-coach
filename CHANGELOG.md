@@ -2,6 +2,19 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.9.0] — 2026-11-10
+From Guille's feedback after a full R1.
+### Added
+- **📝 Notes mid-workout.** A 📝 button on every set and rest. On a rest: Corto / Largo; on a set: Fácil / Duro; plus an optional text. It pauses while you write. Everything is listed in the hub under **📝 Notas**, with **Copiar todo** to paste it to Claude, and **Borrar**.
+- **A time on every reps set.** Its estimate counts down beside "¡A tope!" and then shows overtime. Hecho still moves on, so the whole routine has a timeline.
+- **Set up and put away.** El Titán says and shows "Prepara el remo / la torre / las mancuernas / la rueda" before the first use, and "Recoge …" after the last.
+### Changed
+- **One weight for the dumbbells.** It's asked once, when the dumbbells come out, and kept for the whole workout. The rep-range hint now says to lower in 3 seconds instead of going up in weight.
+- **R4 ranges retuned for one weight:** goblet squat 20–25, one-arm row 12–15, Romanian deadlift 15–20; shoulder press, triceps and reverse fly 8–12.
+- **Shorter tower rests in R1 (R7):** 60 s between strict pull-ups (it was 90) and 45 s after the scapular pull-ups (it was 60). R1 stays at 69 min, because the new R4 ranges take longer.
+### Fixed
+- **The phone's back button** no longer ends the workout. It closes the explanation or note first, then asks before leaving.
+
 ## [0.8.0] — 2026-11-07
 Applies the goals review agreed on 2026-11-07, most important first.
 ### Changed
