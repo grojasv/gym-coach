@@ -2,7 +2,7 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
-## [Unreleased]
+## [0.10.0] — 2026-11-12
 ### Added
 - **El Titán gives posture tips during reps sets** ("Codo pegado y hombro lejos de la oreja", "Abdomen firme…"). They come from each exercise's own tip list, one every 12 s or so while he's quiet, and stop at the target time. Long timed sets (the rower) get tips in their quiet stretches too. More time, more tips; each set goes through the list once.
 ### Changed
