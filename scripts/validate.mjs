@@ -11,6 +11,14 @@ const EQUIPMENT = ['pullup-bar', 'dip-bars', 'knee-raise', 'rower', 'dumbbells',
 const errors = [];
 const err = (where, msg) => errors.push(`${where}: ${msg}`);
 const words = (s) => s.trim().split(/\s+/).length;
+// Spoken length of a line, in seconds: conservative for the slowest language (SPEC § Cue rules). Measured on desktop
+// voices at rate 1.05: 2 to 3 words/s, slower with commas, plus about half a second per line.
+const sayTime = (o) => 0.5 + Math.max(...LANGS.map((l) => (o?.[l] ? words(o[l]) : 0))) / 2.2;
+// Text-to-speech reads symbols badly ("3 s", "45°", "60%"): spoken text spells them out.
+const SYMBOL = /[°%]|\d\s*s\b/;
+function spoken(where, o) {
+  for (const l of LANGS) [].concat(o?.[l] || []).forEach((x, i) => { if (SYMBOL.test(x)) err(`${where}.${l}[${i}]`, `symbol in spoken text: "${x}"`); });
+}
 
 function localized(where, o, { list = false, maxWords } = {}) {
   if (!o || typeof o !== 'object') return err(where, 'missing');
@@ -33,6 +41,7 @@ for (const [id, ex] of Object.entries(exercises)) {
   localized(`${w}.name`, ex.name);
   localized(`${w}.how`, ex.how);
   localized(`${w}.cues`, ex.cues, { list: true, maxWords: 14 });
+  spoken(`${w}.cues`, ex.cues); // also spoken as tips during rests and reps sets
   localized(`${w}.mistakes`, ex.mistakes, { list: true, maxWords: 14 });
   if (ex.targets) localized(`${w}.targets`, ex.targets, { list: true });
   if (ex.safety) localized(`${w}.safety`, ex.safety);
@@ -78,6 +87,12 @@ for (const r of routines) {
         });
         const ats = (s.cues || []).map((c) => c.at);
         if (ats.some((a, i) => i && a <= ats[i - 1])) err(sw, 'cue times must increase');
+        // Each cue must be said before the next one starts, and the last before the countdown (or the end).
+        (s.cues || []).forEach((c, ci) => {
+          spoken(`${sw}.cues[${ci}].text`, c.text);
+          const end = c.at + sayTime(c.text), next = s.cues[ci + 1]?.at ?? limit;
+          if (end > next + 0.05) err(`${sw}.cues[${ci}]`, `takes ~${sayTime(c.text).toFixed(1)} s to say, ends at ${end.toFixed(1)} > ${next}`);
+        });
       } else if (s.mode === 'reps') {
         if (!(s.reps > 0) && !s.toFailure) err(sw, 'reps step needs reps or toFailure');
         if (s.cues?.length) err(sw, 'reps steps take no timed cues');
@@ -98,7 +113,7 @@ routines.forEach((r) => walk(r.id, [r.id]));
 
 const KEYS = ['hello', 'start', 'prep', 'go', 'halfway', 'last3', 'repsGo', 'repsDone', 'rest', 'nextUp', 'roundDone', 'finish', 'motto', 'paused', 'repsOne', 'equipSet', 'equipAway'];
 const lines = read('lines.json');
-for (const k of KEYS) localized(`lines.${k}`, lines[k], { list: true, maxWords: 18 });
+for (const k of KEYS) { localized(`lines.${k}`, lines[k], { list: true, maxWords: 18 }); spoken(`lines.${k}`, lines[k]); }
 LANGS.forEach((l) => {
   (lines.nextUp?.[l] || []).forEach((x, i) => { if (!x.includes('{name}')) err(`lines.nextUp.${l}[${i}]`, 'needs {name}'); });
   (lines.repsGo?.[l] || []).forEach((x, i) => { if (!x.includes('{reps}')) err(`lines.repsGo.${l}[${i}]`, 'needs {reps}'); });

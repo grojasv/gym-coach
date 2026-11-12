@@ -2,6 +2,14 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [Unreleased]
+### Added
+- **El Titán gives posture tips during reps sets** ("Codo pegado y hombro lejos de la oreja", "Abdomen firme…"). They come from each exercise's own tip list, one every 12 s or so while he's quiet, and stop at the target time. Long timed sets (the rower) get tips in their quiet stretches too. More time, more tips; each set goes through the list once.
+### Changed
+- **Short steps say only what fits.** The 5 to 6 s negatives (E5 in R6 and R7) had five or six cues that cut each other off. Now each has two: one as you start lowering, one to land. `validate.mjs` checks that every timed cue can be said before the next one starts.
+- **Tips read numbers and symbols in words** ("tres segundos", not "3 s"; no ° or %), so the voice says them right. E10, E11, E12, E13, E14, E16 and E23.
+- **More shoulder and core reminders** in the tips of E11, E25, E26 and E28.
+
 ## [0.9.1] — 2026-11-10
 ### Changed
 - **R6 rests match R1:** 60 s between strict pull-ups (it was 90) and 45 s after the scapular pull-ups (it was 60). R6 now takes 18 min (it was 20).

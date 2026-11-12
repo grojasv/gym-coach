@@ -764,21 +764,21 @@
       "es": [
         "Atrapada: espinillas verticales y muñecas totalmente planas.",
         "Impulso: piernas, torso y brazos; el orden lo es todo.",
-        "60% piernas, 30% tronco, 10% brazos.",
+        "Sobre todo piernas, luego tronco y un poco de brazos.",
         "Final: codos pegados a las costillas, pecho bien abierto.",
         "Recupera al revés, con las manos como ganchos, sin estrangular."
       ],
       "ca": [
         "Agafada: canyelles verticals i canells totalment plans.",
         "Impuls: cames, tors i braços; l'ordre ho és tot.",
-        "60% cames, 30% tronc, 10% braços.",
+        "Sobretot cames, després tronc i una mica de braços.",
         "Final: colzes enganxats a les costelles, pit ben obert.",
         "Recupera al revés, amb les mans com ganxos, sense escanyar."
       ],
       "en": [
         "Catch: shins vertical and wrists completely flat.",
         "Drive: legs, trunk, then arms; the order is everything.",
-        "60% legs, 30% trunk, 10% arms.",
+        "Mostly legs, then trunk, and just a little arms.",
         "Finish: elbows close to your ribs, chest wide open.",
         "Recover in reverse, hands like hooks, don't strangle the handle."
       ]
@@ -846,25 +846,25 @@
     },
     "cues": {
       "es": [
-        "Baja en 3 s, aguanta 1 s abajo, sube en 1 s.",
+        "Baja en tres segundos, pausa abajo y sube firme.",
         "Mancuerna pegada al pecho, codos hacia abajo.",
         "Pecho fuera y espalda recta todo el recorrido.",
         "Rodillas en la línea de los pies.",
-        "Empuja el suelo con todo el pie."
+        "Abdomen firme y empuja el suelo con todo el pie."
       ],
       "ca": [
-        "Baixa en 3 s, aguanta 1 s, puja en 1 s.",
+        "Baixa en tres segons, pausa a baix i puja ferm.",
         "Manuella enganxada al pit, colzes cap avall.",
         "Pit fora i esquena recta tot el recorregut.",
         "Genolls en la línia dels peus.",
-        "Empeny el terra amb tot el peu."
+        "Abdomen ferm i empeny el terra amb tot el peu."
       ],
       "en": [
-        "Down in 3 s, hold 1 s, up in 1 s.",
+        "Down for three seconds, pause, then drive up.",
         "Dumbbell against your chest, elbows pointing down.",
         "Chest up and back straight the whole way.",
         "Knees in line with your toes.",
-        "Push the floor away with your whole foot."
+        "Brace your core and push the floor with your whole foot."
       ]
     },
     "mistakes": {
@@ -930,22 +930,22 @@
     },
     "cues": {
       "es": [
-        "Baja reteniendo 3 s, sube explosivo en 1 s.",
-        "Codos a 45°: el cuerpo forma una flecha.",
+        "Baja en tres segundos y sube explosivo.",
+        "Codos en diagonal, no abiertos: tu cuerpo es una flecha.",
         "Cuerpo recto de la cabeza a los talones.",
         "Abdomen y glúteos apretados todo el rato.",
         "Al fallo técnico: si la postura se degrada, para."
       ],
       "ca": [
-        "Baixa retenint 3 s, puja explosiu en 1 s.",
-        "Colzes a 45°: el cos forma una fletxa.",
+        "Baixa en tres segons i puja explosiu.",
+        "Colzes en diagonal, no oberts: el teu cos és una fletxa.",
         "Cos recte del cap als talons.",
         "Abdomen i glutis estrets tota l'estona.",
         "Fins a la fallada tècnica: si la postura es degrada, para."
       ],
       "en": [
-        "Lower slowly for 3 s, push up explosively in 1 s.",
-        "Elbows at 45°: your body forms an arrow.",
+        "Lower for three seconds, push up explosively.",
+        "Elbows angled back, not flared: your body is an arrow.",
         "Body straight from head to heels.",
         "Squeeze your abs and glutes the whole time.",
         "To technical failure: if your form breaks, stop."
@@ -1014,21 +1014,21 @@
     },
     "cues": {
       "es": [
-        "Sube en 1 s, baja reteniendo 3 s.",
+        "Sube en un segundo, baja en tres.",
         "Baja solo hasta la altura de las orejas.",
         "Siéntate erguido, abdomen firme, sin arquear la lumbar.",
         "Muñecas rectas, justo encima de los codos.",
         "Hombros lejos de las orejas al empujar."
       ],
       "ca": [
-        "Puja en 1 s, baixa retenint 3 s.",
+        "Puja en un segon, baixa en tres.",
         "Baixa només fins a l'altura de les orelles.",
         "Seu dret, abdomen ferm, sense arquejar la zona lumbar.",
         "Canells rectes, just damunt dels colzes.",
         "Espatlles lluny de les orelles en empènyer."
       ],
       "en": [
-        "Up in 1 s, lower slowly for 3 s.",
+        "Up in one second, down in three.",
         "Lower only to ear level.",
         "Sit tall, abs braced, don't arch your lower back.",
         "Wrists straight, right above your elbows.",
@@ -1095,21 +1095,21 @@
     },
     "cues": {
       "es": [
-        "Baja en 3 s detrás de la nuca, sube en 1 s.",
+        "Baja en tres segundos detrás de la nuca, sube en uno.",
         "Siente el estiramiento en la nuca al bajar.",
         "Codos cerca de la cabeza, apuntando al frente.",
         "Solo se mueven los antebrazos; los brazos, quietos.",
         "Costillas abajo y abdomen firme, sin arquear la lumbar."
       ],
       "ca": [
-        "Baixa en 3 s darrere del clatell, puja en 1 s.",
+        "Baixa en tres segons darrere del clatell, puja en un.",
         "Sent l'estirament al clatell en baixar.",
         "Colzes a prop del cap, apuntant endavant.",
         "Només es mouen els avantbraços; els braços, quiets.",
         "Costelles avall i abdomen ferm, sense arquejar la zona lumbar."
       ],
       "en": [
-        "Lower behind your neck in 3 s, up in 1 s.",
+        "Lower behind your neck for three seconds, up in one.",
         "Feel the stretch behind your neck on the way down.",
         "Elbows close to your head, pointing forward.",
         "Only your forearms move; your upper arms stay still.",
@@ -1176,21 +1176,21 @@
     },
     "cues": {
       "es": [
-        "Sube en 1 s, aprieta 2 s, baja en 4 s.",
+        "Sube en uno, aprieta dos, baja en cuatro segundos.",
         "Codos pegados al cuerpo, no se mueven.",
         "Sin balancear el tronco: espalda recta, abdomen firme.",
         "Muñecas rectas, palmas hacia arriba.",
         "Baja hasta estirar el brazo del todo."
       ],
       "ca": [
-        "Puja en 1 s, estreny 2 s, baixa en 4 s.",
+        "Puja en un, estreny dos, baixa en quatre segons.",
         "Colzes enganxats al cos, no es mouen.",
         "Sense balancejar el tronc: esquena recta, abdomen ferm.",
         "Canells rectes, palmells cap amunt.",
         "Baixa fins a estirar el braç del tot."
       ],
       "en": [
-        "Up in 1 s, squeeze 2 s, down in 4 s.",
+        "Up in one, squeeze for two, down in four.",
         "Elbows tucked in, they don't move.",
         "No swinging: back straight, abs braced.",
         "Wrists straight, palms facing up.",
@@ -1256,21 +1256,21 @@
     "cues": {
       "es": [
         "De rodillas, en caparazón de tortuga.",
-        "Rueda al frente controlando en 3 s.",
+        "Rueda al frente controlando, en tres segundos.",
         "Frena antes de que se arquee la lumbar.",
         "Regresa de golpe compactando el abdomen.",
         "Ruedas a la anchura de los hombros, paralelas."
       ],
       "ca": [
         "De genolls, en closca de tortuga.",
-        "Roda endavant controlant en 3 s.",
+        "Roda endavant controlant, en tres segons.",
         "Frena abans que s'arquegi la zona lumbar.",
         "Torna de cop compactant l'abdomen.",
         "Rodes a l'amplada de les espatlles, paral·leles."
       ],
       "en": [
         "On your knees, back rounded like a turtle shell.",
-        "Roll forward under control for 3 s.",
+        "Roll forward under control, for three seconds.",
         "Stop before your lower back arches.",
         "Snap back by crunching your abs.",
         "Wheels shoulder-width apart and parallel."
@@ -1425,21 +1425,21 @@
       "es": [
         "Empieza colgado con los brazos estirados.",
         "Primero baja los hombros, luego tira.",
-        "Codos hacia las costillas.",
+        "Codos hacia las costillas, abdomen firme.",
         "Barbilla por encima de la barra, sin estirar el cuello.",
         "Baja controlando, sin dejarte caer."
       ],
       "ca": [
         "Comença penjat amb els braços estirats.",
         "Primer baixa les espatlles, després estira.",
-        "Colzes cap a les costelles.",
+        "Colzes cap a les costelles, abdomen ferm.",
         "Barbeta per sobre de la barra, sense estirar el coll.",
         "Baixa controlant, sense deixar-te caure."
       ],
       "en": [
         "Start from a dead hang, arms straight.",
         "Shoulders down first, then pull.",
-        "Drive your elbows towards your ribs.",
+        "Elbows towards your ribs, core tight.",
         "Chin over the bar without craning your neck.",
         "Lower under control, don't drop."
       ]
@@ -1996,23 +1996,23 @@
     },
     "cues": {
       "es": [
-        "Espalda plana, como una mesa.",
+        "Espalda plana como una mesa, abdomen firme.",
         "Tira hacia la cadera, no hacia el hombro.",
-        "Codo pegado al cuerpo.",
+        "Codo pegado y hombro lejos de la oreja.",
         "Aprieta la escápula un segundo arriba.",
         "Baja en dos segundos, sin soltar de golpe."
       ],
       "ca": [
-        "Esquena plana, com una taula.",
+        "Esquena plana com una taula, abdomen ferm.",
         "Estira cap al maluc, no cap a l'espatlla.",
-        "Colze enganxat al cos.",
+        "Colze enganxat i espatlla lluny de l'orella.",
         "Estreny l'escàpula un segon a dalt.",
         "Baixa en dos segons, sense deixar anar de cop."
       ],
       "en": [
-        "Flat back, like a table.",
+        "Back flat like a table, core tight.",
         "Pull towards your hip, not your shoulder.",
-        "Elbow close to your body.",
+        "Elbow close, shoulder away from your ear.",
         "Squeeze your shoulder blade one second at the top.",
         "Lower over two seconds, no dropping."
       ]
@@ -2076,21 +2076,21 @@
     "cues": {
       "es": [
         "Cadera atrás, como cerrando una puerta con el culo.",
-        "Espalda recta, pecho fuera.",
+        "Espalda recta, abdomen firme, hombros atrás.",
         "Mancuernas rozando las piernas.",
         "Baja en tres segundos hasta notar los isquios.",
         "Sube empujando la cadera y aprieta glúteo."
       ],
       "ca": [
         "Maluc enrere, com tancant una porta amb el cul.",
-        "Esquena recta, pit fora.",
+        "Esquena recta, abdomen ferm, espatlles enrere.",
         "Manuelles fregant les cames.",
         "Baixa en tres segons fins a notar els isquis.",
         "Puja empenyent el maluc i estreny el gluti."
       ],
       "en": [
         "Hips back, like shutting a door with your backside.",
-        "Back straight, chest out.",
+        "Back straight, core tight, shoulders back.",
         "Dumbbells brushing your legs.",
         "Lower over three seconds until you feel your hamstrings.",
         "Drive your hips forward and squeeze your glutes."

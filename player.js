@@ -56,6 +56,9 @@
   const VOICE_LANG = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const REPS_EST = 4; // seconds per rep when a reps step has no estSeconds
   const FAILURE_EST = 45; // a to-failure set with no estSeconds
+  // Speech pacing (SPEC § Cue rules). sayTime is the same estimate validate.mjs uses: conservative, in seconds.
+  const sayTime = (text) => 0.5 + String(text).trim().split(/\s+/).length / 2.2;
+  const TIP_GAP = 8; // seconds of silence before El Titán adds an exercise tip during a set
 
   // ---------- timeline ----------
   function buildTimeline(routine, exercises) {
@@ -148,6 +151,10 @@
     const total = duration(items);
     const lastLine = {};
     let kg = opts.lastKg ?? ''; // the one dumbbell weight for this session
+    // busyUntil: when the voice should be done with what it was given (estimated, since speechSynthesis.speaking is
+    // unreliable on Android). Tips only go into the silence after it.
+    let busyUntil = 0, tipsSaid = 0; // tipsSaid: tips said in the current set (one pass through the list per set)
+    const tipNext = {}; // exercise id -> index of its next tip, so back-to-back sets move on through the list
     let idx = -1, endAt = 0, repEnd = 0, startedAt = 0, pausedLeft = null, fired = new Set(), timer = null, spoken = '';
     let muted = store.get('gym-coach.muted') === '1';
     let infoId = null; // the exercise whose explanation is open over the player (see infoOverlay)
@@ -171,6 +178,7 @@
     function say(shown, voiced = shown) {
       if (!shown) return;
       spoken = shown;
+      busyUntil = Math.max(busyUntil, Date.now()) + sayTime(voiced) * 1000; // queued lines play one after the other
       const b = root.querySelector('.bubble'); if (b) b.textContent = shown;
       if (muted || !synth) return;
       const u = new SpeechSynthesisUtterance(voiced);
@@ -181,6 +189,7 @@
       synth.speak(u);
     }
     const sayL = (o) => say(t(o), (o && o[speechLang(L())]) || t(o)); // a localized object {es,ca,en}
+    function hush() { synth?.cancel(); busyUntil = 0; }
 
     // ----- rendering -----
     const pose = (it) => (!it ? 'idle' : it.kind === 'work' ? 'work' : it.kind === 'rest' ? 'rest' : it.kind === 'done' ? 'cheer' : 'idle');
@@ -338,7 +347,7 @@
 
     // ----- engine -----
     function enter(i, from = Date.now()) {
-      idx = i; fired = new Set();
+      idx = i; fired = new Set(); tipsSaid = 0;
       const it = items[idx];
       endAt = it.seconds ? from + it.seconds * 1000 : 0;
       repEnd = it.kind === 'work' && it.mode === 'reps' ? from + it.est * 1000 : 0;
@@ -382,6 +391,7 @@
       while (it.seconds && Date.now() >= endAt && it.kind !== 'done') { advance(true); it = items[idx]; }
       if (!it.seconds) {
         if (repEnd) {
+          maybeTip(it, (repEnd - Date.now()) / 1000); // no tips once the target time has passed
           const s = root.querySelector(".rsecs"); if (s) s.textContent = repLeft();
           const over = Date.now() >= repEnd;
           root.querySelector('.rep-clock')?.classList.toggle('over', over);
@@ -394,13 +404,31 @@
       const fg = root.querySelector('.ring-fg');
       if (fg) fg.setAttribute('stroke-dashoffset', String(2 * Math.PI * 54 * (1 - left / it.seconds)));
       if (it.kind === 'work') {
-        // A timed cue cuts off whatever is still being said, so the voice stays on the clock.
-        it.cues.forEach((c, n) => { if (elapsed >= c.at) once(`c${n}`, () => { if (!muted) synth?.cancel(); sayL(c.text); }); });
+        // Only the latest due cue is said, so a page that was hidden doesn't fire a burst. The first cue cuts off what is
+        // left from the rest; later ones fit by validate.mjs's speech rule, so they never cut each other off.
+        let due = -1;
+        it.cues.forEach((c, n) => { if (elapsed >= c.at && !fired.has(`c${n}`)) due = n; });
+        if (due >= 0) { for (let n = 0; n <= due; n++) fired.add(`c${n}`); if (due === 0) hush(); sayL(it.cues[due].text); }
+        const nextAt = it.cues.find((c) => c.at > elapsed)?.at ?? (it.beeps ? it.seconds - 3 : it.seconds);
+        maybeTip(it, nextAt - elapsed);
         if (!it.cues.length && it.seconds >= 20 && elapsed >= it.seconds / 2) once('half', () => sayKey('halfway'));
         if (!it.cues.length && it.seconds >= 12 && secs === 6) once('last', () => sayKey('last3'));
       }
       if (secs <= 3 && secs >= 1 && (it.kind !== 'work' || it.beeps)) once(`b${secs}`, () => beep(880, 120));
       talkAnim();
+    }
+    // An exercise tip from its own list (the posture cues in exercises.json) when the voice has been quiet for TIP_GAP
+    // and the tip fits before the next authored cue, the countdown or the reps target time. Long sets get more tips,
+    // up to one pass through the list per set.
+    function maybeTip(it, room) {
+      const now = Date.now();
+      const tips = it.ex.cues?.es;
+      if (!tips?.length || tipsSaid >= tips.length || now < busyUntil + TIP_GAP * 1000) return;
+      const n = (tipNext[it.exId] || 0) % tips.length;
+      const tip = Object.fromEntries(Object.entries(it.ex.cues).map(([k, v]) => [k, v[n % v.length]]));
+      if (sayTime(tip[speechLang(L())] || tip.es) + 1 > room) return;
+      tipNext[it.exId] = n + 1; tipsSaid++;
+      sayL(tip);
     }
     function talkAnim() {
       const m = root.querySelector('.mascot');
@@ -422,7 +450,7 @@
     }
     // quiet: closed by the app (route change), so don't call onExit, which would navigate.
     function close(quiet = false) {
-      clearInterval(timer); timer = null; synth?.cancel(); releaseAwake();
+      clearInterval(timer); timer = null; hush(); releaseAwake();
       document.removeEventListener('visibilitychange', onVis);
       document.removeEventListener('keydown', onKey);
       if (!logged && doneSet.size > 0) opts.onFinish?.({ done: false, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights: weights() });
@@ -432,8 +460,11 @@
       if (document.visibilityState === 'visible' && idx >= 0 && items[idx].kind !== 'done') { keepAwake(); tick(); }
     }
 
-    function pause() { pausedLeft = endAt ? endAt - Date.now() : repEnd ? repEnd - Date.now() : 0; synth?.cancel(); }
-    function resume() { if (endAt) endAt = Date.now() + pausedLeft; else if (repEnd) repEnd = Date.now() + pausedLeft; pausedLeft = null; }
+    function pause() { pausedLeft = endAt ? endAt - Date.now() : repEnd ? repEnd - Date.now() : 0; hush(); }
+    function resume() {
+      if (endAt) endAt = Date.now() + pausedLeft; else if (repEnd) repEnd = Date.now() + pausedLeft;
+      pausedLeft = null; busyUntil = Date.now(); // a tip waits TIP_GAP after a resume instead of firing at once
+    }
     const running = () => idx >= 0 && items[idx].kind !== 'done' && pausedLeft == null;
     // Closes the ⓘ or 📝 overlay if one is open (the app calls it on the phone's back button).
     function closeOverlay() {
@@ -464,7 +495,7 @@
         b.parentElement.querySelectorAll('button').forEach((x) => { const on = x.dataset.v === feels[ex]; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
       } else if (act === 'mute') {
         muted = !muted; store.set('gym-coach.muted', muted ? '1' : '0');
-        if (muted) synth?.cancel();
+        if (muted) hush();
         renderItem();
       } else if (act === 'pause') {
         if (pausedLeft == null) { pause(); sayKey('paused'); } else resume();
@@ -489,13 +520,13 @@
       } else if (act === 'note-save' || act === 'note-cancel') {
         closeNote(act === 'note-save');
       } else if (act === 'skip' || act === 'done') {
-        synth?.cancel(); pausedLeft = null;
+        hush(); pausedLeft = null;
         if (act === 'done') sayKey('repsDone');
         advance(false, act === 'done');
       } else if (act === 'prev') {
         let i = idx - 1; while (i > 0 && items[i].kind !== 'work') i--;
         if (items[idx].kind === 'work' && Date.now() - startedAt > 3000) i = idx; // restart the current set first
-        synth?.cancel(); pausedLeft = null; enter(Math.max(0, i));
+        hush(); pausedLeft = null; enter(Math.max(0, i));
       }
     };
     root.addEventListener('input', (e) => {

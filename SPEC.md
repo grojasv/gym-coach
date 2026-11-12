@@ -98,8 +98,18 @@ session is built from its phases (`codigo-titan` = R2 + R3 + R7 + R4 + R5 + R11)
 Between included routines, the last step's `restAfter` is the transition rest.
 
 **Cue rules** (checked by `node scripts/validate.mjs`): `at` values increase and stay below `seconds - 3`, or below
-`seconds` when `beeps` is false. Each cue is at most 12 words; leave about 1 s of gap per 3 words before the next cue.
-Steps with cues get no generic `go`/`halfway`/`last3` lines. Reps steps have no timed cues.
+`seconds` when `beeps` is false. Each cue is at most 12 words. **Speech fits the time** (2026-11-12): a line takes
+`0.5 + words / 2.2` seconds to say, counted in its longest language (measured on desktop voices at rate 1.05: 2 to 3
+words/s, kept slower for the phone). Each cue must end before the next cue's `at`, and the last one by `seconds - 3`, or
+by `seconds` when `beeps` is false. So a 5 s negative gets two short cues, not five. Spoken text (cues, tip lists,
+lines) has no symbols: "tres segundos", not "3 s"; no `°` or `%`.
+Steps with cues get no generic `go`/`halfway`/`last3` lines. Reps steps have no timed cues in the data.
+
+**Tips during a set** (player, 2026-11-12): when the voice has been quiet for 8 s (`TIP_GAP`), El Titán says the next tip
+from the exercise's own `cues` list, if it fits before the next authored cue, the 3-2-1 countdown, or a reps set's target
+time (never in overtime). A long set gets more tips; each set goes through the list at most once, and back-to-back sets
+carry on where the last one stopped. Only the latest due cue is said, so a page that was hidden doesn't fire a burst; the
+first cue of a step cuts off what is left from the rest, and later cues never cut each other off.
 
 **How the player builds the timeline:** first `prepare`, then for each block, round and step, the **work** step followed
 by its **rest**. The rest is `restAfter`, except after a round's last step, where it is `restBetweenRounds`. The very

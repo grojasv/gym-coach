@@ -287,7 +287,7 @@
                 "at": 12,
                 "text": {
                   "es": "Cuatro: baja despacio, sin caer.",
-                  "ca": "Quatre: baixa a poc a poc, sense caure.",
+                  "ca": "Quatre: baixa lent, sense caure.",
                   "en": "Four: lower slowly, no dropping."
                 }
               },
@@ -341,141 +341,69 @@
               {
                 "at": 0,
                 "text": {
-                  "es": "¡Barbilla arriba, aguanta!",
-                  "ca": "Barbeta amunt, aguanta!",
-                  "en": "Chin over the bar, hold!"
+                  "es": "Barbilla arriba, baja lento.",
+                  "ca": "Barbeta amunt, baixa lent.",
+                  "en": "Chin up, lower slowly."
                 }
               },
               {
-                "at": 1,
+                "at": 3,
                 "text": {
-                  "es": "Frena apretando la espalda.",
-                  "ca": "Frena estrenyent l'esquena.",
+                  "es": "Suave, pies abajo.",
+                  "ca": "Suau, peus avall.",
+                  "en": "Easy, feet down."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "dominada-negativa",
+            "mode": "time",
+            "seconds": 5,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "Frena con la espalda.",
+                  "ca": "Frena amb l'esquena.",
                   "en": "Brake with your back."
                 }
               },
               {
-                "at": 2,
+                "at": 3,
                 "text": {
-                  "es": "Codos a noventa, no caigas.",
-                  "ca": "Colzes a noranta, no caiguis.",
-                  "en": "Elbows at ninety, don't drop."
+                  "es": "Sin caer, control.",
+                  "ca": "Sense caure, control.",
+                  "en": "No dropping, control."
+                }
+              }
+            ]
+          },
+          {
+            "exercise": "dominada-negativa",
+            "mode": "time",
+            "seconds": 5,
+            "weight": false,
+            "beeps": false,
+            "restAfter": 60,
+            "cues": [
+              {
+                "at": 0,
+                "text": {
+                  "es": "La última: pecho fuera.",
+                  "ca": "L'última: pit enfora.",
+                  "en": "Last one: chest out."
                 }
               },
               {
                 "at": 3,
                 "text": {
-                  "es": "Brazos casi estirados, control.",
-                  "ca": "Braços gairebé estirats, control.",
-                  "en": "Arms nearly straight, control."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Estira y apoya los pies.",
-                  "ca": "Estira i recolza els peus.",
+                  "es": "Estira y apoya.",
+                  "ca": "Estira i recolza.",
                   "en": "Straighten, feet down."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "dominada-negativa",
-            "mode": "time",
-            "seconds": 5,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡Cuatro segundos de puro fuego!",
-                  "ca": "Quatre segons de foc pur!",
-                  "en": "Four seconds of pure fire!"
-                }
-              },
-              {
-                "at": 1,
-                "text": {
-                  "es": "Suelta milímetro a milímetro.",
-                  "ca": "Deixa anar mil·límetre a mil·límetre.",
-                  "en": "Lower millimetre by millimetre."
-                }
-              },
-              {
-                "at": 2,
-                "text": {
-                  "es": "Aguanta con los dorsales.",
-                  "ca": "Aguanta amb els dorsals.",
-                  "en": "Hold it with your lats."
-                }
-              },
-              {
-                "at": 3,
-                "text": {
-                  "es": "Codos firmes, brazos controlados.",
-                  "ca": "Colzes ferms, braços controlats.",
-                  "en": "Elbows firm, arms controlled."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Estira y apoya las puntas.",
-                  "ca": "Estira i recolza les puntes.",
-                  "en": "Straighten, toes down."
-                }
-              }
-            ]
-          },
-          {
-            "exercise": "dominada-negativa",
-            "mode": "time",
-            "seconds": 5,
-            "weight": false,
-            "beeps": false,
-            "restAfter": 60,
-            "cues": [
-              {
-                "at": 0,
-                "text": {
-                  "es": "¡La tercera! Barbilla arriba.",
-                  "ca": "La tercera! Barbeta amunt.",
-                  "en": "Third one! Chin over the bar."
-                }
-              },
-              {
-                "at": 1,
-                "text": {
-                  "es": "Pecho fuera, frena despacio.",
-                  "ca": "Pit fora, frena a poc a poc.",
-                  "en": "Chest out, brake slowly."
-                }
-              },
-              {
-                "at": 2,
-                "text": {
-                  "es": "Aprieta la espalda, sin caer.",
-                  "ca": "Estreny l'esquena, sense caure.",
-                  "en": "Squeeze your back, don't drop."
-                }
-              },
-              {
-                "at": 3,
-                "text": {
-                  "es": "Casi abajo, control.",
-                  "ca": "Gairebé a baix, control.",
-                  "en": "Almost down, control."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Pies al escalón, ¡bien hecho!",
-                  "ca": "Peus a l'esglaó, ben fet!",
-                  "en": "Feet on the step, well done!"
                 }
               }
             ]
@@ -1928,7 +1856,7 @@
                 "at": 12,
                 "text": {
                   "es": "Cuatro: baja despacio, sin caer.",
-                  "ca": "Quatre: baixa a poc a poc, sense caure.",
+                  "ca": "Quatre: baixa lent, sense caure.",
                   "en": "Four: lower slowly, no dropping."
                 }
               },
@@ -1983,49 +1911,17 @@
               {
                 "at": 0,
                 "text": {
-                  "es": "¡Barbilla arriba, aguanta!",
-                  "ca": "Barbeta amunt, aguanta!",
-                  "en": "Chin over the bar, hold!"
-                }
-              },
-              {
-                "at": 1,
-                "text": {
-                  "es": "Uno: frena con la espalda.",
-                  "ca": "Un: frena amb l'esquena.",
-                  "en": "One: brake with your back."
-                }
-              },
-              {
-                "at": 2,
-                "text": {
-                  "es": "Dos: codos a noventa.",
-                  "ca": "Dos: colzes a noranta.",
-                  "en": "Two: elbows at ninety."
+                  "es": "Barbilla arriba, baja lento.",
+                  "ca": "Barbeta amunt, baixa lent.",
+                  "en": "Chin up, lower slowly."
                 }
               },
               {
                 "at": 3,
                 "text": {
-                  "es": "Tres: brazos casi estirados.",
-                  "ca": "Tres: braços gairebé estirats.",
-                  "en": "Three: arms nearly straight."
-                }
-              },
-              {
-                "at": 4,
-                "text": {
-                  "es": "Cuatro: estira del todo.",
-                  "ca": "Quatre: estira del tot.",
-                  "en": "Four: straighten fully."
-                }
-              },
-              {
-                "at": 5,
-                "text": {
-                  "es": "Apoya los pies suave.",
-                  "ca": "Recolza els peus suau.",
-                  "en": "Set your feet down softly."
+                  "es": "Frena con la espalda.",
+                  "ca": "Frena amb l'esquena.",
+                  "en": "Brake with your back."
                 }
               }
             ]
