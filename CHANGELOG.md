@@ -2,6 +2,12 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.10.1] — 2026-11-12
+From a full run of R1 (64 min, every set, with pause, ⓘ, ⏮ and the screen off).
+### Fixed
+- **Rests no longer pile up lines.** On entering a rest, El Titán queued four or five lines at once (rest, put away, set up, next up, a tip). The last ones started up to 12 s late and ran into the next set, where they were cut off or talked over the reps target. Now they're said one at a time, and a line that no longer fits before the 3-2-1 countdown is skipped (it's on screen anyway).
+- A "Recoge …" line at the start of a timed set is no longer cut off by the set's first cue.
+
 ## [0.10.0] — 2026-11-12
 ### Added
 - **El Titán gives posture tips during reps sets** ("Codo pegado y hombro lejos de la oreja", "Abdomen firme…"). They come from each exercise's own tip list, one every 12 s or so while he's quiet, and stop at the target time. Long timed sets (the rower) get tips in their quiet stretches too. More time, more tips; each set goes through the list once.

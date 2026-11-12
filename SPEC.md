@@ -110,6 +110,10 @@ from the exercise's own `cues` list, if it fits before the next authored cue, th
 time (never in overtime). A long set gets more tips; each set goes through the list at most once, and back-to-back sets
 carry on where the last one stopped. Only the latest due cue is said, so a page that was hidden doesn't fire a burst; the
 first cue of a step cuts off what is left from the rest, and later cues never cut each other off.
+**Lines a step says on entry** (rest or round done, put away, set up, next up, the rest tip, the reps target) go to a
+queue (0.10.1). They are said one at a time when the voice is free, and a line is dropped if it no longer fits before the
+3-2-1 countdown, or before a timed set's next cue: the screen still shows it. Before, they all started at once and the last
+ones ran up to 12 s late, into the next set.
 
 **How the player builds the timeline:** first `prepare`, then for each block, round and step, the **work** step followed
 by its **rest**. The rest is `restAfter`, except after a round's last step, where it is `restBetweenRounds`. The very

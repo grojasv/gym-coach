@@ -153,6 +153,9 @@
     let kg = opts.lastKg ?? ''; // the one dumbbell weight for this session
     // busyUntil: when the voice should be done with what it was given (estimated, since speechSynthesis.speaking is
     // unreliable on Android). Tips only go into the silence after it.
+    // queue: lines a step says on entry (rest, next up, set up, put away, reps target). They are said one at a time when
+    // the voice is free, and dropped if they no longer fit before the countdown or the next cue (the screen shows them).
+    let queue = [], queuing = false;
     let busyUntil = 0, tipsSaid = 0; // tipsSaid: tips said in the current set (one pass through the list per set)
     const tipNext = {}; // exercise id -> index of its next tip, so back-to-back sets move on through the list
     let idx = -1, endAt = 0, repEnd = 0, startedAt = 0, pausedLeft = null, fired = new Set(), timer = null, spoken = '';
@@ -177,6 +180,7 @@
     }
     function say(shown, voiced = shown) {
       if (!shown) return;
+      if (queuing) { queue.push([shown, voiced]); return; }
       spoken = shown;
       busyUntil = Math.max(busyUntil, Date.now()) + sayTime(voiced) * 1000; // queued lines play one after the other
       const b = root.querySelector('.bubble'); if (b) b.textContent = shown;
@@ -347,7 +351,7 @@
 
     // ----- engine -----
     function enter(i, from = Date.now()) {
-      idx = i; fired = new Set(); tipsSaid = 0;
+      idx = i; fired = new Set(); tipsSaid = 0; queue = [];
       const it = items[idx];
       endAt = it.seconds ? from + it.seconds * 1000 : 0;
       repEnd = it.kind === 'work' && it.mode === 'reps' ? from + it.est * 1000 : 0;
@@ -355,6 +359,7 @@
       const live = !it.seconds || Date.now() < endAt; // false while catching up after the page was hidden
       if (live) {
         renderItem();
+        queuing = true; // everything said below goes to the queue (finish() speaks later, outside it)
         const equip = () => { (it.putAway || []).forEach((st) => sayKey('equipAway', { x: STN(st) })); (it.setUp || []).forEach((st) => sayKey('equipSet', { x: STN(st) })); };
         if (it.kind === 'prep') { if (it.seconds >= 15) sayKey('start'); sayKey('prep', { name: it.next ? t(it.next.ex.name) : '' }); equip(); }
         else if (it.kind === 'work') {
@@ -374,8 +379,26 @@
           const n = tips ? Math.floor(Math.random() * (tips.es || []).length) : -1;
           if (it.seconds >= 25 && n >= 0) sayL(Object.fromEntries(Object.entries(tips).map(([k, v]) => [k, v[n % v.length]])));
         } else if (it.kind === 'done') finish();
+        queuing = false;
+        if (!(it.kind === 'work' && it.seconds)) drain(); // a timed set says its first cue first (tick)
       }
       return live;
+    }
+    // Seconds the voice has before it must be quiet: the 3-2-1 countdown of a prep or rest, a timed set's next authored
+    // cue or countdown. A reps set and the end screen have no limit.
+    function room() {
+      const it = items[idx], now = Date.now();
+      if (!it.seconds) return Infinity;
+      const el = it.seconds - (endAt - now) / 1000;
+      if (it.kind !== 'work') return it.seconds - 3 - el;
+      const next = it.cues.find((c, n) => !fired.has(`c${n}`))?.at ?? (it.beeps ? it.seconds - 3 : it.seconds);
+      return next - el;
+    }
+    function drain() {
+      while (queue.length && Date.now() >= busyUntil) {
+        const [shown, voiced] = queue.shift();
+        if (sayTime(voiced) <= room()) say(shown, voiced);
+      }
     }
     // counted: the set was finished (its time ran out or Done was tapped), not skipped.
     function advance(fromEnd, counted = fromEnd) {
@@ -390,7 +413,8 @@
       // Catch up: steps that ended while the page was hidden are passed silently, keeping the clock continuous.
       while (it.seconds && Date.now() >= endAt && it.kind !== 'done') { advance(true); it = items[idx]; }
       if (!it.seconds) {
-        if (repEnd) {
+        drain();
+        if (repEnd && !queue.length) {
           maybeTip(it, (repEnd - Date.now()) / 1000); // no tips once the target time has passed
           const s = root.querySelector(".rsecs"); if (s) s.textContent = repLeft();
           const over = Date.now() >= repEnd;
@@ -409,11 +433,11 @@
         let due = -1;
         it.cues.forEach((c, n) => { if (elapsed >= c.at && !fired.has(`c${n}`)) due = n; });
         if (due >= 0) { for (let n = 0; n <= due; n++) fired.add(`c${n}`); if (due === 0) hush(); sayL(it.cues[due].text); }
-        const nextAt = it.cues.find((c) => c.at > elapsed)?.at ?? (it.beeps ? it.seconds - 3 : it.seconds);
-        maybeTip(it, nextAt - elapsed);
+        drain();
+        if (!queue.length) maybeTip(it, room());
         if (!it.cues.length && it.seconds >= 20 && elapsed >= it.seconds / 2) once('half', () => sayKey('halfway'));
         if (!it.cues.length && it.seconds >= 12 && secs === 6) once('last', () => sayKey('last3'));
-      }
+      } else drain(); // prep and rest
       if (secs <= 3 && secs >= 1 && (it.kind !== 'work' || it.beeps)) once(`b${secs}`, () => beep(880, 120));
       talkAnim();
     }
