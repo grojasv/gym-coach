@@ -2,6 +2,14 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.12.0] — 2026-11-13
+### Added
+- **An intro when the app opens:** El Titán drops into the ring and the title slams in. A tap skips it; it plays once per app open, on the hub only.
+- **A livelier hub:** a sunburst behind El Titán, who breathes, blinks and strikes a pose when tapped; striped routine cards; buttons react to a press.
+- **In the player:** each new step animates in, and the end screen has confetti and a new pose with the belt held overhead.
+### Changed
+- The animations live in a new `fx.js`, decoration only: it never touches timers, speech or data, and nothing runs with reduced motion. The service worker cache is bumped to v6.
+
 ## [0.11.0] — 2026-11-13
 ### Added
 - **Pick up an interrupted workout.** The player saves where you are on every step. If the app closes, the page reloads or you leave by accident, the hub shows **⏸ Entreno a medias** with Continuar and Descartar, and the routine's start screen offers **Continuar** (the set or rest you were on starts again) or Empezar de cero. It keeps finished sets, the weight, ratings and results for 6 hours; after that it goes to the history as partial.

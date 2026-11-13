@@ -7,6 +7,7 @@ Phone-first hub of workout routines, played as a timed script by El Titán (a ca
 - `app.js`: the hub (routines, exercise library, history), languages, install button, footer. **`VERSION` here must match `CHANGELOG.md`.**
 - `player.js`: builds the timeline from a routine and plays it (timestamps, cues, beeps, speech, wake lock).
 - `detail.js`: the exercise explanation (`Detail.html`) and equipment names, shared by the hub's exercise page and the player's info overlay.
+- `fx.js`: the fun layer (intro, hub entrance, step transitions, confetti). Decoration only; never touches timers, speech or data.
 - `progress.js`: pure progress rules over the history log (`Progress.series`, `advice`, `latest`).
 - `mascot.js`: El Titán as SVG (`Titan.svg(pose)`, `Titan.head()`), UMD so `scripts/make-icons.mjs` can reuse it.
 - `data/exercises.json`, `data/routines.json`, `data/lines.json`: all the content. Schemas are in `SPEC.md`.

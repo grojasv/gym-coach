@@ -21,7 +21,8 @@
   };
   const SW = 3; // outline width
 
-  const POSES = ['idle', 'work', 'rest', 'cheer'];
+  const POSES = ['idle', 'work', 'rest', 'cheer', 'champ'];
+  const face = (pose) => (pose === 'champ' ? 'cheer' : pose); // champ: the cheer face, with the belt held overhead
 
   // ---------- small helpers ----------
   const pts = (p) => p.map(([x, y]) => `${x},${y}`).join(' ');
@@ -74,8 +75,8 @@
         case 'cheer': // both closed in a big happy ^ ^
           return trim + hole(C.skin) + closed;
         default: // idle: open, confident
-          return trim + hole(C.white) + pupil() +
-            `<path d="M ${ex - 8} ${ey - 4} Q ${ex} ${ey - 9} ${ex + 8} ${ey - 4}" fill="none" stroke="${C.ink}" stroke-width="2" stroke-linecap="round"/>`;
+          return trim + `<g class="titan-eye">` + hole(C.white) + pupil() +
+            `<path d="M ${ex - 8} ${ey - 4} Q ${ex} ${ey - 9} ${ex + 8} ${ey - 4}" fill="none" stroke="${C.ink}" stroke-width="2" stroke-linecap="round"/></g>`;
       }
     };
     return one(-1) + one(1);
@@ -188,6 +189,17 @@
         return limb(L) + limb(mirror(L)) + fist(32, 40) + fist(168, 40) +
           star(12, 18, 8) + star(188, 18, 8) + star(70, 8, 5) + star(130, 8, 5) + star(8, 70, 5) + star(192, 70, 5);
       }
+      case 'champ': { // the championship belt held high over the head (the svg gets a taller viewBox)
+        const L = [[47, 122], [18, 84], [26, 34]];
+        const strap = (w, col) => `<path d="M 26 26 Q 100 -24 174 26" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
+        return limb(L) + limb(mirror(L)) + strap(18 + SW * 2, C.ink) + strap(18, C.gold) +
+          `<circle cx="58" cy="9" r="3" fill="${C.red}" stroke="${C.ink}" stroke-width="1.5"/>` +
+          `<circle cx="142" cy="9" r="3" fill="${C.red}" stroke="${C.ink}" stroke-width="1.5"/>` +
+          `<ellipse cx="100" cy="-5" rx="27" ry="18" fill="${C.goldHi}" stroke="${C.ink}" stroke-width="${SW}"/>` +
+          `<ellipse cx="100" cy="-5" rx="20" ry="12.5" fill="${C.gold}" stroke="${C.ink}" stroke-width="1.8"/>` +
+          star(100, -5, 10, C.red) + fist(26, 28) + fist(174, 28) +
+          star(8, -12, 7) + star(192, -12, 7) + star(52, -20, 4.5) + star(148, -20, 4.5) + star(6, 72, 5) + star(194, 72, 5);
+      }
       default: { // idle: hands on hips
         const L = [[47, 122], [20, 156], [62, 180]];
         return limb(L) + limb(mirror(L)) + fist(62, 180) + fist(138, 180);
@@ -201,11 +213,12 @@
   const api = {
     poses: POSES.slice(),
 
-    /** Full-body SVG string. pose: idle | work | rest | cheer. size: width in px (height keeps 200:220). */
+    /** Full-body SVG string. pose: idle | work | rest | cheer | champ. size: width in px (height keeps 200:220; champ is 200:250). */
     svg(pose = 'idle', { size } = {}) {
       if (!POSES.includes(pose)) pose = 'idle';
-      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220"${sizeAttrs(size, 1.1)} class="titan titan-${pose}" role="img" aria-label="El Titán">` +
-        `<g class="titan-body">${torso()}${arms(pose)}<g transform="translate(100 56)">${headGroup(pose)}</g></g></svg>`;
+      const tall = pose === 'champ';
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${tall ? '0 -30 200 250' : '0 0 200 220'}"${sizeAttrs(size, tall ? 1.25 : 1.1)} class="titan titan-${pose}" role="img" aria-label="El Titán">` +
+        `<g class="titan-body">${torso()}${arms(pose)}<g class="titan-face" transform="translate(100 56)">${headGroup(face(pose))}</g></g></svg>`;
     },
 
     /** Just the masked head on a square viewBox (for the app icon). */
