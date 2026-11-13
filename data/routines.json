@@ -1529,7 +1529,7 @@
           "ca": "El segell de ferro",
           "en": "The iron seal"
         },
-        "rounds": 3,
+        "rounds": 2,
         "restBetweenRounds": 45,
         "steps": [
           {

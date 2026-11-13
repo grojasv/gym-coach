@@ -2,6 +2,10 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.12.1] — 2026-11-13
+### Changed
+- **Core in R1 (R5): 2 rounds instead of 3.** R1 now takes 66.5 min, shown as 67 (it was 69). Guille accepts R1 above 60 min; nothing else is cut.
+
 ## [0.12.0] — 2026-11-13
 ### Added
 - **An intro when the app opens:** El Titán drops into the ring and the title slams in. A tap skips it; it plays once per app open, on the hub only.
