@@ -293,3 +293,153 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .group.g-green summary { border-left-color: var(--leaf); }
 .group summary .g-title { flex: 1; }
 .g-emoji { font-size: 26px; line-height: 1; }
+
+/* ==========================================================================================================
+   FUN LAYER (fx.js): intro, hub entrance, press feedback, step transitions, end-screen celebration.
+   Everything below is decoration: transform and opacity only, nothing here changes layout timing or taps.
+   Keyframes give only the start (the end is the element's own style), so finished animations leave no trace.
+   prefers-reduced-motion: the rule above switches all of it off, and fx.js adds no intro and no confetti.
+   ========================================================================================================== */
+:root { --burst: .55; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --burst: .26; } }
+:root[data-theme="dark"] { --burst: .26; }
+* { -webkit-tap-highlight-color: transparent; }
+
+@keyframes fx-spin { to { transform: rotate(360deg); } }
+@keyframes fx-up { from { opacity: 0; transform: translateY(14px); } }
+@keyframes fx-pop { from { opacity: 0; transform: scale(.55); } 70% { opacity: 1; transform: scale(1.06); } }
+@keyframes fx-stamp { from { opacity: 0; transform: scale(2.3) rotate(9deg); } 65% { opacity: 1; transform: scale(.94) rotate(-3deg); } }
+@keyframes fx-wash { from { opacity: .3; } to { opacity: 0; } }
+
+/* ----- fx: intro (El Titán drops into the ring, the title slams in). Tap to skip. ----- */
+.intro {
+  position: fixed; inset: 0; z-index: 50; overflow: hidden; display: grid; place-items: center; cursor: pointer; touch-action: none;
+  background: radial-gradient(circle at 50% 42%, #ff6a5c 0, #e63946 50%, #a51c2b 100%);
+}
+.intro-rays {
+  position: absolute; left: 50%; top: 42%; width: 220vmax; height: 220vmax; margin: -110vmax 0 0 -110vmax;
+  background: repeating-conic-gradient(rgb(0 0 0 / 0%) 0 10deg, rgb(0 0 0 / 13%) 10deg 20deg); animation: fx-spin 40s linear infinite;
+}
+.intro-stage { position: relative; z-index: 1; display: grid; justify-items: center; gap: 6px; padding-bottom: 6vh; animation: fx-shake .3s .38s; }
+.intro-titan { width: min(54vw, 32vh, 230px); transform-origin: bottom center; animation: fx-drop .55s cubic-bezier(.35, 0, .75, 1) backwards; }
+.intro-titan svg { display: block; width: 100%; height: auto; overflow: visible; }
+.intro-title { display: grid; font: clamp(46px, 17vw, 84px)/.92 var(--display); letter-spacing: 1px; text-align: center; transform: rotate(-4deg); }
+.intro-title span, .intro-title b {
+  display: block; font-weight: 400; color: #fff; text-shadow: 3px 3px 0 #1b2340, 6px 6px 0 #1b2340;
+  animation: fx-slam .32s .62s cubic-bezier(.2, .9, .3, 1) backwards;
+}
+.intro-title b { color: #ffc72c; animation-delay: .82s; }
+.intro-sparks { position: absolute; left: 50%; top: 34%; }
+.intro-sparks i {
+  position: absolute; width: 18px; height: 18px; margin: -9px; background: #ffc72c; opacity: 0;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: fx-spark .65s .4s ease-out;
+}
+.intro-ropes { position: absolute; inset: auto -4% 5% -4%; animation: fx-rope .45s .38s ease-out; }
+.intro-ropes i { display: block; height: 9px; margin-top: 15px; background: #fff; border: 2.5px solid #1b2340; border-radius: 6px; }
+.intro-ropes i:nth-child(2) { background: #ffc72c; }
+.intro.out { animation: fx-curtain .3s cubic-bezier(.6, 0, .9, .4) forwards; }
+.intro.skip { animation: fx-fade .15s forwards; }
+@keyframes fx-drop { from { transform: translateY(-110vh); } 68% { transform: translateY(0) scale(1.14, .8); } 84% { transform: translateY(-16px) scale(.95, 1.06); } }
+@keyframes fx-shake { 25% { transform: translate(-5px, 7px); } 50% { transform: translate(5px, -3px); } 75% { transform: translate(-3px, 3px); } }
+@keyframes fx-slam { from { opacity: 0; transform: scale(3.4); } 70% { opacity: 1; transform: scale(.9); } }
+@keyframes fx-spark { from { opacity: 1; transform: rotate(var(--a)) translateY(-30px) scale(.4); } to { opacity: 0; transform: rotate(var(--a)) translateY(calc(-30px - var(--d) * 1.8)) scale(1.3); } }
+@keyframes fx-rope { 30% { transform: translateY(9px); } 60% { transform: translateY(-4px); } }
+@keyframes fx-curtain { to { transform: translateY(-102%); } }
+@keyframes fx-fade { to { opacity: 0; } }
+
+/* ----- fx: El Titán is alive (sunburst behind him, breathing, blinking, a hop when he wins) ----- */
+.titan { overflow: visible; }
+.hero .mascot, .p-stage .mascot { position: relative; isolation: isolate; }
+.hero .mascot::before, .kind-done .mascot::before {
+  content: ""; position: absolute; inset: -24%; z-index: -1; border-radius: 50%; opacity: var(--burst); pointer-events: none;
+  background: repeating-conic-gradient(var(--gold) 0 10deg, transparent 10deg 20deg);
+  -webkit-mask: radial-gradient(closest-side, #000 40%, transparent 100%); mask: radial-gradient(closest-side, #000 40%, transparent 100%);
+  animation: fx-spin 48s linear infinite;
+}
+.kind-done .mascot::before { inset: -30%; animation-duration: 24s; }
+.pose-idle .titan-body, .pose-rest .titan-body { animation: fx-breathe 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom center; }
+.pose-rest .titan-body { animation-duration: 4.4s; }
+.titan-eye { animation: fx-blink 4.8s infinite; transform-box: fill-box; transform-origin: center; }
+.pose-champ .titan-body, .pose-cheer .titan-body { animation: fx-hop .5s ease-in-out 12 alternate; transform-box: fill-box; }
+@keyframes fx-breathe { 50% { transform: scale(1.012, 1.028); } }
+@keyframes fx-blink { 0%, 93%, 100% { transform: scaleY(1); } 96.5% { transform: scaleY(.08); } }
+@keyframes fx-hop { to { transform: translateY(-5%); } }
+
+/* ----- fx: hub entrance, once per app open (body.fx-first is set by fx.js for 1.5 s) ----- */
+body.fx-first .hero .mascot { animation: fx-pop .45s backwards; }
+body.fx-first .hero .bubble { transform-origin: left center; animation: fx-pop .35s .28s backwards; }
+body.fx-first .sec { animation: fx-up .3s .2s backwards; }
+body.fx-first .list.pinned .card { animation: fx-up .36s .3s backwards; }
+body.fx-first .list.pinned .card:nth-child(2) { animation-delay: .38s; }
+body.fx-first .list.pinned .card:nth-child(3) { animation-delay: .46s; }
+body.fx-first .list.pinned .card:nth-child(n + 4) { animation-delay: .54s; }
+.detail { animation: fx-up .24s backwards; }
+
+/* ----- fx: routine cards (striped ring-post edge, louder title, time ticket, a shine on Train) ----- */
+.routine { --rc: var(--red); position: relative; border-left-width: 3px; padding-left: 30px; overflow: hidden; }
+.routine.c-gold { --rc: var(--gold); }
+.routine.c-teal { --rc: var(--teal); }
+.routine.c-green { --rc: var(--leaf); }
+.routine::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 16px; border-right: 3px solid var(--edge); background: var(--rc);
+  background: repeating-linear-gradient(-45deg, var(--rc) 0 8px, color-mix(in srgb, var(--rc) 72%, #000) 8px 16px);
+}
+.routine h3 { font-size: 19px; letter-spacing: -.01em; }
+.routine .pill { padding: 5px 11px; font-size: 14px; box-shadow: 2px 2px 0 var(--edge); transform: rotate(2deg); }
+.routine .r-foot .btn { position: relative; overflow: hidden; padding: 9px 14px; font-size: 15px; }
+.list.pinned .routine .r-foot .btn::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 55%) 50%, transparent 65%);
+  transform: translateX(-120%); animation: fx-shine 6s 2.2s infinite;
+}
+.list.pinned .routine:nth-child(2) .r-foot .btn::after { animation-delay: 2.5s; }
+.list.pinned .routine:nth-child(n + 3) .r-foot .btn::after { animation-delay: 2.8s; }
+@keyframes fx-shine { 0% { transform: translateX(-120%); } 12%, 100% { transform: translateX(120%); } }
+/* the star skips the headings that already open with an emoji (notes, level-up) */
+.sec:not(:has(+ .notes), :has(+ .levelup))::before { content: "★ "; color: var(--gold); -webkit-text-stroke: 1.5px var(--edge); paint-order: stroke fill; }
+
+/* ----- fx: press feedback on everything tappable (cards and .btn already sink into their shadow) ----- */
+.langs button, .icon-btn, .group summary, .f-btns button, .note-tags button, .btn { transition: transform .08s, box-shadow .08s, filter .08s; }
+.langs button:active, .icon-btn:active, .f-btns button:active, .note-tags button:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--edge); }
+.group summary:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--edge); }
+a.card:active .btn.go, .btn.go:active { filter: brightness(1.12); }
+.back:active { transform: translateX(-3px); }
+.back { transition: transform .08s; }
+.hero .mascot:active { transform: scale(.94); }
+
+/* ----- fx: player step transitions (fx.js adds .fx-enter to the stage only when the step is new) ----- */
+.fx-enter .p-phase { animation: fx-stamp .3s backwards; }
+.fx-enter .mascot { animation: fx-pop .34s backwards; }
+.fx-enter .timer { animation: fx-pop .32s .04s backwards; }
+.fx-enter .bubble { animation: fx-up .26s .06s backwards; }
+.fx-enter .p-title, .fx-enter .reps-target, .fx-enter .p-equip, .fx-enter .p-meta { animation: fx-up .26s .1s backwards; }
+.fx-enter.intro .p-list li { animation: fx-up .24s .14s backwards; }
+.player:has(.p-stage.fx-enter)::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; background: var(--red); animation: fx-wash .55s ease-out;
+}
+.player:has(.kind-rest.fx-enter)::after { background: var(--green); }
+.player:has(.kind-prep.fx-enter)::after, .player:has(.kind-done.fx-enter)::after, .player:has(.intro.fx-enter)::after { background: var(--gold); }
+
+/* ----- fx: end screen (belt over his head, sunburst, stamped title, confetti from fx.js) ----- */
+.p-stage.kind-done .mascot { width: min(24vh, 150px); margin-top: 26px; }
+.kind-done .p-title {
+  font-size: clamp(30px, 10vw, 40px); color: var(--gold); transform: rotate(-3deg); margin: 4px 0 2px;
+  text-shadow: 2px 2px 0 var(--edge), -1px -1px 0 var(--edge), 1px -1px 0 var(--edge), -1px 1px 0 var(--edge), 4px 4px 0 var(--edge);
+}
+.kind-done.fx-enter .p-title { animation: fx-stamp .4s .25s backwards; }
+.kind-done.fx-enter .feel { animation: fx-up .3s .45s backwards; }
+.confetti { position: fixed; inset: 0; z-index: 30; overflow: hidden; pointer-events: none; }
+.confetti i {
+  position: absolute; top: -24px; width: 10px; height: 16px; background: var(--c); border: 1.5px solid #1b2340; border-radius: 2px;
+  animation: fx-fall 2.4s linear both; will-change: transform;
+}
+.confetti i.dot { width: 11px; height: 11px; border-radius: 50%; }
+.confetti i.star {
+  width: 20px; height: 20px; border: 0;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+@keyframes fx-fall {
+  from { transform: translate3d(0, -4vh, 0) rotate(0); opacity: 1; }
+  85% { opacity: 1; }
+  to { transform: translate3d(var(--x), 108vh, 0) rotate(var(--r)); opacity: 0; }
+}

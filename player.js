@@ -196,7 +196,7 @@
     function hush() { synth?.cancel(); busyUntil = 0; }
 
     // ----- rendering -----
-    const pose = (it) => (!it ? 'idle' : it.kind === 'work' ? 'work' : it.kind === 'rest' ? 'rest' : it.kind === 'done' ? 'cheer' : 'idle');
+    const pose = (it) => (!it ? 'idle' : it.kind === 'work' ? 'work' : it.kind === 'rest' ? 'rest' : it.kind === 'done' ? 'champ' : 'idle');
     const mascot = (p) => (window.Titan ? window.Titan.svg(p) : '<div class="mascot-fallback">🦾</div>');
     const ring = (frac) => {
       const C = 2 * Math.PI * 54;
