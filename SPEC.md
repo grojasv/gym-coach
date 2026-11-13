@@ -148,6 +148,25 @@ A first step towards making things harder over time, decided with Guille on 2026
 An array of `{ at, routine, done, steps, total, weights: { dumbbells: kg, exerciseId: kg } }`, with the newest entry first and
 at most 200. Since 0.9.0 every dumbbell exercise of a session has the same kg; older entries only have per-exercise kg.
 
+### Resume: `localStorage` `gym-coach.session` (0.11.0)
+The workout in progress, saved by the player on every step it enters and when the weight changes:
+`{ routine, sig, idx, doneIdx, res, kg, sid, feels, at, set, sets, steps, total, weights, results }`. `sig` is the
+timeline's length and duration, so a routine that changed can't be resumed. It is cleared when the workout ends or the
+user leaves it on purpose (✕ or back, after the confirm). A saved one under 6 hours old (`RESUME_MAX`) shows on the hub
+(**⏸ Entreno a medias**: Continuar / Descartar) and on that routine's start screen (**Continuar** / Empezar de cero);
+Continuar is the Start tap, so it also unlocks sound. Resuming enters the saved step from its start. Descartar, or a
+saved one older than 6 hours, writes a partial history entry.
+
+### Progress: `results` in the history log (0.11.0)
+- **Singles** (a reps step with `reps: 1`, no range): ✔ Hecho logs 1, ✗ No salió logs 0. Both count as a finished set.
+- **Other reps sets**: a **Hechas − N +** counter, starting at this session's last set of that exercise, else last
+  time's first set, else the target. Hecho logs N. Timed sets and skipped sets log nothing.
+- A log entry gets `results: { exerciseId: { sets: [n, …], max?: repsMax, single?: true } }`.
+- `progress.js` (pure, tested): `series` (last 8 sessions per exercise, value = sum of the sets), `latest`, and `advice`
+  from the last 2 sessions: `double` (every single came out, at least 2 singles each time) or `top` (every set reached
+  `repsMax`). The hub's **📈 Progreso** shows the last session, a sparkline and the advice. The data change itself is
+  still made by Guille with Claude.
+
 ### Notes: `localStorage` `gym-coach.notes` (0.9.0)
 The 📝 button in the player's top bar, on sets, rests and get-ready screens. It pauses the clock, offers two tags
 (a set: Fácil / Duro; a rest: Corto / Largo) and an optional text, and resumes on Guardar or Cancelar. The hub lists the

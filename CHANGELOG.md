@@ -2,6 +2,15 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.11.0] — 2026-11-13
+### Added
+- **Pick up an interrupted workout.** The player saves where you are on every step. If the app closes, the page reloads or you leave by accident, the hub shows **⏸ Entreno a medias** with Continuar and Descartar, and the routine's start screen offers **Continuar** (the set or rest you were on starts again) or Empezar de cero. It keeps finished sets, the weight, ratings and results for 6 hours; after that it goes to the history as partial.
+- **Results per set.** A strict pull-up has **✔ Hecho** and **✗ No salió**. Every other reps set has a **Hechas − N +** counter, pre-filled with your last number.
+- **📈 Progreso on the hub:** per exercise, the last session ("2 de 3", or "58 reps (20 · 20 · 18)") and a small trend line. Two rules flag the next step: every single came out twice in a row → try doubles; the top of the range in every set twice in a row → make it harder.
+- **Tests:** `node scripts/test.mjs` checks the player's timeline (order, rests, durations, set-up and put-away, the weight question) on a made-up routine and on every real routine, plus the progress rules.
+### Changed
+- The progress rules live in a new `progress.js`. The service worker cache is bumped to v5.
+
 ## [0.10.1] — 2026-11-12
 From a full run of R1 (64 min, every set, with pause, ⓘ, ⏮ and the screen off).
 ### Fixed

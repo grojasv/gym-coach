@@ -7,6 +7,7 @@ Phone-first hub of workout routines, played as a timed script by El Titán (a ca
 - `app.js`: the hub (routines, exercise library, history), languages, install button, footer. **`VERSION` here must match `CHANGELOG.md`.**
 - `player.js`: builds the timeline from a routine and plays it (timestamps, cues, beeps, speech, wake lock).
 - `detail.js`: the exercise explanation (`Detail.html`) and equipment names, shared by the hub's exercise page and the player's info overlay.
+- `progress.js`: pure progress rules over the history log (`Progress.series`, `advice`, `latest`).
 - `mascot.js`: El Titán as SVG (`Titan.svg(pose)`, `Titan.head()`), UMD so `scripts/make-icons.mjs` can reuse it.
 - `data/exercises.json`, `data/routines.json`, `data/lines.json`: all the content. Schemas are in `SPEC.md`.
 - `raw/`: Guille's private source material (a Gemini chat and his old Código Titán pages). **Gitignored. Never commit or publish it.** `raw/NOTES.md` summarises it.
@@ -17,6 +18,7 @@ Phone-first hub of workout routines, played as a timed script by El Titán (a ca
 - Posture first: cues are written and reviewed by hand, never generated at run time. No medical claims.
 - Routine durations are **computed from the steps**. Never type a total.
 - `node scripts/validate.mjs` must pass before every commit that touches `data/`.
+- `node scripts/test.mjs` must pass before every commit that touches `player.js`, `progress.js`, `detail.js` or `data/`.
 - A timed step's cue `at` values stay below `seconds - 3`, because the last 3 s are the beep countdown.
 
 ## Player rules (see SPEC § Player)

@@ -1,7 +1,7 @@
 // Gym Coach: the hub (routines, exercise library, history) and the shell (languages, install, footer).
 // No build step; data in data/*.json; the player lives in player.js and El Titán in mascot.js.
 (() => {
-  const VERSION = '0.10.1'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.11.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOG_KEY = 'gym-coach.log';
   const FEEL_KEY = 'gym-coach.feel';
@@ -31,6 +31,16 @@
     toLevelHint: { es: 'Los marcaste fáciles 2 veces seguidas. Ajústalos y pulsa ✓.', ca: 'Els vas marcar fàcils 2 vegades seguides. Ajusta’ls i prem ✓.', en: 'You marked these easy twice in a row. Adjust them, then tap ✓.' },
     easyTimes: { es: 'Fácil ×{n}', ca: 'Fàcil ×{n}', en: 'Easy ×{n}' },
     adjusted: { es: 'Ajustado', ca: 'Ajustat', en: 'Adjusted' },
+    progress: { es: 'Progreso', ca: 'Progrés', en: 'Progress' },
+    progressHint: { es: 'Lo que marcas en cada serie: dominadas que salen y repeticiones hechas.', ca: 'El que marques a cada sèrie: dominades que surten i repeticions fetes.', en: 'What you log on each set: pull-ups you get and reps done.' },
+    ofSingles: { es: '{a} de {b}', ca: '{a} de {b}', en: '{a} of {b}' },
+    repsTotal: { es: '{n} reps', ca: '{n} reps', en: '{n} reps' },
+    adviceDouble: { es: '⬆ Todas salieron 2 veces seguidas: toca probar dobles. Dímelo.', ca: '⬆ Totes han sortit 2 vegades seguides: toca provar dobles. Digues-m’ho.', en: '⬆ Every single came out twice in a row: time to try doubles. Tell me.' },
+    adviceTop: { es: '⬆ Tope del rango 2 veces seguidas: toca hacerlo más duro. Dímelo.', ca: '⬆ Màxim del rang 2 vegades seguides: toca fer-ho més dur. Digues-m’ho.', en: '⬆ Top of the range twice in a row: time to make it harder. Tell me.' },
+    pending: { es: 'Entreno a medias', ca: 'Entrenament a mitges', en: 'Workout in progress' },
+    pendingAt: { es: 'serie {n} de {total}', ca: 'sèrie {n} de {total}', en: 'set {n} of {total}' },
+    resume: { es: 'Continuar', ca: 'Continua', en: 'Continue' },
+    discard: { es: 'Descartar', ca: 'Descarta', en: 'Discard' },
     notes: { es: 'Notas', ca: 'Notes', en: 'Notes' },
     notesHint: { es: 'Lo que apuntaste con 📝 durante el entreno. Cópialo y pásamelo.', ca: 'El que vas apuntar amb 📝 durant l’entrenament. Copia-ho i passa-m’ho.', en: 'What you wrote with 📝 during workouts. Copy it and send it to me.' },
     copy: { es: 'Copiar todo', ca: 'Copia-ho tot', en: 'Copy all' },
@@ -116,6 +126,57 @@
       if (v != null) return v;
     }
     return '';
+  }
+  // ---------- workout in progress (SPEC § Resume) ----------
+  function pendingSession() {
+    try {
+      const v = JSON.parse(store.get(Player.SESSION_KEY) || 'null');
+      return v && Date.now() - v.at < Player.RESUME_MAX && data.routines.some((r) => r.id === v.routine) ? v : null;
+    } catch { return null; }
+  }
+  // A saved workout that is too old to resume still counts: it goes to the history as partial.
+  function settleSession(force = false) {
+    let v = null;
+    try { v = JSON.parse(store.get(Player.SESSION_KEY) || 'null'); } catch { /* unreadable: drop it */ }
+    if (!v || (!force && Date.now() - v.at < Player.RESUME_MAX)) return;
+    if (v.steps > 0) addLog({ at: new Date(v.at).toISOString(), routine: v.routine, done: false, steps: v.steps, total: v.total, weights: v.weights || {}, results: v.results || {} });
+    store.set(Player.SESSION_KEY, '');
+  }
+  function pendingSection() {
+    const v = pendingSession(); if (!v) return '';
+    const r = data.routines.find((x) => x.id === v.routine);
+    return `<section class="card pending"><h3>⏸ ${esc(t(TEXT.pending))}</h3>
+      <p>${num('R', r.n)}${esc(t(r.name))} · ${esc(t(TEXT.pendingAt).replace('{n}', v.set).replace('{total}', v.sets))}</p>
+      <p class="notes-btns"><a class="btn small go" href="#/play/${encodeURIComponent(r.id)}">▶ ${esc(t(TEXT.resume))}</a>
+        <button type="button" class="btn small ghost" data-discard>${esc(t(TEXT.discard))}</button></p></section>`;
+  }
+  view.addEventListener('click', (e) => {
+    if (!e.target.closest('[data-discard]')) return;
+    settleSession(true); renderHub();
+  });
+  // ---------- progress (SPEC § Progress) ----------
+  function spark(values) {
+    if (values.length < 2) return '';
+    const max = Math.max(...values, 1), W = 64, H = 22;
+    const pts = values.map((v, i) => `${(2 + (i * (W - 4)) / (values.length - 1)).toFixed(1)},${(H - 3 - (v / max) * (H - 6)).toFixed(1)}`);
+    const [lx, ly] = pts[pts.length - 1].split(',');
+    return `<svg class="spark" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts.join(' ')}"/><circle cx="${lx}" cy="${ly}" r="2.5"/></svg>`;
+  }
+  function progressSection() {
+    const all = Progress.series(readLog());
+    const ids = Object.keys(all).filter((id) => data.exercises[id])
+      .sort((a, b) => (all[b].at(-1).single - all[a].at(-1).single) || data.exercises[a].n - data.exercises[b].n);
+    if (!ids.length) return '';
+    return `<h2 class="sec">📈 ${esc(t(TEXT.progress))}</h2>
+      <section class="card progress-list"><p class="muted">${esc(t(TEXT.progressHint))}</p>
+        <ul>${ids.map((id) => {
+          const list = all[id], last = list.at(-1), tip = Progress.advice(list);
+          const now = last.single ? t(TEXT.ofSingles).replace('{a}', last.value).replace('{b}', last.sets.length)
+            : `${t(TEXT.repsTotal).replace('{n}', last.value)}${last.sets.length > 1 ? ` (${last.sets.join(' · ')})` : ''}`;
+          return `<li><a href="#/ex/${encodeURIComponent(id)}">${num('E', data.exercises[id].n)}${esc(t(data.exercises[id].name))}</a>
+            ${spark(list.map((x) => x.value))}<span class="now">${esc(now)}${last.max ? ` <small>/ ${last.max}</small>` : ''}</span>
+            ${tip ? `<span class="tip">${esc(t(tip === 'double' ? TEXT.adviceDouble : TEXT.adviceTop))}</span>` : ''}</li>`;
+        }).join('')}</ul></section>`;
   }
   // ---------- notes ----------
   const readNotes = () => { try { return JSON.parse(store.get(NOTE_KEY) || '[]'); } catch { return []; } };
@@ -205,6 +266,7 @@
       list.length, `<div class="list">${list.map((r) => routineCard(r, g)).join('')}</div>`, `g-${g.color}`);
   }
   function renderHub() {
+    settleSession();
     cand = candidates();
     const log = readLog().slice(0, 5);
     const helloPool = data.lines?.hello?.[lang];
@@ -214,6 +276,7 @@
         <div class="mascot pose-idle" id="heroMascot">${mascot('idle')}</div>
         <div class="bubble">${esc(hello)}</div>
       </section>
+      ${pendingSection()}
       ${levelUpSection()}
       <h2 class="sec">${esc(t(TEXT.routines))}</h2>
       ${data.groups.filter((g) => g.pinned).map((g) => {
@@ -225,6 +288,7 @@
         const n = data.routines.filter((r) => !data.groups.find((g) => g.id === r.group)?.pinned).length;
         return more ? section('r:more', `<span class="g-emoji" aria-hidden="true">📦</span><span class="g-title">${esc(t(TEXT.more))}</span>`, n, `<div class="more-groups">${more}</div>`, 'more') : '';
       })()}
+      ${progressSection()}
       <h2 class="sec">${esc(t(TEXT.library))}</h2>
       ${Object.keys(EQUIP).map((eq) => {
         const group = Object.entries(data.exercises).filter(([, ex]) => ex.equipment[0] === eq);
@@ -257,7 +321,7 @@
     document.body.classList.add('playing');
     playerEl.hidden = false;
     player = Player.open(playerEl, {
-      routine, exercises: data.exercises, lines: data.lines, getLang: () => lang, store, lastKg: lastKg(),
+      routine, exercises: data.exercises, lines: data.lines, getLang: () => lang, store, lastKg: lastKg(), lastResults: Progress.latest(readLog()),
       onFinish: (r) => addLog({ at: new Date().toISOString(), routine: id, ...r }),
       onFeel: (ex, v, at) => setFeel(id, ex, v, at),
       onNote: addNote,

@@ -129,6 +129,21 @@ a.card:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--edge
 .notes ul { margin: 0; padding: 0 0 0 18px; display: grid; gap: 6px; font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; }
 .notes-btns { display: flex; gap: 8px; margin: 10px 0 0; }
 .btn.ghost { background: var(--card); color: var(--ink); }
+/* Workout in progress and progress list (0.11.0) */
+.pending { padding: 12px 14px; margin-bottom: 14px; border-color: var(--gold); }
+.pending h3 { margin: 0 0 4px; font: 18px/1.2 var(--display); }
+.pending p { margin: 0; }
+.progress-list { padding: 12px 14px; }
+.progress-list p.muted { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.progress-list ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.progress-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; }
+.progress-list li a { grid-column: 1 / -1; font-weight: 700; color: inherit; }
+.progress-list .now { grid-column: 1; grid-row: 2; font-size: 14px; }
+.progress-list .now small { color: var(--muted); }
+.progress-list .spark { grid-column: 2; grid-row: 2; width: 64px; height: 22px; }
+.progress-list .tip { grid-column: 1 / -1; font-size: 13px; font-weight: 700; color: var(--red); }
+.spark polyline { fill: none; stroke: var(--red); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.spark circle { fill: var(--red); }
 .history li span:first-child { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
 .tag { font-size: 13px; font-weight: 700; color: var(--muted); }
 .tag.ok { color: var(--green); }
@@ -228,6 +243,14 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .f-btns button.on { background: var(--gold); color: var(--navy); box-shadow: 2px 2px 0 var(--edge); }
 .p-controls { display: flex; justify-content: center; gap: 14px; padding-top: 10px; }
 .is-paused .timer, .is-paused .secs { opacity: .45; }
+/* Reps counter, the "didn't get it" button and the resume choice (0.11.0) */
+.rep-count { display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; }
+.rep-count b { min-width: 2ch; font: 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+.done-row { display: flex; gap: 10px; width: 100%; max-width: 420px; }
+.done-row .btn.big { flex: 1; }
+.done-row [data-act="fail"] { flex: 0 1 42%; font-size: 17px; background: var(--card); color: var(--ink); }
+.p-controls.col { flex-direction: column; align-items: stretch; gap: 8px; }
+.p-controls.col .p-hint { text-align: center; }
 .p-top:has([data-act="note"]) { grid-template-columns: 44px 1fr 44px 44px; }
 /* A reps set's target time (its estimate): counts down, then shows overtime. Only Hecho moves on. */
 .rep-clock { font-variant-numeric: tabular-nums; }
@@ -264,6 +287,8 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
   .p-phase { font-size: 20px; }
   .reps-target small { font-size: 13px; }
   .reps-target b { font-size: 44px; }
+  .p-stage:has(.rep-count) .reps-target small { display: none; } /* room for the counter */
+  .rep-count b { font-size: 26px; }
   .p-stage:has(.reps-target) .mascot, .p-stage:has(.p-equip) .mascot { display: none; } /* room for Hecho / the set-up chip without scrolling */
 }
 @media (prefers-reduced-motion: reduce) {

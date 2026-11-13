@@ -3,8 +3,8 @@
 // fallback. Bump CACHE when SHELL changes.
 // GitHub Pages sends max-age=600, so fetches use cache: 'no-cache' (revalidate with the ETag; a 304 is cheap) and a
 // new release shows on the next open instead of up to 10 minutes later.
-const CACHE = 'gym-coach-v4';
-const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'player.js', 'mascot.js', 'detail.js', 'manifest.webmanifest',
+const CACHE = 'gym-coach-v5';
+const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'player.js', 'mascot.js', 'detail.js', 'progress.js', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png',
   'data/exercises.json', 'data/routines.json', 'data/groups.json', 'data/lines.json'];
 

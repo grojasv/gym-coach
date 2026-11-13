@@ -50,6 +50,14 @@
     easy: { es: 'Fácil', ca: 'Fàcil', en: 'Easy' },
     ok: { es: 'Bien', ca: 'Bé', en: 'Good' },
     hard: { es: 'Duro', ca: 'Dur', en: 'Hard' },
+    failed: { es: 'No salió', ca: 'No ha sortit', en: 'Didn’t get it' },
+    failSay: { es: 'No pasa nada, fiera. La siguiente sale.', ca: 'No passa res, fiera. La següent surt.', en: 'No worries, beast. The next one is yours.' },
+    made: { es: 'Hechas', ca: 'Fetes', en: 'Done' },
+    less: { es: 'Una menos', ca: 'Una menys', en: 'One less' },
+    more: { es: 'Una más', ca: 'Una més', en: 'One more' },
+    resumeAt: { es: 'Continuar', ca: 'Continua', en: 'Continue' },
+    resumeHint: { es: 'Lo dejaste en la serie {n} de {total}.', ca: 'Ho vas deixar a la sèrie {n} de {total}.', en: 'You stopped at set {n} of {total}.' },
+    restart: { es: 'Empezar de cero', ca: 'Comença de zero', en: 'Start over' },
     info: { es: 'Ver cómo se hace', ca: 'Mira com es fa', en: 'See how it’s done' },
     close: { es: 'Cerrar', ca: 'Tanca', en: 'Close' },
   };
@@ -58,6 +66,8 @@
   const FAILURE_EST = 45; // a to-failure set with no estSeconds
   // Speech pacing (SPEC § Cue rules). sayTime is the same estimate validate.mjs uses: conservative, in seconds.
   const sayTime = (text) => 0.5 + String(text).trim().split(/\s+/).length / 2.2;
+  const SESSION_KEY = 'gym-coach.session'; // the workout in progress, so a closed app or a reload can pick it up
+  const RESUME_MAX = 6 * 3600 * 1000; // a workout left longer than this starts over
   const TIP_GAP = 8; // seconds of silence before El Titán adds an exercise tip during a set
 
   // ---------- timeline ----------
@@ -164,7 +174,36 @@
     let noteOpen = false, noteResume = false, noteTag = null; // the 📝 overlay (see noteOverlay)
     const doneSet = new Set(); // indices of finished work items (a redone set counts once)
     // End-screen ratings (see SPEC § Level-up marks): one per exercise per session, reported through onFeel.
-    const sid = new Date().toISOString(), feels = {};
+    let sid = new Date().toISOString(), feels = {};
+    // Results (SPEC § Progress): item index → reps done, or 1 / 0 for a single such as a strict pull-up.
+    let resById = {}, repCount = 0;
+    const isSingle = (it) => it.mode === 'reps' && it.reps === 1 && !it.repsMax && !it.toFailure;
+    const counts = (it) => it.kind === 'work' && it.mode === 'reps' && !isSingle(it); // has the reps counter
+    function results() {
+      const r = {};
+      Object.keys(resById).map(Number).sort((a, b) => a - b).forEach((i) => {
+        const it = items[i];
+        const e = (r[it.exId] ||= { sets: [], ...(it.repsMax ? { max: it.repsMax } : {}), ...(isSingle(it) ? { single: true } : {}) });
+        e.sets.push(resById[i]);
+      });
+      return r;
+    }
+    const outcome = (done) => ({ done, steps: doneSet.size, total: sets, weights: weights(), results: results() });
+    // The workout in progress is saved on every step, and cleared when it ends or the user leaves it on purpose.
+    const sets = items.filter((i) => i.kind === 'work').length;
+    const sig = `${items.length}:${total}`; // a changed routine can't be resumed
+    const saved = (() => {
+      try {
+        const v = JSON.parse(store.get(SESSION_KEY) || 'null');
+        return v && v.routine === routine.id && v.sig === sig && Date.now() - v.at < RESUME_MAX && v.idx > 0 && v.idx < items.length - 1 ? v : null;
+      } catch { return null; }
+    })();
+    function save() {
+      if (idx < 0 || items[idx].kind === 'done') return;
+      store.set(SESSION_KEY, JSON.stringify({ routine: routine.id, sig, idx, doneIdx: [...doneSet], res: resById, kg, sid, feels, at: Date.now(),
+        set: Math.min(sets, items.slice(0, idx + 1).filter((i) => i.kind === 'work').length + (items[idx].kind === 'work' ? 0 : 1)), sets, ...outcome(false) }));
+    }
+    const forget = () => store.set(SESSION_KEY, '');
     const FEELS = [['easy', '😌'], ['ok', '💪'], ['hard', '🥵']];
 
     // A line is shown in the UI language and spoken in the voice's language (CA falls back to ES, same index).
@@ -284,7 +323,11 @@
           <ul class="p-list">${exIds.map((id) => `<li>${exName(id, t(exercises[id].name))}</li>`).join('')}</ul>
           <p class="p-hint">🔊 ${esc(t(TEXT.voiceHint))}${noCa ? `<br>${esc(TEXT.noCaVoice.ca)}` : ''}</p>
         </div>
-        <div class="p-controls"><button class="btn big go" data-act="start">▶ ${esc(t(TEXT.start))}</button></div>`;
+        <div class="p-controls${saved ? ' col' : ''}">${saved
+          ? `<p class="p-hint">${esc(t(TEXT.resumeHint).replace('{n}', saved.set).replace('{total}', saved.sets))}</p>
+             <button class="btn big go" data-act="start" data-resume="1">▶ ${esc(t(TEXT.resumeAt))}</button>
+             <button class="btn" data-act="start">${esc(t(TEXT.restart))}</button>`
+          : `<button class="btn big go" data-act="start">▶ ${esc(t(TEXT.start))}</button>`}</div>`;
       showInfo();
     }
     function feelList() {
@@ -314,7 +357,12 @@
             : `<div class="reps-target"><b>${it.reps}${it.repsMax ? `–${it.repsMax}` : ''}</b> ${esc(t(it.reps === 1 && !it.repsMax ? TEXT.rep : TEXT.reps))}${it.repsMax
               ? `<small>${esc(t(TEXT.rangeHint).replace('{max}', it.repsMax))}</small>` : ''}</div>`}
           ${it.askKg ? kgField() : ''}
-          <button class="btn big go" data-act="done">✔ ${esc(t(TEXT.finished))}</button>`;
+          ${counts(it) ? `<div class="rep-count"><span>${esc(t(TEXT.made))}</span>
+            <button type="button" class="icon-btn" data-act="rep-less" aria-label="${esc(t(TEXT.less))}">−</button>
+            <b data-reps aria-live="polite">${repCount}</b>
+            <button type="button" class="icon-btn" data-act="rep-more" aria-label="${esc(t(TEXT.more))}">+</button></div>` : ''}
+          <div class="done-row"><button class="btn big go" data-act="done">✔ ${esc(t(TEXT.finished))}</button>
+            ${isSingle(it) ? `<button class="btn big" data-act="fail">✗ ${esc(t(TEXT.failed))}</button>` : ''}</div>`;
       } else {
         const nameIt = it.kind === 'work' ? it : it.next;
         // Time left, so a re-render while paused (pause, info overlay, mute) shows where the clock stopped.
@@ -356,6 +404,10 @@
       endAt = it.seconds ? from + it.seconds * 1000 : 0;
       repEnd = it.kind === 'work' && it.mode === 'reps' ? from + it.est * 1000 : 0;
       startedAt = from;
+      if (counts(it)) { // the counter starts at this session's last set of the exercise, else last time's, else the target
+        const mine = Object.keys(resById).map(Number).filter((n) => n < idx && items[n].exId === it.exId).pop();
+        repCount = resById[idx] ?? (mine != null ? resById[mine] : opts.lastResults?.[it.exId]?.sets?.[0] ?? it.reps ?? 10);
+      }
       const live = !it.seconds || Date.now() < endAt; // false while catching up after the page was hidden
       if (live) {
         renderItem();
@@ -381,6 +433,7 @@
         } else if (it.kind === 'done') finish();
         queuing = false;
         if (!(it.kind === 'work' && it.seconds)) drain(); // a timed set says its first cue first (tick)
+        save();
       }
       return live;
     }
@@ -461,8 +514,8 @@
     function finish() {
       releaseAwake();
       setTimeout(() => { sayKey('finish'); const f = spoken; sayKey('motto'); spoken = `${f} ${spoken}`; const b = root.querySelector('.bubble'); if (b) b.textContent = spoken; }, 300);
-      opts.onFinish?.({ done: true, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights: weights() });
-      logged = true;
+      opts.onFinish?.(outcome(true));
+      logged = true; forget();
     }
     let logged = false;
     // The log keeps a weight per exercise (older entries do too); with one pair of dumbbells they all share kg.
@@ -477,7 +530,8 @@
       clearInterval(timer); timer = null; hush(); releaseAwake();
       document.removeEventListener('visibilitychange', onVis);
       document.removeEventListener('keydown', onKey);
-      if (!logged && doneSet.size > 0) opts.onFinish?.({ done: false, steps: doneSet.size, total: items.filter((i) => i.kind === 'work').length, weights: weights() });
+      if (!logged && doneSet.size > 0) opts.onFinish?.(outcome(false));
+      if (idx >= 0) forget(); // leaving a started workout on purpose; an unopened saved one stays for later
       if (!quiet) onExit?.();
     }
     function onVis() {
@@ -508,7 +562,10 @@
         keepAwake();
         document.addEventListener('visibilitychange', onVis);
         timer = setInterval(tick, 200);
-        enter(0);
+        if (b.dataset.resume && saved) { // carry on where it stopped: the set or rest it was on starts again
+          (saved.doneIdx || []).forEach((i) => doneSet.add(i)); resById = saved.res || {}; kg = saved.kg ?? kg; sid = saved.sid || sid; feels = saved.feels || {};
+          enter(saved.idx);
+        } else enter(0);
       } else if (act === 'exit') {
         if (idx >= 0 && items[idx].kind !== 'done' && !confirm(t(TEXT.exitAsk))) return;
         close();
@@ -543,10 +600,15 @@
         b.parentElement.querySelectorAll('button').forEach((x) => { const on = x.dataset.v === noteTag; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
       } else if (act === 'note-save' || act === 'note-cancel') {
         closeNote(act === 'note-save');
-      } else if (act === 'skip' || act === 'done') {
+      } else if (act === 'rep-less' || act === 'rep-more') {
+        repCount = Math.max(0, repCount + (act === 'rep-more' ? 1 : -1));
+        const n = root.querySelector('[data-reps]'); if (n) n.textContent = repCount;
+      } else if (act === 'skip' || act === 'done' || act === 'fail') {
+        const it = items[idx];
         hush(); pausedLeft = null;
-        if (act === 'done') sayKey('repsDone');
-        advance(false, act === 'done');
+        if (act !== 'skip' && it.kind === 'work' && it.mode === 'reps') resById[idx] = isSingle(it) ? (act === 'done' ? 1 : 0) : repCount;
+        if (act === 'done') sayKey('repsDone'); else if (act === 'fail') sayL(TEXT.failSay);
+        advance(false, act !== 'skip');
       } else if (act === 'prev') {
         let i = idx - 1; while (i > 0 && items[i].kind !== 'work') i--;
         if (items[idx].kind === 'work' && Date.now() - startedAt > 3000) i = idx; // restart the current set first
@@ -554,12 +616,12 @@
       }
     };
     root.addEventListener('input', (e) => {
-      if (e.target.matches('[data-weight]')) kg = e.target.value;
+      if (e.target.matches('[data-weight]')) { kg = e.target.value; save(); }
     });
     renderIntro();
     return { close, closeOverlay, isActive: () => idx >= 0 && items[idx].kind !== 'done', rerender: () => (idx < 0 ? renderIntro() : renderItem()) };
   }
 
   const exitAsk = () => { const l = document.documentElement.lang; return TEXT.exitAsk[l] || TEXT.exitAsk.es; };
-  window.Player = { open, buildTimeline, duration, fmtLen, exitAsk };
+  window.Player = { open, buildTimeline, duration, fmtLen, exitAsk, SESSION_KEY, RESUME_MAX };
 })();
