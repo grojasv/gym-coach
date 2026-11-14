@@ -337,7 +337,7 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 @keyframes fx-wash { from { opacity: .3; } to { opacity: 0; } }
 
 /* ----- fx: intro (El Titán drops into the ring, the title slams in). Tap to skip. ----- */
-.intro {
+.fx-intro {
   position: fixed; inset: 0; z-index: 50; overflow: hidden; display: grid; place-items: center; cursor: pointer; touch-action: none;
   background: radial-gradient(circle at 50% 42%, #ff6a5c 0, #e63946 50%, #a51c2b 100%);
 }
@@ -363,8 +363,8 @@ body.playing main, body.playing .foot, body.playing .top { display: none; }
 .intro-ropes { position: absolute; inset: auto -4% 5% -4%; animation: fx-rope .45s .38s ease-out; }
 .intro-ropes i { display: block; height: 9px; margin-top: 15px; background: #fff; border: 2.5px solid #1b2340; border-radius: 6px; }
 .intro-ropes i:nth-child(2) { background: #ffc72c; }
-.intro.out { animation: fx-curtain .3s cubic-bezier(.6, 0, .9, .4) forwards; }
-.intro.skip { animation: fx-fade .15s forwards; }
+.fx-intro.out { animation: fx-curtain .3s cubic-bezier(.6, 0, .9, .4) forwards; }
+.fx-intro.skip { animation: fx-fade .15s forwards; }
 @keyframes fx-drop { from { transform: translateY(-110vh); } 68% { transform: translateY(0) scale(1.14, .8); } 84% { transform: translateY(-16px) scale(.95, 1.06); } }
 @keyframes fx-shake { 25% { transform: translate(-5px, 7px); } 50% { transform: translate(5px, -3px); } 75% { transform: translate(-3px, 3px); } }
 @keyframes fx-slam { from { opacity: 0; transform: scale(3.4); } 70% { opacity: 1; transform: scale(.9); } }

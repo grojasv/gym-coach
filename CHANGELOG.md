@@ -2,6 +2,10 @@
 
 All notable changes to Gym Coach. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.12.2] — 2026-11-14
+### Fixed
+- **The Start button was hidden on every routine.** The app-open intro's full-screen style also matched the player's intro screen, which covered Start. The intro overlay now has its own class (`fx-intro`). Found with a full R1 run; nothing else was broken.
+
 ## [0.12.1] — 2026-11-13
 ### Changed
 - **Core in R1 (R5): 2 rounds instead of 3.** R1 now takes 66.5 min, shown as 67 (it was 69). Guille accepts R1 above 60 min; nothing else is cut.

@@ -20,7 +20,7 @@
     if (calm.matches || seen() || !window.Titan || !/^(#\/?)?$/.test(location.hash)) return;
     try { sessionStorage.setItem(INTRO_KEY, '1'); } catch { /* private mode */ }
     const sparks = Array.from({ length: 10 }, (_, i) => `<i style="--a:${i * 36 + 10}deg;--d:${70 + (i % 3) * 22}px"></i>`).join('');
-    const box = el('intro', `<div class="intro-rays"></div>
+    const box = el('fx-intro', `<div class="intro-rays"></div>
       <div class="intro-stage">
         <div class="intro-titan">${titan('cheer')}</div>
         <div class="intro-sparks">${sparks}</div>
